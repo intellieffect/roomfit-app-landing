@@ -265,7 +265,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              왜 <span className="gradient-text">Roomfit</span>인가요?
+              <span className="gradient-text">룸핏</span>을 더 스마트하게
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               최첨단 기술로 당신의 트레이닝을 한 차원 높여드립니다
