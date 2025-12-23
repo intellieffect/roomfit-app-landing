@@ -1,0 +1,184 @@
+{
+  "site": {
+    "name": "Roomfit",
+    "copyright": "2024 Roomfit. All rights reserved."
+  },
+  "nav": {
+    "links": [
+      { "href": "#features", "label": "기능" },
+      { "href": "#vbt", "label": "VBT 분석" },
+      { "href": "#modes", "label": "트레이닝 모드" },
+      { "href": "#data", "label": "데이터" }
+    ],
+    "cta": "다운로드"
+  },
+  "hero": {
+    "badge": "AI 기반 스마트 트레이닝",
+    "title": {
+      "line1": "데이터로 완성하는",
+      "line2": "나만의 AI",
+      "line3": "퍼스널 트레이너"
+    },
+    "subtitle": "실시간 VBT(속도 기반 트레이닝) 분석부터 음성 제어까지. Roomfit 앱으로 당신의 모든 움직임을 스마트하게 관리하세요.",
+    "description": "더 이상 감에 의존하지 마세요. Roomfit은 운동 속도, 파워, 가동범위를 정밀하게 분석하여 당신이 수행하는 모든 렙(Rep)의 품질을 증명하고 기록합니다.",
+    "cta": {
+      "primary": "앱 다운로드",
+      "secondary": "기능 살펴보기"
+    },
+    "stats": [
+      { "value": "0.01초", "label": "실시간 측정" },
+      { "value": "3가지", "label": "웨이트 모드" },
+      { "value": "무제한", "label": "데이터 기록" }
+    ]
+  },
+  "features": {
+    "title": "룸핏",
+    "titleSuffix": "을 더 스마트하게",
+    "subtitle": "최첨단 기술로 당신의 트레이닝을 한 차원 높여드립니다",
+    "items": [
+      {
+        "icon": "Activity",
+        "title": "실시간 VBT 분석",
+        "description": "속도와 파워를 실시간으로 측정하고 시각화합니다",
+        "color": "primary"
+      },
+      {
+        "icon": "Dumbbell",
+        "title": "스마트 모드",
+        "description": "Constant, Negative, Band 등 다양한 저항 모드를 지원합니다",
+        "color": "secondary"
+      },
+      {
+        "icon": "Mic",
+        "title": "음성 제어",
+        "description": "\"웨이트 온\" 한 마디로 손을 놓지 않고 무게를 조절합니다",
+        "color": "primary"
+      },
+      {
+        "icon": "BarChart3",
+        "title": "데이터 인사이트",
+        "description": "모든 세션을 자동 기록하고 성장 추이를 분석합니다",
+        "color": "secondary"
+      }
+    ]
+  },
+  "vbtAnalysis": {
+    "badge": "AI 기반 VBT & 동작 분석",
+    "title": {
+      "line1": "보이는 운동,",
+      "line2": "증명되는 퍼포먼스"
+    },
+    "subtitle": "실시간 속도와 파워 측정으로 운동의 질을 높이세요.",
+    "description": "단순히 횟수만 세는 것이 아닙니다. Roomfit의 AI는 당신의 움직임을 실시간으로 추적하여 속도(m/s)와 파워(W)를 시각화합니다.",
+    "floatingCards": {
+      "speed": { "label": "속도", "value": "0.85 m/s" },
+      "power": { "label": "파워", "value": "523.4 W" }
+    },
+    "features": [
+      {
+        "icon": "Target",
+        "title": "자동 렙 카운팅",
+        "description": "가동범위 기반으로 정확한 횟수와 터닝 포인트를 감지합니다"
+      },
+      {
+        "icon": "Activity",
+        "title": "동작 품질 평가",
+        "description": "구심성/편심성 구간을 분석하여 흐트러짐 없는 자세를 유도합니다"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "피로도 감지",
+        "description": "속도 저하를 감지하여 부상 없이 최적의 한계까지 밀어붙일 수 있게 돕습니다"
+      }
+    ]
+  },
+  "trainingModes": {
+    "badge": "스마트 트레이닝 모드",
+    "title": {
+      "line1": "터치 한 번으로 바뀌는",
+      "line2": "운동의 차원"
+    },
+    "subtitle": "무게 조절부터 드랍세트까지, 복잡한 세팅을 자동화했습니다.",
+    "description": "웨이트 트레이닝의 다양한 기법을 손쉽게 적용하세요. 일반적인 무게 운동뿐만 아니라, Roomfit만의 특화된 모드를 지원합니다.",
+    "modes": [
+      {
+        "title": "3가지 웨이트 모드",
+        "description": "일정한 자극의 Constant, 이완 시 저항을 높이는 Negative, 밴드 탄성을 구현한 Band 모드를 지원합니다"
+      },
+      {
+        "title": "자동 드랍세트",
+        "description": "핀을 꽂을 필요 없이, 설정한 무게나 비율(%)에 따라 자동으로 무게가 줄어드는 드랍세트를 경험하세요"
+      },
+      {
+        "title": "운동 라이브러리",
+        "description": "부위별, 운동별 필터를 통해 원하는 운동을 빠르게 찾고 이전 설정을 즉시 불러옵니다"
+      }
+    ]
+  },
+  "voiceControl": {
+    "badge": "핸즈프리 음성 제어",
+    "title": {
+      "line1": "흐름을 깨지 않는",
+      "line2": "보이스 컨트롤"
+    },
+    "subtitle": "\"웨이트 온\" 한 마디면 충분합니다.",
+    "description": "운동 중 스마트폰을 터치하느라 집중력을 잃지 마세요. 양손이 자유로워야 하는 고중량 운동 중에도 음성 명령만으로 무게를 켜고 끌 수 있습니다. 당신은 오직 근육의 움직임에만 집중하세요.",
+    "commands": ["\"웨이트 온\"", "\"웨이트 오프\"", "\"플러스 5kg\"", "\"마이너스 10kg\""]
+  },
+  "dataInsights": {
+    "badge": "데이터 기록 & 인사이트",
+    "title": {
+      "line1": "쌓이는 기록,",
+      "line2": "성장하는 나"
+    },
+    "subtitle": "운동한 날이 색으로 채워지는 캘린더로 꾸준함을 확인하세요.",
+    "items": [
+      {
+        "icon": "Activity",
+        "title": "활동 히트맵",
+        "description": "6개월간의 운동 강도와 빈도를 색상으로 시각화하여 동기를 부여합니다"
+      },
+      {
+        "icon": "BarChart3",
+        "title": "상세 분석 리포트",
+        "description": "세트별 휴식 시간부터 렙당 속도까지, 전문적인 데이터를 CSV로 내보내거나 그래프로 확인하세요"
+      },
+      {
+        "icon": "Smartphone",
+        "title": "소셜 공유",
+        "description": "오늘 달성한 운동 기록과 스트릭(Streak)을 멋진 브랜딩 이미지로 생성해 SNS에 공유할 수 있습니다"
+      }
+    ]
+  },
+  "connectivity": {
+    "badge": "연결성 & 지속적인 업데이트",
+    "title": {
+      "line1": "끊김 없는 연결,",
+      "line2": "진화하는 기능"
+    },
+    "subtitle": "켜는 순간 연결되고, 쓸수록 똑똑해집니다.",
+    "description": "앱을 켜는 순간 주변의 Roomfit 기기를 자동으로 찾아 연결합니다. 또한, 지속적인 OTA 펌웨어 업데이트를 통해 앱뿐만 아니라 하드웨어의 성능과 기능도 계속해서 업그레이드됩니다.",
+    "status": "Bluetooth 자동 연결"
+  },
+  "downloadCTA": {
+    "title": "지금 바로 시작하세요",
+    "description": "Roomfit과 함께 데이터 기반의 스마트한 트레이닝을 경험해보세요. 당신의 모든 움직임이 기록되고 분석됩니다.",
+    "appStore": {
+      "label": "Download on the",
+      "store": "App Store",
+      "url": "#"
+    },
+    "playStore": {
+      "label": "GET IT ON",
+      "store": "Google Play",
+      "url": "#"
+    }
+  },
+  "footer": {
+    "links": [
+      { "href": "#", "label": "이용약관" },
+      { "href": "#", "label": "개인정보처리방침" },
+      { "href": "#", "label": "고객센터" }
+    ]
+  }
+}

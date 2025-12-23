@@ -1,9 +1,12 @@
 import Image from "next/image";
 import { Mic } from "lucide-react";
-
-const voiceCommands = ['"웨이트 온"', '"웨이트 오프"', '"플러스 5kg"', '"마이너스 10kg"'];
+import { content, images, getScreenshot } from "@/data";
 
 export default function VoiceControl() {
+  const { voiceControl } = content;
+  const sectionImages = images.sections.voiceControl;
+  const mainScreenshot = getScreenshot(sectionImages.main);
+
   return (
     <section className="py-24 bg-gray-900 text-white relative overflow-hidden">
       {/* Background elements */}
@@ -17,8 +20,8 @@ export default function VoiceControl() {
           <div className="relative flex justify-center">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/screenshots/voice-weight-on.PNG"
-                alt="음성 인식 화면"
+                src={mainScreenshot.src}
+                alt={mainScreenshot.alt}
                 width={300}
                 height={600}
                 className="w-[300px]"
@@ -30,27 +33,25 @@ export default function VoiceControl() {
           <div>
             <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Mic className="w-4 h-4" />
-              핸즈프리 음성 제어
+              {voiceControl.badge}
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              흐름을 깨지 않는
+              {voiceControl.title.line1}
               <br />
-              <span className="text-secondary">보이스 컨트롤</span>
+              <span className="text-secondary">{voiceControl.title.line2}</span>
             </h2>
 
             <p className="text-xl text-gray-300 mb-6">
-              "웨이트 온" 한 마디면 충분합니다.
+              {voiceControl.subtitle}
             </p>
 
             <p className="text-gray-400 mb-8">
-              운동 중 스마트폰을 터치하느라 집중력을 잃지 마세요. 양손이
-              자유로워야 하는 고중량 운동 중에도 음성 명령만으로 무게를 켜고
-              끌 수 있습니다. 당신은 오직 근육의 움직임에만 집중하세요.
+              {voiceControl.description}
             </p>
 
             <div className="flex flex-wrap gap-3">
-              {voiceCommands.map((command, index) => (
+              {voiceControl.commands.map((command, index) => (
                 <div
                   key={index}
                   className="px-4 py-2 bg-white/10 rounded-full text-sm"

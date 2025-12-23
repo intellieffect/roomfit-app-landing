@@ -3,10 +3,13 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { content, images } from "@/data";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { nav, site } = content;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,13 +18,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: "#features", label: "기능" },
-    { href: "#vbt", label: "VBT 분석" },
-    { href: "#modes", label: "트레이닝 모드" },
-    { href: "#data", label: "데이터" },
-  ];
 
   return (
     <nav
@@ -35,20 +31,20 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/app_icon.png"
-              alt="Roomfit Logo"
+              src={images.logo}
+              alt={`${site.name} Logo`}
               width={40}
               height={40}
               className="rounded-lg"
             />
             <span className="font-bold text-xl text-gray-900 dark:text-white">
-              Roomfit
+              {site.name}
             </span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -61,7 +57,7 @@ export default function Navbar() {
               href="#download"
               className="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors"
             >
-              다운로드
+              {nav.cta}
             </a>
           </div>
 
@@ -83,7 +79,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white dark:bg-[#0a0a0f] border-t border-gray-100 dark:border-gray-800">
           <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+            {nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -98,7 +94,7 @@ export default function Navbar() {
               className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
-              다운로드
+              {nav.cta}
             </a>
           </div>
         </div>

@@ -1,0 +1,56 @@
+{
+  "logo": "/images/app_icon.png",
+  "device": "/images/RoomfitDevice.png",
+  "screenshots": {
+    "workoutProgress": {
+      "src": "/images/screenshots/workout-progress.PNG",
+      "alt": "운동 진행 화면"
+    },
+    "dropChart": {
+      "src": "/images/screenshots/drop-chart.PNG",
+      "alt": "드랍세트 차트 화면"
+    },
+    "dropSetting": {
+      "src": "/images/screenshots/drop-setting.PNG",
+      "alt": "드랍세트 설정 화면"
+    },
+    "lastSet": {
+      "src": "/images/screenshots/last-set.PNG",
+      "alt": "세트 완료 화면"
+    },
+    "remoteWorkout": {
+      "src": "/images/screenshots/remote-workout.PNG",
+      "alt": "리모컨 모드 화면"
+    },
+    "voiceWeightOn": {
+      "src": "/images/screenshots/voice-weight-on.PNG",
+      "alt": "음성 인식 화면"
+    },
+    "weightTypeSetting": {
+      "src": "/images/screenshots/weight-type-setting.PNG",
+      "alt": "웨이트 모드 설정 화면"
+    },
+    "workoutSetup": {
+      "src": "/images/screenshots/workout-setup.PNG",
+      "alt": "운동 설정 화면"
+    }
+  },
+  "sections": {
+    "hero": {
+      "main": "workoutProgress",
+      "secondary": "dropChart"
+    },
+    "vbtAnalysis": {
+      "main": "workoutProgress"
+    },
+    "trainingModes": {
+      "grid": ["weightTypeSetting", "workoutSetup", "dropSetting", "remoteWorkout"]
+    },
+    "voiceControl": {
+      "main": "voiceWeightOn"
+    },
+    "dataInsights": {
+      "main": "lastSet"
+    }
+  }
+}

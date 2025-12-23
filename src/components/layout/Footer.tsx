@@ -1,11 +1,8 @@
 import Image from "next/image";
+import { content, images } from "@/data";
 
 export default function Footer() {
-  const footerLinks = [
-    { href: "#", label: "이용약관" },
-    { href: "#", label: "개인정보처리방침" },
-    { href: "#", label: "고객센터" },
-  ];
+  const { footer, site } = content;
 
   return (
     <footer className="py-12 bg-gray-900 text-white">
@@ -13,17 +10,17 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <Image
-              src="/images/app_icon.png"
-              alt="Roomfit Logo"
+              src={images.logo}
+              alt={`${site.name} Logo`}
               width={40}
               height={40}
               className="rounded-lg"
             />
-            <span className="font-bold text-xl">Roomfit</span>
+            <span className="font-bold text-xl">{site.name}</span>
           </div>
 
           <div className="flex items-center gap-6 text-gray-400">
-            {footerLinks.map((link) => (
+            {footer.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -35,7 +32,7 @@ export default function Footer() {
           </div>
 
           <div className="text-gray-500 text-sm">
-            &copy; 2024 Roomfit. All rights reserved.
+            &copy; {site.copyright}
           </div>
         </div>
       </div>
