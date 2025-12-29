@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { Activity, BarChart3, Smartphone, LucideIcon } from "lucide-react";
+import { Activity, TrendingUp, Flame, Share2, BarChart3, LucideIcon } from "lucide-react";
 import { content, images, getScreenshot } from "@/data";
 
 const iconMap: Record<string, LucideIcon> = {
   Activity,
+  TrendingUp,
+  Flame,
+  Share2,
   BarChart3,
-  Smartphone,
 };
 
 export default function DataInsights() {
@@ -32,7 +34,7 @@ export default function DataInsights() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {dataInsights.items.map((item, index) => {
             const Icon = iconMap[item.icon];
             return (

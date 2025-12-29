@@ -1,0 +1,252 @@
+{
+  "hero": {
+    "badge": "PT샵 & 헬스장을 위한 스마트 솔루션",
+    "title": {
+      "line1": "카운팅은 AI에게,",
+      "line2": "트레이너는",
+      "line3": "코칭에 집중"
+    },
+    "subtitle": "회원의 운동을 AI가 정확히 측정하고 기록합니다. 트레이너는 카운팅에서 벗어나 진짜 중요한 자세 교정과 동기부여에 집중하세요.",
+    "description": "회원이 치팅 없이 정확히 수행했는지 데이터로 확인하고, PT 효과를 객관적으로 입증할 수 있습니다.",
+    "cta": {
+      "primary": "도입 문의",
+      "secondary": "기능 살펴보기"
+    },
+    "stats": [
+      { "value": "데이터 기반", "label": "PT 효과 입증" },
+      { "value": "자동화", "label": "회원 기록 관리" },
+      { "value": "차별화", "label": "전문 VBT 코칭" }
+    ]
+  },
+  "features": {
+    "title": "룸핏",
+    "titleSuffix": "으로 PT를 차별화하세요",
+    "subtitle": "전문 VBT 장비에서만 가능했던 기능을 회원에게 제공합니다",
+    "items": [
+      {
+        "icon": "Activity",
+        "title": "전문 VBT 분석",
+        "description": "선수/고급 회원에게 속도 기반 훈련 프로그램 설계",
+        "color": "primary"
+      },
+      {
+        "icon": "Users",
+        "title": "회원 관리 효율화",
+        "description": "회원별 운동 이력 자동 누적, 진도 파악 및 수업 계획 수립",
+        "color": "secondary"
+      },
+      {
+        "icon": "Hand",
+        "title": "핸즈프리 조작",
+        "description": "회원 자세 잡아주면서 동시에 음성/제스처로 무게 조절",
+        "color": "primary"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "PT 효과 입증",
+        "description": "회원에게 장기 성장 그래프 보여주며 성과 객관화",
+        "color": "secondary"
+      }
+    ]
+  },
+  "vbtAnalysis": {
+    "badge": "전문 VBT 분석 & 코칭",
+    "title": {
+      "line1": "전문 장비 수준의",
+      "line2": "VBT 데이터를 회원에게"
+    },
+    "subtitle": "속도 측정, 파워 계산, 가속도 분석은 전문 VBT 장비에서만 가능했던 기능입니다.",
+    "description": "회원 동작 품질을 수치화하여 개선 포인트를 명확히 제시하고, 훈련 목표별(근력/근비대) 최적 프로그램을 설계할 수 있습니다.",
+    "floatingCards": {
+      "speed": { "label": "속도", "value": "0.85 m/s" },
+      "power": { "label": "파워", "value": "523.4 W" }
+    },
+    "features": [
+      {
+        "icon": "Target",
+        "title": "치팅 없는 정확한 측정",
+        "description": "회원이 치팅 없이 정확히 수행했는지 데이터로 확인"
+      },
+      {
+        "icon": "Gauge",
+        "title": "%1RM 기반 프로그래밍",
+        "description": "회원 1RM을 안전하게 추정하여 전문적 프로그램 설계"
+      },
+      {
+        "icon": "Activity",
+        "title": "속도 존 모니터링",
+        "description": "회원 목표(근력/파워/근비대)에 맞는 속도 존 설정"
+      },
+      {
+        "icon": "AlertTriangle",
+        "title": "과훈련 방지",
+        "description": "회원 피로도 감지로 적정 볼륨에서 세트 종료 권고"
+      }
+    ]
+  },
+  "trainingModes": {
+    "badge": "다양한 트레이닝 옵션",
+    "title": {
+      "line1": "시간 효율적인 고강도 수업,",
+      "line2": "PT를 차별화하세요"
+    },
+    "subtitle": "트레이너가 무게 바꾸는 동안 회원이 쉬는 시간을 제로로 만듭니다.",
+    "description": "정체기 회원에게 새로운 자극을 제공하고, 재활/초보 회원에게 관절 부담을 줄인 점진적 저항을 제공할 수 있습니다.",
+    "modes": [
+      {
+        "title": "Constant 모드",
+        "description": "기본 웨이트 트레이닝 수업에 활용"
+      },
+      {
+        "title": "Negative 모드",
+        "description": "정체기 회원에게 새로운 자극 제공, 고급 테크닉 코칭"
+      },
+      {
+        "title": "Band 모드",
+        "description": "재활/초보 회원에게 관절 부담 줄인 점진적 저항 제공"
+      },
+      {
+        "title": "자동 드랍세트",
+        "description": "회원 레벨에 맞춘 단계별 볼륨 정밀 조절"
+      }
+    ]
+  },
+  "romOptimization": {
+    "badge": "개인화된 ROM 최적화",
+    "title": {
+      "line1": "회원 교체 시 자동으로",
+      "line2": "각자의 ROM 적용"
+    },
+    "subtitle": "회원별 최적 가동범위 데이터가 자동 축적되어 세팅 시간을 줄입니다.",
+    "items": [
+      {
+        "icon": "UserCheck",
+        "title": "회원별 ROM 자동 적용",
+        "description": "회원 교체 시 저장된 가동범위가 자동 세팅"
+      },
+      {
+        "icon": "Settings2",
+        "title": "재활/특수 목적 정밀 설정",
+        "description": "재활 회원이나 특수 훈련 시 정밀 ROM 설정"
+      },
+      {
+        "icon": "RotateCcw",
+        "title": "좌우 비대칭 교정",
+        "description": "측별 ROM을 다르게 설정하여 교정 훈련 지원"
+      },
+      {
+        "icon": "Ruler",
+        "title": "실제 운동 패턴 기반",
+        "description": "회원의 실제 동작 패턴을 분석하여 최적 ROM 산출"
+      }
+    ]
+  },
+  "memberManagement": {
+    "badge": "회원 관리 & 성과 분석",
+    "title": {
+      "line1": "회원에게 PT 효과를",
+      "line2": "데이터로 입증하세요"
+    },
+    "subtitle": "회원별 모든 운동 이력이 자동 누적되어 관리가 편리합니다.",
+    "items": [
+      {
+        "icon": "Users",
+        "title": "회원별 이력 관리",
+        "description": "회원별 모든 운동 이력 자동 누적, 진도 파악 및 수업 계획 수립"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "성장 그래프",
+        "description": "\"한 달 전보다 이만큼 늘었어요\" 데이터로 PT 성과 입증"
+      },
+      {
+        "icon": "FileText",
+        "title": "세트별 피드백",
+        "description": "회원에게 세트별 피드백 제공하여 전문성 어필"
+      },
+      {
+        "icon": "Bell",
+        "title": "일일 피드백 자동 생성",
+        "description": "회원에게 보낼 일일 피드백을 자동으로 생성"
+      }
+    ]
+  },
+  "quickStart": {
+    "badge": "빠른 수업 진행",
+    "title": {
+      "line1": "여러 회원의 최근 무게를",
+      "line2": "자동으로 세팅"
+    },
+    "subtitle": "단골 회원 세팅값을 바로 불러와서 시간을 절약하세요.",
+    "items": [
+      {
+        "icon": "Zap",
+        "title": "리모컨 모드",
+        "description": "복잡한 설정 없이 바로 다음 수업 시작"
+      },
+      {
+        "icon": "RotateCcw",
+        "title": "이전 설정 불러오기",
+        "description": "단골 회원 세팅값 원터치 복원으로 시간 절약"
+      },
+      {
+        "icon": "Star",
+        "title": "즐겨찾기 운동",
+        "description": "인기 운동 / 회원별 자주 하는 운동 빠른 접근"
+      },
+      {
+        "icon": "Search",
+        "title": "운동 라이브러리",
+        "description": "회원 목표에 맞는 다양한 운동 옵션 빠르게 검색"
+      }
+    ]
+  },
+  "deviceManagement": {
+    "badge": "기기 관리 & 안정성",
+    "title": {
+      "line1": "여러 대 기기도",
+      "line2": "효율적으로 관리"
+    },
+    "subtitle": "수업 중 연결 끊김으로 인한 흐름 방해를 최소화합니다.",
+    "description": "회원 교체 시 빠른 기기 전환이 가능합니다. 여러 대 기기 일괄 업데이트로 관리 효율을 높이고, 영업 중 기기 장애 리스크를 최소화합니다.",
+    "features": [
+      "여러 대 기기 중 빠르게 원하는 기기 연결",
+      "여러 기기 연결 상태 동시 모니터링",
+      "수업 전 기기 배터리 상태 점검",
+      "여러 대 기기 일괄 OTA 업데이트",
+      "업데이트 실패 시 롤백 복구 지원"
+    ]
+  },
+  "marketing": {
+    "badge": "마케팅 & 데이터 활용",
+    "title": {
+      "line1": "센터 SNS에 회원 성과 홍보,",
+      "line2": "룸핏 사용 센터임을 어필"
+    },
+    "subtitle": "회원 성과를 브랜딩 이미지로 생성하여 SNS에 홍보하세요.",
+    "items": [
+      {
+        "icon": "Share2",
+        "title": "브랜딩 이미지 생성",
+        "description": "센터 SNS 마케팅용 회원 성과 이미지 (동의 하에)"
+      },
+      {
+        "icon": "FileSpreadsheet",
+        "title": "데이터 내보내기",
+        "description": "회원 데이터 보고서 작성, 연구/분석 목적 CSV 추출"
+      }
+    ]
+  },
+  "contactCTA": {
+    "title": "PT샵/헬스장 도입 문의",
+    "description": "Roomfit으로 PT를 차별화하고, 회원에게 전문 VBT 코칭을 제공하세요. 도입 상담 및 데모를 요청해 주세요.",
+    "cta": {
+      "primary": "도입 문의하기",
+      "secondary": "개인 사용자이신가요?"
+    },
+    "contact": {
+      "email": "business@roomfit.io",
+      "phone": "02-0000-0000"
+    }
+  }
+}

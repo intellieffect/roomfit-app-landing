@@ -1,22 +1,30 @@
-import { Activity, Dumbbell, Hand, BarChart3, LucideIcon } from "lucide-react";
-import { content } from "@/data";
+"use client";
+
+import {
+  Activity,
+  Users,
+  Hand,
+  TrendingUp,
+  LucideIcon,
+} from "lucide-react";
+import { businessContent } from "@/data";
 
 const iconMap: Record<string, LucideIcon> = {
   Activity,
-  Dumbbell,
+  Users,
   Hand,
-  BarChart3,
+  TrendingUp,
 };
 
-export default function Features() {
-  const { features } = content;
+export default function BusinessFeatures() {
+  const { features } = businessContent;
 
   return (
     <section id="features" className="py-24 bg-gray-50 dark:bg-gray-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            <span className="gradient-text">{features.title}</span>
+            <span className="text-secondary">{features.title}</span>
             {features.titleSuffix}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
@@ -36,7 +44,7 @@ export default function Features() {
                   className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${
                     feature.color === "primary"
                       ? "bg-primary/10 text-primary"
-                      : "bg-secondary/20 text-gray-900 dark:text-secondary"
+                      : "bg-secondary/20 text-secondary"
                   }`}
                 >
                   {Icon && <Icon className="w-7 h-7" />}

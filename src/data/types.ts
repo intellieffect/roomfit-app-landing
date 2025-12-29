@@ -20,6 +20,12 @@ export interface Mode {
   description: string;
 }
 
+export interface GestureItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 export interface StoreLink {
   label: string;
   store: string;
@@ -33,6 +39,7 @@ export interface SiteContent {
   };
   nav: {
     links: NavLink[];
+    businessLink: NavLink;
     cta: string;
   };
   hero: {
@@ -80,7 +87,7 @@ export interface SiteContent {
     description: string;
     modes: Mode[];
   };
-  voiceControl: {
+  handsfreeControl: {
     badge: string;
     title: {
       line1: string;
@@ -89,6 +96,7 @@ export interface SiteContent {
     subtitle: string;
     description: string;
     commands: string[];
+    gestures: GestureItem[];
   };
   dataInsights: {
     badge: string;

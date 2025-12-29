@@ -4,7 +4,7 @@ import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
 import VBTAnalysis from "@/components/sections/VBTAnalysis";
 import TrainingModes from "@/components/sections/TrainingModes";
-import VoiceControl from "@/components/sections/VoiceControl";
+import HandsfreeControl from "@/components/sections/HandsfreeControl";
 import DataInsights from "@/components/sections/DataInsights";
 import Connectivity from "@/components/sections/Connectivity";
 import DownloadCTA from "@/components/sections/DownloadCTA";
@@ -17,7 +17,7 @@ export default function Home() {
       <Features />
       <VBTAnalysis />
       <TrainingModes />
-      <VoiceControl />
+      <HandsfreeControl />
       <DataInsights />
       <Connectivity />
       <DownloadCTA />

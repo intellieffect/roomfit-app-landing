@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ChevronDown, Download, Zap } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, Download, Zap, Building2 } from "lucide-react";
 import { content, images, getScreenshot } from "@/data";
 
 export default function Hero() {
@@ -48,12 +49,13 @@ export default function Hero() {
                 <Download className="w-5 h-5" />
                 {hero.cta.primary}
               </a>
-              <a
-                href="#features"
+              <Link
+                href="/business"
                 className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
               >
+                <Building2 className="w-5 h-5" />
                 {hero.cta.secondary}
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
