@@ -1,6 +1,17 @@
-import Image from "next/image";
-import { Activity, TrendingUp, Flame, Share2, BarChart3, LucideIcon } from "lucide-react";
-import { content, images, getScreenshot } from "@/data";
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import {
+  Activity,
+  TrendingUp,
+  Flame,
+  Share2,
+  BarChart3,
+  LucideIcon,
+} from "lucide-react";
+import { content } from "@/data";
+import { ActivityHeatmap, IPhoneFrame } from "@/components/demos";
 
 const iconMap: Record<string, LucideIcon> = {
   Activity,
@@ -12,8 +23,8 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function DataInsights() {
   const { dataInsights } = content;
-  const sectionImages = images.sections.dataInsights;
-  const mainScreenshot = getScreenshot(sectionImages.main);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="data" className="py-24">
@@ -56,17 +67,17 @@ export default function DataInsights() {
           })}
         </div>
 
-        {/* Last set screenshot */}
-        <div className="mt-16 flex justify-center">
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-3xl p-4 max-w-sm">
-            <Image
-              src={mainScreenshot.src}
-              alt={mainScreenshot.alt}
-              width={350}
-              height={700}
-              className="rounded-2xl"
-            />
-          </div>
+        {/* Heatmap Demo in iPhone Frame */}
+        <div ref={ref} className="mt-16 flex justify-center">
+          <IPhoneFrame>
+            <div className="space-y-4">
+              <div className="mb-4">
+                <h3 className="text-lg font-bold text-gray-900">운동 기록</h3>
+                <p className="text-xs text-gray-500">Activity Heatmap</p>
+              </div>
+              <ActivityHeatmap isInView={isInView} />
+            </div>
+          </IPhoneFrame>
         </div>
       </div>
     </section>

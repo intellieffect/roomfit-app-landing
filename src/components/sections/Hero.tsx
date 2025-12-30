@@ -1,13 +1,12 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
 import { ChevronDown, Download, Zap, Building2 } from "lucide-react";
-import { content, images, getScreenshot } from "@/data";
+import { content } from "@/data";
+import { PhoneMockup } from "@/components/demos";
 
 export default function Hero() {
   const { hero } = content;
-  const heroImages = images.sections.hero;
-  const mainScreenshot = getScreenshot(heroImages.main);
-  const secondaryScreenshot = getScreenshot(heroImages.secondary);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
@@ -71,34 +70,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Screenshots */}
-          <div className="relative flex justify-center items-center">
-            <div className="relative">
-              {/* Main screenshot */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl animate-float">
-                <Image
-                  src={mainScreenshot.src}
-                  alt={mainScreenshot.alt}
-                  width={280}
-                  height={560}
-                  className="w-[280px]"
-                />
-              </div>
-
-              {/* Secondary screenshot */}
-              <div
-                className="absolute -right-16 top-16 rounded-3xl overflow-hidden shadow-2xl scale-75 opacity-90"
-                style={{ animationDelay: "1s" }}
-              >
-                <Image
-                  src={secondaryScreenshot.src}
-                  alt={secondaryScreenshot.alt}
-                  width={280}
-                  height={560}
-                  className="w-[280px]"
-                />
-              </div>
-            </div>
+          {/* Phone Mockup with Demo Animations */}
+          <div className="relative flex justify-center items-center animate-fade-up" style={{ animationDelay: "0.3s" }}>
+            <PhoneMockup />
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import VBTAnalysis from "@/components/sections/VBTAnalysis";
 import TrainingModes from "@/components/sections/TrainingModes";
 import HandsfreeControl from "@/components/sections/HandsfreeControl";
 import DataInsights from "@/components/sections/DataInsights";
+import AIAssistant from "@/components/sections/AIAssistant";
 import Connectivity from "@/components/sections/Connectivity";
 import DownloadCTA from "@/components/sections/DownloadCTA";
 
@@ -19,6 +20,7 @@ export default function Home() {
       <TrainingModes />
       <HandsfreeControl />
       <DataInsights />
+      <AIAssistant />
       <Connectivity />
       <DownloadCTA />
       <Footer />

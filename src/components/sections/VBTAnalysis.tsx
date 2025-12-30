@@ -1,6 +1,10 @@
-import Image from "next/image";
+"use client";
+
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 import { Activity, Target, TrendingUp, Zap, LucideIcon } from "lucide-react";
-import { content, images, getScreenshot } from "@/data";
+import { content } from "@/data";
+import { VelocityLossChart, IPhoneFrame } from "@/components/demos";
 
 const iconMap: Record<string, LucideIcon> = {
   Activity,
@@ -11,57 +15,18 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function VBTAnalysis() {
   const { vbtAnalysis } = content;
-  const sectionImages = images.sections.vbtAnalysis;
-  const mainScreenshot = getScreenshot(sectionImages.main);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <section id="vbt" className="py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Screenshot with chart */}
-          <div className="relative order-2 lg:order-1 flex justify-center">
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src={mainScreenshot.src}
-                alt={mainScreenshot.alt}
-                width={300}
-                height={600}
-                className="w-[300px]"
-              />
-            </div>
-
-            {/* Floating cards */}
-            <div className="absolute -right-4 top-1/4 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="w-5 h-5 text-red-500" />
-                </div>
-                <div>
-                  <div className="text-xs text-gray-500">
-                    {vbtAnalysis.floatingCards.speed.label}
-                  </div>
-                  <div className="font-bold text-gray-900 dark:text-white">
-                    {vbtAnalysis.floatingCards.speed.value}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -left-4 bottom-1/3 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-blue-500" />
-                </div>
-                <div>
-                  <div className="text-xs text-gray-500">
-                    {vbtAnalysis.floatingCards.power.label}
-                  </div>
-                  <div className="font-bold text-gray-900 dark:text-white">
-                    {vbtAnalysis.floatingCards.power.value}
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Demo animations area */}
+          <div ref={ref} className="relative order-2 lg:order-1 flex justify-center">
+            <IPhoneFrame>
+              <VelocityLossChart isInView={isInView} />
+            </IPhoneFrame>
           </div>
 
           {/* Content */}
