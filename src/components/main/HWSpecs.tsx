@@ -4,107 +4,235 @@ import { useState } from "react";
 import Image from "next/image";
 import { mainContent } from "@/data";
 import { motion, AnimatePresence } from "framer-motion";
+import { Dumbbell, Maximize2, Grid3X3 } from "lucide-react";
+
+const specIcons = [Dumbbell, Maximize2, Grid3X3];
+
+// 각 스펙 시연용 운동 GIF
+const specGifs = [
+  "/roomfit/exercise-deadlift-back.gif",
+  "/roomfit/exercise-one-arm-row.gif",
+  "/roomfit/exercise-bench-press.gif",
+];
 
 export default function HWSpecs() {
   const { hwSpecs, exerciseTypes } = mainContent;
   const [activeSpec, setActiveSpec] = useState(0);
 
-  // Map spec image keys to actual image paths
-  const imageMap: Record<string, string> = {
-    weight: "/images/hw/weight.webp",
-    size: "/images/hw/size.webp",
-    exercises: "/images/hw/exercises.webp",
-  };
-
   return (
-    <section id="specs" className="py-24 bg-white dark:bg-[#0a0a0f]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="specs" className="relative py-32 bg-void overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        {/* Large spec number watermark */}
+        <motion.div
+          key={activeSpec}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 0.03, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] font-black text-white select-none pointer-events-none"
+        >
+          {hwSpecs.specs[activeSpec].value.replace(/[^0-9]/g, "")}
+        </motion.div>
+
+        {/* Gradient accent */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="max-w-2xl mb-20"
         >
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="badge badge-primary mb-6">
             {hwSpecs.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+          <h2 className="text-display-lg text-white mb-4">
             {hwSpecs.title.line1}
             <br />
             <span className="gradient-text">{hwSpecs.title.line2}</span>
           </h2>
         </motion.div>
 
-        {/* Spec Tabs */}
-        <div className="flex justify-center gap-4 mb-12">
-          {hwSpecs.specs.map((spec, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveSpec(index)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                activeSpec === index
-                  ? "bg-primary text-white shadow-lg shadow-primary/30"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
-              }`}
-            >
-              <span className="text-lg font-bold">{spec.value}</span>
-              <span className="ml-2 text-sm opacity-80">{spec.label}</span>
-            </button>
-          ))}
+        {/* Spec Cards - Horizontal Layout */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-16">
+          {hwSpecs.specs.map((spec, index) => {
+            const Icon = specIcons[index];
+            const isActive = activeSpec === index;
+
+            return (
+              <motion.button
+                key={spec.value}
+                onClick={() => setActiveSpec(index)}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`group relative text-left p-8 rounded-2xl transition-all duration-500 ${
+                  isActive
+                    ? "bg-surface ring-2 ring-primary/50"
+                    : "bg-surface/50 hover:bg-surface"
+                }`}
+              >
+                {/* Glow effect when active */}
+                {isActive && (
+                  <motion.div
+                    layoutId="specGlow"
+                    className="absolute inset-0 rounded-2xl bg-primary/10"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors ${
+                      isActive
+                        ? "bg-primary/20 text-primary"
+                        : "bg-white/5 text-gray-400 group-hover:text-white"
+                    }`}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </div>
+
+                  {/* Value */}
+                  <div className="mb-4">
+                    <span
+                      className={`text-5xl sm:text-6xl font-black transition-colors ${
+                        isActive ? "text-white" : "text-gray-500 group-hover:text-white"
+                      }`}
+                    >
+                      {spec.value.replace(/[^0-9+]/g, "")}
+                    </span>
+                    <span
+                      className={`text-2xl font-bold ml-1 transition-colors ${
+                        isActive
+                          ? "text-secondary"
+                          : "text-gray-600 group-hover:text-gray-400"
+                      }`}
+                    >
+                      {spec.value.replace(/[0-9+]/g, "")}
+                    </span>
+                  </div>
+
+                  {/* Label */}
+                  <p
+                    className={`text-lg font-medium transition-colors ${
+                      isActive ? "text-gray-300" : "text-gray-500"
+                    }`}
+                  >
+                    {spec.label}
+                  </p>
+                </div>
+
+                {/* Active indicator */}
+                <motion.div
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-1 bg-secondary rounded-full transition-all duration-300 ${
+                    isActive ? "w-20 opacity-100" : "w-0 opacity-0"
+                  }`}
+                />
+              </motion.button>
+            );
+          })}
         </div>
 
-        {/* Spec Content */}
+        {/* Spec Detail */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSpec}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.5 }}
             className="grid lg:grid-cols-2 gap-12 items-center"
           >
-            {/* Image */}
-            <div className="relative aspect-square bg-gray-100 dark:bg-gray-800 rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                {/* Placeholder for actual image */}
-                <div className="text-center">
-                  <div className="text-6xl font-bold text-primary mb-4">
-                    {hwSpecs.specs[activeSpec].value}
-                  </div>
-                  <div className="text-xl">
-                    {hwSpecs.specs[activeSpec].label}
-                  </div>
+            {/* Visual Area - 실제 roomfit GIF */}
+            <div className="relative">
+              <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-surface to-muted overflow-hidden border border-white/10">
+                {/* 실제 GIF 이미지 */}
+                <motion.div
+                  key={`gif-${activeSpec}`}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={specGifs[activeSpec]}
+                    alt={hwSpecs.specs[activeSpec].label}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                  {/* 그라디언트 오버레이 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
+                </motion.div>
+
+                {/* 스펙 값 오버레이 */}
+                <div className="absolute bottom-6 left-6 right-6 z-10">
+                  <motion.div
+                    key={`value-${activeSpec}`}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="bg-void/80 backdrop-blur-sm rounded-2xl p-4 border border-white/10"
+                  >
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl sm:text-5xl font-black text-white">
+                        {hwSpecs.specs[activeSpec].value}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-400 mt-1">
+                      {hwSpecs.specs[activeSpec].label}
+                    </p>
+                  </motion.div>
+                </div>
+
+                {/* Corner accent */}
+                <div className="absolute top-4 right-4">
+                  <div className="w-3 h-3 rounded-full bg-secondary animate-pulse" />
                 </div>
               </div>
             </div>
 
             {/* Content */}
             <div>
-              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-3xl sm:text-4xl font-bold text-white mb-6">
                 {hwSpecs.specs[activeSpec].title}
               </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+
+              <p className="text-xl text-gray-400 leading-relaxed mb-6">
                 {hwSpecs.specs[activeSpec].description}
               </p>
+
               {hwSpecs.specs[activeSpec].note && (
-                <p className="text-sm text-gray-500 dark:text-gray-500">
+                <p className="text-sm text-gray-600 mb-8">
                   {hwSpecs.specs[activeSpec].note}
                 </p>
               )}
 
-              {/* Exercise Types (show only for exercises spec) */}
+              {/* Exercise Types - only for exercises spec */}
               {hwSpecs.specs[activeSpec].image === "exercises" && (
                 <div className="mt-8">
+                  <p className="text-sm text-gray-500 uppercase tracking-wider mb-4">
+                    주요 운동
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {exerciseTypes.map((exercise, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-sm text-gray-600 dark:text-gray-400"
+                      <motion.span
+                        key={exercise}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="px-4 py-2 bg-surface rounded-full text-sm text-gray-300 border border-white/5 hover:border-primary/30 hover:text-white transition-colors cursor-default"
                       >
                         {exercise}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>

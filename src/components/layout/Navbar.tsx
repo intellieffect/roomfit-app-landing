@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X, Building2, Smartphone } from "lucide-react";
-import { mainContent, appContent, images } from "@/data";
+import { mainContent, appContent } from "@/data";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
   // Use appropriate content based on current path
   const isAppPage = pathname === "/app";
   const content = isAppPage ? appContent : mainContent;
-  const { nav, site } = content;
+  const { nav } = content;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +23,20 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll to section and remove hash from URL
+  const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        // Remove hash from URL after scroll
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+    }
   }, []);
 
   return (
@@ -35,18 +49,15 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="flex items-center gap-3">
+          <div className="flex items-center">
+            <Link href="/">
               <Image
-                src={images.logo}
-                alt={`${site.name} Logo`}
-                width={40}
-                height={40}
-                className="rounded-lg"
+                src="/roomfit/logo.svg"
+                alt="ROOMFIT"
+                width={120}
+                height={28}
+                className="h-6 w-auto"
               />
-              <span className="font-bold text-xl text-gray-900 dark:text-white">
-                {site.name}
-              </span>
             </Link>
           </div>
 
@@ -56,6 +67,7 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(e) => scrollToSection(e, link.href)}
                 className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors"
               >
                 {link.label}
@@ -83,6 +95,7 @@ export default function Navbar() {
             </Link>
             <a
               href={isAppPage ? "#download" : "#purchase"}
+              onClick={(e) => scrollToSection(e, isAppPage ? "#download" : "#purchase")}
               className="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors"
             >
               {nav.cta}
@@ -112,7 +125,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className="block text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  scrollToSection(e, link.href);
+                  setMobileMenuOpen(false);
+                }}
               >
                 {link.label}
               </a>
@@ -141,7 +157,10 @@ export default function Navbar() {
             <a
               href={isAppPage ? "#download" : "#purchase"}
               className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                scrollToSection(e, isAppPage ? "#download" : "#purchase");
+                setMobileMenuOpen(false);
+              }}
             >
               {nav.cta}
             </a>

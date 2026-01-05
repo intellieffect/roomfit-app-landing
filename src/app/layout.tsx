@@ -25,6 +25,16 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                window.history.scrollRestoration = 'manual';
+                window.scrollTo(0, 0);
+              }
+            `,
+          }}
+        />
       </head>
       <body className="antialiased">
         {children}
