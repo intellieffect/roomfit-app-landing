@@ -2,14 +2,19 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Menu, X, Building2 } from "lucide-react";
-import { content, images } from "@/data";
+import { Menu, X, Building2, Smartphone } from "lucide-react";
+import { mainContent, appContent, images } from "@/data";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
+  // Use appropriate content based on current path
+  const isAppPage = pathname === "/app";
+  const content = isAppPage ? appContent : mainContent;
   const { nav, site } = content;
 
   useEffect(() => {
@@ -57,6 +62,18 @@ export default function Navbar() {
               </a>
             ))}
             <div className="w-px h-6 bg-gray-200 dark:bg-gray-700" />
+
+            {/* App Link - only show on main page */}
+            {!isAppPage && "appLink" in nav && (
+              <Link
+                href={nav.appLink.href}
+                className="flex items-center gap-2 px-4 py-2 text-primary hover:text-primary-600 transition-colors font-medium"
+              >
+                <Smartphone className="w-4 h-4" />
+                {nav.appLink.label}
+              </Link>
+            )}
+
             <Link
               href={nav.businessLink.href}
               className="flex items-center gap-2 px-4 py-2 border-2 border-secondary text-secondary rounded-full font-medium hover:bg-secondary hover:text-gray-900 transition-colors"
@@ -65,7 +82,7 @@ export default function Navbar() {
               {nav.businessLink.label}
             </Link>
             <a
-              href="#download"
+              href={isAppPage ? "#download" : "#purchase"}
               className="bg-primary text-white px-5 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors"
             >
               {nav.cta}
@@ -100,6 +117,19 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+
+            {/* App Link - only show on main page */}
+            {!isAppPage && "appLink" in nav && (
+              <Link
+                href={nav.appLink.href}
+                className="flex items-center gap-2 text-primary py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Smartphone className="w-4 h-4" />
+                {nav.appLink.label}
+              </Link>
+            )}
+
             <Link
               href={nav.businessLink.href}
               className="flex items-center gap-2 text-secondary py-2"
@@ -109,7 +139,7 @@ export default function Navbar() {
               {nav.businessLink.label}
             </Link>
             <a
-              href="#download"
+              href={isAppPage ? "#download" : "#purchase"}
               className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >

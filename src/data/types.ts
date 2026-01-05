@@ -3,6 +3,143 @@ export interface NavLink {
   label: string;
 }
 
+// Main Landing Page Types
+export interface MainContent {
+  site: {
+    name: string;
+    tagline: string;
+    copyright: string;
+  };
+  nav: {
+    links: NavLink[];
+    appLink: NavLink;
+    businessLink: NavLink;
+    cta: string;
+  };
+  hero: {
+    badge: string;
+    title: {
+      line1: string;
+      highlight: string;
+    };
+    subtitle: string;
+    description: string;
+    cta: {
+      primary: string;
+      secondary: string;
+    };
+    stats: Stat[];
+  };
+  painPoints: {
+    title: string;
+    items: FeatureItem[];
+  };
+  hwSpecs: {
+    badge: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
+    specs: HWSpec[];
+  };
+  exerciseTypes: string[];
+  weightModes: {
+    badge: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
+    subtitle: string;
+    modes: WeightMode[];
+  };
+  safety: {
+    badge: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
+    description: string;
+    features: FeatureItem[];
+  };
+  appEnhancement: {
+    badge: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
+    subtitle: string;
+    features: FeatureItem[];
+    cta: {
+      text: string;
+      href: string;
+    };
+  };
+  lifestyle: {
+    title: {
+      line1: string;
+      line2: string;
+    };
+    subtitle: string;
+    description: string;
+    highlights: string[];
+  };
+  socialProof: {
+    badge: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
+    achievements: Stat[];
+    testimonials: Testimonial[];
+  };
+  cta: {
+    title: string;
+    subtitle: string;
+    buttons: {
+      primary: { text: string; href: string };
+      secondary: { text: string; href: string };
+    };
+  };
+  footer: {
+    company: {
+      name: string;
+      ceo: string;
+      address: string;
+      businessNumber: string;
+      salesNumber: string;
+    };
+    links: NavLink[];
+    social: {
+      instagram: string;
+    };
+  };
+}
+
+export interface HWSpec {
+  value: string;
+  label: string;
+  title: string;
+  description: string;
+  note: string;
+  image: string;
+}
+
+export interface WeightMode {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: string;
+  gif: string;
+}
+
+export interface Testimonial {
+  quote: string;
+  source: string;
+}
+
+// App Landing Page Types (SiteContent)
+
 export interface Stat {
   value: string;
   label: string;

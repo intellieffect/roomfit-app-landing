@@ -1,0 +1,286 @@
+{
+  "site": {
+    "name": "Roomfit",
+    "tagline": "스마트 웨이트 머신",
+    "copyright": "2025 WESPION. All rights reserved."
+  },
+  "nav": {
+    "links": [
+      { "href": "#specs", "label": "제품 스펙" },
+      { "href": "#modes", "label": "무게 모드" },
+      { "href": "#app", "label": "스마트 앱" }
+    ],
+    "appLink": {
+      "href": "/app",
+      "label": "앱 자세히 보기"
+    },
+    "businessLink": {
+      "href": "/business",
+      "label": "트레이너/센터"
+    },
+    "cta": "구매하기"
+  },
+  "hero": {
+    "badge": "1차~6차 펀딩 성황리 마감",
+    "title": {
+      "line1": "스마트 웨이트 머신,",
+      "highlight": "룸핏"
+    },
+    "subtitle": "중력의 한계를 뛰어넘는 자극",
+    "description": "컴팩트. 초강력. 스마트.",
+    "cta": {
+      "primary": "구매하기",
+      "secondary": "체험 신청"
+    },
+    "stats": [
+      { "value": "120kg+", "label": "최대 무게" },
+      { "value": "1평", "label": "설치 공간" },
+      { "value": "146가지", "label": "운동 종류" }
+    ]
+  },
+  "painPoints": {
+    "title": "웨이트 트레이닝, 이런 고민 없으셨나요?",
+    "items": [
+      {
+        "icon": "Home",
+        "title": "공간 부족",
+        "description": "헬스장 가기 귀찮은데, 홈짐은 공간이 너무 많이 필요해요"
+      },
+      {
+        "icon": "RefreshCw",
+        "title": "흐름 끊김",
+        "description": "원판 교체하다 운동 흐름이 끊기고 집중이 안 돼요"
+      },
+      {
+        "icon": "ShieldAlert",
+        "title": "안전 우려",
+        "description": "고중량 혼자 하기엔 불안하고 위험해요"
+      },
+      {
+        "icon": "HelpCircle",
+        "title": "성장 확인 어려움",
+        "description": "제대로 하고 있는지, 늘고 있는지 모르겠어요"
+      }
+    ]
+  },
+  "hwSpecs": {
+    "badge": "압도적 컴팩트함",
+    "title": {
+      "line1": "이 모든 것을",
+      "line2": "단 하나의 머신으로"
+    },
+    "specs": [
+      {
+        "value": "120kg+",
+        "label": "최대 무게",
+        "title": "원판 단 하나의 무게",
+        "description": "고작 25kg 원판 하나로 120kg 이상의 저항을 만들어냅니다",
+        "note": "* 펌웨어 업데이트로 최대 무게 향상 예정",
+        "image": "weight"
+      },
+      {
+        "value": "1평",
+        "label": "설치 공간",
+        "title": "8배 더 작은 사이즈",
+        "description": "일반 랙 대비 8배 작은 공간으로 어디든 설치 가능합니다",
+        "note": "* 일반 랙 가로x세로(2500mm x 2500mm) 기준",
+        "image": "size"
+      },
+      {
+        "value": "146가지",
+        "label": "운동 종류",
+        "title": "3대 운동부터 전신까지",
+        "description": "60여 개의 기본 웨이트 운동과 6가지 그립의 조합으로 146가지 운동이 가능합니다",
+        "note": "",
+        "image": "exercises"
+      }
+    ]
+  },
+  "exerciseTypes": [
+    "스쿼트",
+    "데드리프트",
+    "벤치프레스",
+    "숄더 프레스",
+    "콘센트레이션 컬",
+    "바벨 컬",
+    "원 암 로우",
+    "사이드 래터럴 레이즈",
+    "바벨 로우",
+    "벨트 스쿼트"
+  ],
+  "weightModes": {
+    "badge": "프로급 무게 모드",
+    "title": {
+      "line1": "4가지 프로급 무게 모드로",
+      "line2": "중력을 초월하는 기술"
+    },
+    "subtitle": "터치 한 번으로 바뀌는 운동의 차원",
+    "modes": [
+      {
+        "id": "constant",
+        "title": "콘스턴트 모드",
+        "subtitle": "일정한 저항 유지",
+        "description": "전체 가동범위에 걸쳐 일정한 저항을 유지합니다. 일반 헬스장 기구처럼 익숙한 느낌으로 운동하세요.",
+        "icon": "Minus",
+        "gif": "constant"
+      },
+      {
+        "id": "variable",
+        "title": "가변 저항 모드",
+        "subtitle": "최대 수축, 최대 자극",
+        "description": "동작의 정점에서 저항이 최대가 되어 근육이 최대로 수축되도록 도와줍니다. 최대수축 x 최대자극 x 지속시간 = 폭발적 근성장",
+        "icon": "TrendingUp",
+        "gif": "variable"
+      },
+      {
+        "id": "negative",
+        "title": "네거티브 모드",
+        "subtitle": "근비대 효과 극대화",
+        "description": "신장성 수축 시 보다 더 큰 저항을 가해 네거티브 효과를 극대화시킵니다. 내리는 동작에서 더 강한 자극으로 근비대를 촉진합니다.",
+        "icon": "ArrowDown",
+        "gif": "negative"
+      },
+      {
+        "id": "isokinetic",
+        "title": "등속성 모드",
+        "subtitle": "관절 보호 운동",
+        "description": "일정한 속도로 동작하도록 도와줍니다. 관절에 부담 적은 초반 + 강한 마무리로 안전한 운동이 가능합니다.",
+        "icon": "Gauge",
+        "gif": "isokinetic"
+      }
+    ]
+  },
+  "safety": {
+    "badge": "안전 시스템",
+    "title": {
+      "line1": "안전.",
+      "line2": "그리고 또 안전."
+    },
+    "description": "룸핏은 사용자의 가동범위를 자동으로 인식해 가동범위 내에서만 무게를 설정합니다. 가동범위 밖에서의 힘은 까딱하지 않습니다.",
+    "features": [
+      {
+        "icon": "Scan",
+        "title": "가동범위 자동 인식",
+        "description": "사용자의 가동범위를 분석하여 안전한 범위 내에서만 무게가 작동합니다"
+      },
+      {
+        "icon": "ShieldCheck",
+        "title": "깔림 사고 방지",
+        "description": "운동 중 발생할 수 있는 깔림 사고를 미연에 방지합니다"
+      },
+      {
+        "icon": "Hand",
+        "title": "자동 무게 OFF",
+        "description": "그립을 놓치거나 가만히 있으면 자동으로 무게가 OFF됩니다"
+      }
+    ]
+  },
+  "appEnhancement": {
+    "badge": "스마트 앱 연동",
+    "title": {
+      "line1": "룸핏만으로도 강력한데,",
+      "line2": "앱과 함께라면"
+    },
+    "subtitle": "하드웨어의 잠재력을 100% 끌어내는 스마트 기능",
+    "features": [
+      {
+        "icon": "Activity",
+        "title": "VBT 실시간 분석",
+        "description": "속도(m/s)와 파워(W)를 실시간 측정하고 동작 품질을 평가합니다"
+      },
+      {
+        "icon": "Target",
+        "title": "AI 자동 카운팅",
+        "description": "유효 동작만 카운트합니다. 대충 한 동작은 세지 않습니다"
+      },
+      {
+        "icon": "Brain",
+        "title": "피로도 감지",
+        "description": "AI가 피로 누적을 감지하여 부상 전 운동 중단을 권고합니다"
+      },
+      {
+        "icon": "Smartphone",
+        "title": "터치로 모드 전환",
+        "description": "앱에서 터치 한 번으로 무게 모드를 즉시 전환합니다"
+      },
+      {
+        "icon": "TrendingUp",
+        "title": "성장 기록",
+        "description": "운동 잔디를 채우며 퍼포먼스 트렌드를 확인하세요"
+      }
+    ],
+    "cta": {
+      "text": "앱 자세히 보기",
+      "href": "/app"
+    }
+  },
+  "lifestyle": {
+    "title": {
+      "line1": "늦은 밤, 이른 새벽,",
+      "line2": "언제든"
+    },
+    "subtitle": "층간소음 걱정 없이, 고요하게",
+    "description": "내가 원하는 그 순간에, 나의 루틴대로. 헬스장 영업시간에 맞출 필요 없이, 내 공간에서 내 페이스로 운동하세요.",
+    "highlights": [
+      "층간소음 걱정 없이",
+      "24시간 언제든",
+      "나만의 공간에서"
+    ]
+  },
+  "socialProof": {
+    "badge": "검증된 품질",
+    "title": {
+      "line1": "헬스인들이 극찬하는",
+      "line2": "그 머신"
+    },
+    "achievements": [
+      { "value": "6회", "label": "펀딩 전량 마감" },
+      { "value": "200만+", "label": "영상 조회수" }
+    ],
+    "testimonials": [
+      {
+        "quote": "감탄이 나올 정도로 정교하고 우수한 퀄리티의 머신",
+        "source": "펀딩 구매자"
+      },
+      {
+        "quote": "기다릴 가치가 있었으며, 펀딩 가격 기준으로는 행운이라 느껴질 정도",
+        "source": "얼리어답터"
+      },
+      {
+        "quote": "정가에 구매하더라도 아깝지 않을 하드웨어 품질",
+        "source": "7개월 사용자"
+      }
+    ]
+  },
+  "cta": {
+    "title": "고민은 배송만 늦출 뿐!",
+    "subtitle": "지금 시작하면, 내일의 나는 다릅니다",
+    "buttons": {
+      "primary": {
+        "text": "룸핏 구매하기",
+        "href": "#purchase"
+      },
+      "secondary": {
+        "text": "체험 신청하기",
+        "href": "#experience"
+      }
+    }
+  },
+  "footer": {
+    "company": {
+      "name": "주식회사 위스피온",
+      "ceo": "황성우",
+      "address": "서울시 성동구 뚝섬로1길 31, 서울숲M타워 505호",
+      "businessNumber": "812-88-02637",
+      "salesNumber": "2024-서울성동-0293"
+    },
+    "links": [
+      { "href": "#", "label": "이용약관" },
+      { "href": "#", "label": "개인정보처리방침" },
+      { "href": "#", "label": "고객센터" }
+    ],
+    "social": {
+      "instagram": "https://www.instagram.com/roomfit.official/"
+    }
+  }
+}
