@@ -12,16 +12,17 @@
 ### 전체 구조
 
 ```
-1. Hero          - 브랜드 첫인상, 로고 & 태그라인
-2. IntroStats    - 핵심 가치 전달, 스탯
-3. PainPoints    - 문제 공감, 니즈 환기
-4. HWSpecs       - 제품 스펙, 해결책 제시
-5. WeightModes   - 차별화 기술, 전문성
-6. Safety        - 안전성, 신뢰 구축
-7. AppEnhancement - 앱 연동, 부가가치
-8. Lifestyle     - 라이프스타일, 감성 소구
-9. SocialProof   - 사회적 증거, 확신
-10. CTA          - 최종 전환 유도
+1. Hero             - 브랜드 첫인상, 로고 & 태그라인
+2. IntroStats       - 핵심 가치 전달, 스탯
+3. PainPoints       - 문제 공감, 니즈 환기
+4. HWSpecs          - 제품 스펙 (무게, 공간, 애드온)
+5. WeightModes      - 차별화 기술, 전문성
+6. ExerciseShowcase - 146가지 운동 쇼케이스 (NEW)
+7. Safety           - 안전성, 신뢰 구축
+8. AppEnhancement   - 앱 연동, 부가가치
+9. Lifestyle        - 라이프스타일, 감성 소구
+10. SocialProof     - 사회적 증거, 확신
+11. CTA             - 최종 전환 유도
 ```
 
 ### 사용자 여정
@@ -198,37 +199,22 @@
 |---|-----|------|------|------|------|
 | 1 | 120kg+ | 최대 무게 | 원판 단 하나의 무게 | 고작 25kg 원판 하나로 120kg 이상의 저항을 만들어냅니다 | *펌웨어 업데이트로 최대 무게 향상 예정 |
 | 2 | 1평 | 설치 공간 | 8배 더 작은 사이즈 | 일반 랙 대비 8배 작은 공간으로 어디든 설치 가능합니다 | *일반 랙 가로x세로(2500mm x 2500mm) 기준 |
-| 3 | 146가지 | 운동 종류 | 3대 운동부터 전신까지 | 60여 개의 기본 웨이트 운동과 6가지 그립의 조합으로 146가지 운동이 가능합니다 | |
-
-#### 운동 종류 태그
-
-```
-스쿼트, 데드리프트, 벤치프레스, 숄더 프레스, 콘센트레이션 컬,
-바벨 컬, 원 암 로우, 사이드 래터럴 레이즈, 바벨 로우, 벨트 스쿼트
-```
+| 3 | 6종 | 애드온 | 확장 가능한 시스템 | 다양한 애드온으로 운동 범위를 확장하세요. 바벨, 덤벨, 케이블 등 6종의 애드온 지원 | |
 
 ### 이미지
 
 | 스펙 | 미디어 타입 | 파일 경로 | 설명 |
 |------|-----------|-----------|------|
 | 120kg+ 최대 무게 | GIF | `/roomfit/exercise-squat-barbell.gif` | 고중량 스쿼트로 무게감 표현 |
-| 1평 설치 공간 | Image | `/roomfit/compare-gym-machine.png` | 일반 헬스장 기구와 크기 비교 |
-| 146가지 운동 | Rotating GIF | 6개 운동 GIF 순환 (3초 간격) | 다양한 운동 시연 |
-
-#### 146가지 운동 순환 GIF 목록
-- `/roomfit/exercise-bench-press.gif`
-- `/roomfit/exercise-deadlift-back.gif`
-- `/roomfit/exercise-shoulder-press.gif`
-- `/roomfit/exercise-barbell-row-white.gif`
-- `/roomfit/exercise-belt-squat-white.gif`
-- `/roomfit/exercise-concentration-curl.gif`
+| 1평 설치 공간 | Comparison | Before/After 비교 애니메이션 | 일반 홈짐 vs 룸핏 크기 비교 |
+| 6종 애드온 | Image | `/roomfit/addons-showcase.png` | 애드온 구성품 이미지 (예정) |
 
 ### 구현
 
 | 항목 | 값 |
 |------|-----|
 | **컴포넌트** | `src/components/main/HWSpecs.tsx` |
-| **JSON 키** | `main-content.json → hwSpecs, exerciseTypes` |
+| **JSON 키** | `main-content.json → hwSpecs` |
 
 ---
 
@@ -281,7 +267,64 @@
 
 ---
 
-## 6. Safety 섹션
+## 6. ExerciseShowcase 섹션 (NEW)
+
+### 기획
+
+| 항목 | 내용 |
+|------|------|
+| **목적** | 146가지 운동의 다양성을 시각적으로 전달 |
+| **전환 목표** | "이거 하나로 이렇게 많은 운동을?" 인식 |
+| **핵심 메시지** | 3대 운동부터 전신까지, 146가지 |
+| **타겟 감정** | 놀라움, 다양성 인식, 기대감 |
+
+**사용자 여정 위치**: `욕구` 단계 (심화)
+
+### 콘텐츠
+
+| 요소 | 텍스트 |
+|------|--------|
+| 뱃지 | 146가지 운동 |
+| 제목 (line1) | 3대 운동부터 |
+| 제목 (line2) | 전신까지 |
+| 부제 | 60여 개의 기본 운동과 6가지 그립의 조합 |
+
+#### 운동 종류 태그
+
+```
+스쿼트, 데드리프트, 벤치프레스, 숄더 프레스, 콘센트레이션 컬,
+바벨 컬, 원 암 로우, 사이드 래터럴 레이즈, 바벨 로우, 벨트 스쿼트
+```
+
+### 디자인
+
+- **레이아웃**: 전체 너비 가로 슬라이드
+- **카드 형태**: 9:16 세로형 (모바일 최적화)
+- **인터랙션**: 자동 슬라이드 + 드래그/스와이프 지원
+- **애니메이션**: 무한 루프, 부드러운 이징
+
+### 이미지
+
+| 파일 경로 | 운동명 | alt 텍스트 |
+|-----------|--------|-----------|
+| `/roomfit/exercise-bench-press.gif` | 벤치프레스 | 벤치프레스 운동 |
+| `/roomfit/exercise-deadlift-back.gif` | 데드리프트 | 데드리프트 운동 |
+| `/roomfit/exercise-shoulder-press.gif` | 숄더 프레스 | 숄더 프레스 운동 |
+| `/roomfit/exercise-barbell-row-white.gif` | 바벨 로우 | 바벨 로우 운동 |
+| `/roomfit/exercise-belt-squat-white.gif` | 벨트 스쿼트 | 벨트 스쿼트 운동 |
+| `/roomfit/exercise-concentration-curl.gif` | 컨센트레이션 컬 | 컨센트레이션 컬 운동 |
+| `/roomfit/exercise-squat-barbell.gif` | 바벨 스쿼트 | 바벨 스쿼트 운동 |
+
+### 구현
+
+| 항목 | 값 |
+|------|-----|
+| **컴포넌트** | `src/components/main/ExerciseShowcase.tsx` |
+| **JSON 키** | `main-content.json → exerciseShowcase` |
+
+---
+
+## 7. Safety 섹션
 
 ### 기획
 
@@ -324,7 +367,7 @@
 
 ---
 
-## 7. AppEnhancement 섹션
+## 8. AppEnhancement 섹션
 
 ### 기획
 
@@ -370,7 +413,7 @@
 
 ---
 
-## 8. Lifestyle 섹션
+## 9. Lifestyle 섹션
 
 ### 기획
 
@@ -413,7 +456,7 @@
 
 ---
 
-## 9. SocialProof 섹션
+## 10. SocialProof 섹션
 
 ### 기획
 
@@ -462,7 +505,7 @@
 
 ---
 
-## 10. CTA 섹션
+## 11. CTA 섹션
 
 ### 기획
 

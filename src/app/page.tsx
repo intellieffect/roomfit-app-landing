@@ -6,6 +6,7 @@ import {
   PainPoints,
   HWSpecs,
   WeightModes,
+  ExerciseShowcase,
   Safety,
   AppEnhancement,
   Lifestyle,
@@ -22,6 +23,7 @@ export default function Home() {
       <PainPoints />
       <HWSpecs />
       <WeightModes />
+      <ExerciseShowcase />
       <Safety />
       <AppEnhancement />
       <Lifestyle />

@@ -39,7 +39,10 @@
     ]
   },
   "painPoints": {
-    "title": "웨이트 트레이닝, 이런 고민 없으셨나요?",
+    "title": {
+      "line1": "웨이트 트레이닝,",
+      "line2": "이런 고민 없으셨나요?"
+    },
     "items": [
       {
         "icon": "Home",
@@ -69,7 +72,7 @@
         "value": "120kg+",
         "label": "최대 무게",
         "title": "원판 단 하나의 무게",
-        "description": "고작 25kg 원판 하나로 120kg 이상의 저항을 만들어냅니다",
+        "description": "고작 원판 단 하나의 무게",
         "note": "* 펌웨어 업데이트로 최대 무게 향상 예정",
         "image": "weight"
       },
@@ -82,13 +85,32 @@
         "image": "size"
       },
       {
-        "value": "146가지",
-        "label": "운동 종류",
-        "title": "3대 운동부터 전신까지",
-        "description": "60여 개의 기본 웨이트 운동과 6가지 그립의 조합으로 146가지 운동이 가능합니다",
-        "note": "",
-        "image": "exercises"
+        "value": "Add-Ons",
+        "label": "애드온",
+        "title": "확장 가능한 시스템",
+        "description": "컴팩트함을 유지하면서 거의 모든 운동을 가능하게. 애드온이 곧 찾아옵니다",
+        "note": "출시 예정",
+        "image": "addons"
       }
+    ]
+  },
+  "exerciseShowcase": {
+    "badge": "146가지 운동",
+    "title": {
+      "line1": "3대 운동부터",
+      "line2": "전신까지"
+    },
+    "subtitle": "60여 개의 기본 운동과 6가지 그립의 조합",
+    "exercises": [
+      { "name": "벤치프레스", "gif": "/roomfit/exercise-bench-press.gif" },
+      { "name": "데드리프트", "gif": "/roomfit/exercise-deadlift-back.gif" },
+      { "name": "바벨 스쿼트", "gif": "/roomfit/exercise-squat-barbell.gif" },
+      { "name": "숄더 프레스", "gif": "/roomfit/exercise-shoulder-press.gif" },
+      { "name": "바벨 로우", "gif": "/roomfit/exercise-barbell-row-white.gif" },
+      { "name": "원 암 로우", "gif": "/roomfit/exercise-one-arm-row.gif" },
+      { "name": "벨트 스쿼트", "gif": "/roomfit/exercise-belt-squat-white.gif" },
+      { "name": "바벨 컬", "gif": "/roomfit/exercise-barbell-curl.gif" },
+      { "name": "컨센트레이션 컬", "gif": "/roomfit/exercise-concentration-curl.gif" }
     ]
   },
   "exerciseTypes": [
@@ -107,7 +129,7 @@
     "badge": "혁신적인 저항 모드",
     "title": {
       "line1": "4가지 혁신적인 저항 모드로",
-      "line2": "중력을 초월하는 기술"
+      "line2": "중력을 뛰어넘는 무게의 맛"
     },
     "subtitle": "터치 한 번으로 바뀌는 운동의 차원",
     "modes": [

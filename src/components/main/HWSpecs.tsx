@@ -10,8 +10,8 @@ const specIcons = [Dumbbell, Maximize2, Grid3X3];
 
 // 스펙별 미디어 타입
 type SingleMedia = { type: "gif" | "image"; src: string };
-type RotatingMedia = { type: "rotating"; sources: string[] };
-type SpecMedia = SingleMedia | RotatingMedia;
+type ComparisonMedia = { type: "comparison"; before: string; after: string; beforeLabel: string; afterLabel: string };
+type SpecMedia = SingleMedia | ComparisonMedia;
 
 // 스펙별 미디어 매핑
 const specMedia: Record<string, SpecMedia> = {
@@ -20,42 +20,44 @@ const specMedia: Record<string, SpecMedia> = {
     src: "/roomfit/exercise-squat-barbell.gif",
   },
   size: {
-    type: "image",
-    src: "/roomfit/compare-gym-machine.png",
+    type: "comparison",
+    before: "/roomfit/compare-gym-machine.png",
+    after: "/roomfit/product-base-black-exploded.png",
+    beforeLabel: "일반 홈짐",
+    afterLabel: "룸핏",
   },
-  exercises: {
-    type: "rotating",
-    sources: [
-      "/roomfit/exercise-bench-press.gif",
-      "/roomfit/exercise-deadlift-back.gif",
-      "/roomfit/exercise-shoulder-press.gif",
-      "/roomfit/exercise-barbell-row-white.gif",
-      "/roomfit/exercise-belt-squat-white.gif",
-      "/roomfit/exercise-concentration-curl.gif",
-    ],
+  addons: {
+    type: "image",
+    src: "/roomfit/product-fullset.png",
   },
 };
 
 export default function HWSpecs() {
-  const { hwSpecs, exerciseTypes } = mainContent;
+  const { hwSpecs } = mainContent;
   const [activeSpec, setActiveSpec] = useState(0);
-  const [rotatingIndex, setRotatingIndex] = useState(0);
+  const [comparisonPhase, setComparisonPhase] = useState<"product" | "compare">("product");
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  // 146가지 운동 스펙일 때 GIF 순환
+  // 비교 애니메이션 시퀀스 (size 스펙일 때)
   useEffect(() => {
     const imageKey = hwSpecs.specs[activeSpec].image;
-    const currentMedia = specMedia[imageKey];
-    if (!currentMedia || currentMedia.type !== "rotating") return;
+    if (imageKey !== "size") {
+      setComparisonPhase("product");
+      return;
+    }
 
-    const sources = currentMedia.sources;
-    const interval = setInterval(() => {
-      setRotatingIndex((prev) => (prev + 1) % sources.length);
-    }, 3000);
+    // 스펙 선택 시 product 단계로 리셋
+    setComparisonPhase("product");
 
-    return () => clearInterval(interval);
+    // 2.5초 후 compare 단계로 전환
+    const timer = setTimeout(() => {
+      setComparisonPhase("compare");
+    }, 2500);
+
+    return () => clearTimeout(timer);
   }, [activeSpec, hwSpecs.specs]);
+
 
   // 현재 스펙의 미디어 소스 가져오기
   const getCurrentMediaSrc = (): string => {
@@ -64,8 +66,8 @@ export default function HWSpecs() {
 
     if (!media) return "/roomfit/exercise-squat-barbell.gif";
 
-    if (media.type === "rotating") {
-      return media.sources[rotatingIndex];
+    if (media.type === "comparison") {
+      return media.after; // comparison 타입일 경우 after 이미지 반환 (폴백용)
     }
     return media.src;
   };
@@ -88,7 +90,7 @@ export default function HWSpecs() {
             transition={{ duration: 0.8 }}
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[50vw] font-black text-white select-none pointer-events-none"
           >
-            {hwSpecs.specs[activeSpec].value.replace(/[^0-9]/g, "")}
+            {hwSpecs.specs[activeSpec].value.replace(/[^0-9]/g, "") || "+"}
           </motion.div>
         </AnimatePresence>
 
@@ -219,22 +221,34 @@ export default function HWSpecs() {
 
                   {/* Value */}
                   <div className="mb-3">
-                    <span
-                      className={`text-4xl sm:text-5xl font-black transition-colors ${
-                        isActive ? "text-white" : "text-gray-500 group-hover:text-white"
-                      }`}
-                    >
-                      {spec.value.replace(/[^0-9+]/g, "")}
-                    </span>
-                    <span
-                      className={`text-xl font-bold ml-1 transition-colors ${
-                        isActive
-                          ? "text-secondary"
-                          : "text-gray-600 group-hover:text-gray-400"
-                      }`}
-                    >
-                      {spec.value.replace(/[0-9+]/g, "")}
-                    </span>
+                    {spec.value.match(/[0-9]/) ? (
+                      <>
+                        <span
+                          className={`text-4xl sm:text-5xl font-black transition-colors ${
+                            isActive ? "text-white" : "text-gray-500 group-hover:text-white"
+                          }`}
+                        >
+                          {spec.value.replace(/[^0-9+]/g, "")}
+                        </span>
+                        <span
+                          className={`text-xl font-bold ml-1 transition-colors ${
+                            isActive
+                              ? "text-secondary"
+                              : "text-gray-600 group-hover:text-gray-400"
+                          }`}
+                        >
+                          {spec.value.replace(/[0-9+]/g, "")}
+                        </span>
+                      </>
+                    ) : (
+                      <span
+                        className={`text-3xl sm:text-4xl font-black transition-colors ${
+                          isActive ? "gradient-text" : "text-gray-500 group-hover:text-white"
+                        }`}
+                      >
+                        {spec.value}
+                      </span>
+                    )}
                   </div>
 
                   {/* Label */}
@@ -267,66 +281,213 @@ export default function HWSpecs() {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative aspect-[4/5] rounded-3xl overflow-hidden"
+                className="relative"
               >
                 {/* Glow behind image */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/10 blur-3xl scale-110" />
 
-                {/* Image container */}
-                <div className="relative h-full rounded-3xl bg-gradient-to-br from-surface to-muted overflow-hidden border border-white/10">
-                  {/* Media */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`media-${activeSpec}-${rotatingIndex}`}
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={getCurrentMediaSrc()}
-                        alt={hwSpecs.specs[activeSpec].label}
-                        fill
-                        className={
-                          hwSpecs.specs[activeSpec].image === "size"
-                            ? "object-contain p-8"
-                            : "object-cover"
-                        }
-                        unoptimized
-                      />
-                    </motion.div>
-                  </AnimatePresence>
+                {/* Comparison Layout for size spec - 2단계 시퀀스 애니메이션 */}
+                {specMedia[hwSpecs.specs[activeSpec].image]?.type === "comparison" ? (
+                  <div className="relative min-h-[400px] flex items-center justify-center">
+                    <AnimatePresence mode="wait">
+                      {comparisonPhase === "product" ? (
+                        /* Phase 1: 룸핏 제품 크게 보여주기 */
+                        <motion.div
+                          key="product-phase"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.8, x: 100 }}
+                          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                          className="relative"
+                        >
+                          {/* 제품 카드 */}
+                          <div className="relative w-[320px] h-[320px] rounded-3xl bg-gradient-to-br from-surface to-surface/50 border border-primary/30 overflow-hidden ring-2 ring-primary/20 shadow-[0_0_60px_-15px_rgba(82,82,255,0.3)]">
+                            <Image
+                              src={(specMedia[hwSpecs.specs[activeSpec].image] as ComparisonMedia).after}
+                              alt="룸핏"
+                              fill
+                              className="object-contain p-6"
+                            />
+                            {/* 그라데이션 오버레이 */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent" />
 
-                  {/* Gradient overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-void/50 via-transparent to-transparent" />
+                            {/* 제품 정보 */}
+                            <div className="absolute bottom-0 left-0 right-0 p-6">
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                              >
+                                <span className="text-2xl font-black text-white">룸핏</span>
+                                <p className="text-sm text-gray-400 mt-1">스마트 웨이트 머신</p>
+                              </motion.div>
+                            </div>
+                          </div>
 
-                  {/* Spec value overlay */}
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="absolute bottom-6 left-6 right-6"
-                  >
-                    <div className="bg-void/90 backdrop-blur-md rounded-2xl p-5 border border-white/10">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-4xl sm:text-5xl font-black text-white">
-                          {hwSpecs.specs[activeSpec].value}
-                        </span>
-                      </div>
-                      <p className="text-sm text-gray-400 mt-1">
-                        {hwSpecs.specs[activeSpec].label}
-                      </p>
-                    </div>
-                  </motion.div>
+                          {/* 로딩 인디케이터 */}
+                          <motion.div
+                            className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.5 }}
+                          >
+                            <div className="flex gap-1">
+                              {[0, 1, 2].map((i) => (
+                                <motion.div
+                                  key={i}
+                                  className="w-2 h-2 bg-primary/50 rounded-full"
+                                  animate={{ opacity: [0.3, 1, 0.3] }}
+                                  transition={{ duration: 1, repeat: Infinity, delay: i * 0.2 }}
+                                />
+                              ))}
+                            </div>
+                            <span className="text-xs text-gray-500">크기 비교 중...</span>
+                          </motion.div>
+                        </motion.div>
+                      ) : (
+                        /* Phase 2: 비교 뷰 */
+                        <motion.div
+                          key="compare-phase"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5 }}
+                          className="relative flex items-end justify-center gap-6"
+                        >
+                          {/* 일반 홈짐 (크게) */}
+                          <motion.div
+                            initial={{ opacity: 0, x: -50, scale: 0.8 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative w-[260px] h-[260px] rounded-2xl bg-surface/60 border border-white/10 overflow-hidden"
+                          >
+                            <Image
+                              src={(specMedia[hwSpecs.specs[activeSpec].image] as ComparisonMedia).before}
+                              alt="일반 홈짐"
+                              fill
+                              className="object-contain p-4 opacity-80"
+                            />
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-void/90 to-transparent p-4">
+                              <span className="text-sm font-bold text-gray-400">일반 홈짐</span>
+                              <p className="text-xs text-red-400/80 mt-1">2500 × 2500mm</p>
+                            </div>
+                          </motion.div>
 
-                  {/* Live indicator */}
-                  <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-void/80 backdrop-blur-sm rounded-full border border-white/10">
-                    <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-                    <span className="text-xs font-medium text-gray-400">LIVE</span>
+                          {/* VS + 화살표 */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.4, delay: 0.3 }}
+                            className="flex flex-col items-center gap-2 mb-12"
+                          >
+                            <motion.div
+                              animate={{ x: [0, 5, 0] }}
+                              transition={{ duration: 1.5, repeat: Infinity }}
+                              className="text-primary text-xl"
+                            >
+                              →
+                            </motion.div>
+                            <div className="w-10 h-10 rounded-full bg-void border-2 border-primary/50 flex items-center justify-center">
+                              <span className="text-xs font-black text-primary">VS</span>
+                            </div>
+                          </motion.div>
+
+                          {/* 룸핏 (작게) */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 1.5, x: -100 }}
+                            animate={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative flex flex-col items-center"
+                          >
+                            <div className="relative w-[130px] h-[130px] rounded-xl bg-surface/80 border border-primary/40 overflow-hidden ring-2 ring-primary/30 shadow-[0_0_40px_-10px_rgba(82,82,255,0.4)]">
+                              <Image
+                                src={(specMedia[hwSpecs.specs[activeSpec].image] as ComparisonMedia).after}
+                                alt="룸핏"
+                                fill
+                                className="object-contain p-3"
+                              />
+                            </div>
+                            {/* 라벨 */}
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.6 }}
+                              className="mt-3 text-center"
+                            >
+                              <span className="text-sm font-bold text-primary">룸핏</span>
+                              <p className="text-xs text-secondary">1평 (1800mm)</p>
+                            </motion.div>
+                          </motion.div>
+
+                          {/* 하단 메시지 */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1 }}
+                            className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center"
+                          >
+                            <p className="text-sm text-gray-400">
+                              <span className="text-secondary font-bold">이 모든 것이</span> 단 1평에
+                            </p>
+                          </motion.div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </div>
+                ) : (
+                  /* Default single image layout */
+                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
+                    <div className="relative h-full rounded-3xl bg-gradient-to-br from-surface to-muted overflow-hidden border border-white/10">
+                      {/* Media */}
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`media-${activeSpec}`}
+                          initial={{ opacity: 0, scale: 1.1 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className="absolute inset-0"
+                        >
+                          <Image
+                            src={getCurrentMediaSrc()}
+                            alt={hwSpecs.specs[activeSpec].label}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+
+                      {/* Gradient overlays */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-void/50 via-transparent to-transparent" />
+
+                      {/* Spec value overlay */}
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="absolute bottom-6 left-6 right-6"
+                      >
+                        <div className="bg-void/90 backdrop-blur-md rounded-2xl p-5 border border-white/10">
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-4xl sm:text-5xl font-black text-white">
+                              {hwSpecs.specs[activeSpec].value}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-400 mt-1">
+                            {hwSpecs.specs[activeSpec].label}
+                          </p>
+                        </div>
+                      </motion.div>
+
+                      {/* Live indicator */}
+                      <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1.5 bg-void/80 backdrop-blur-sm rounded-full border border-white/10">
+                        <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+                        <span className="text-xs font-medium text-gray-400">LIVE</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </div>
 
@@ -349,34 +510,6 @@ export default function HWSpecs() {
                   <p className="text-sm text-gray-600 mb-8 pl-4 border-l-2 border-gray-800">
                     {hwSpecs.specs[activeSpec].note}
                   </p>
-                )}
-
-                {/* Exercise Types - Enhanced for exercises spec */}
-                {hwSpecs.specs[activeSpec].image === "exercises" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="mt-8"
-                  >
-                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-4 font-bold">
-                      주요 운동 프로그램
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {exerciseTypes.map((exercise, index) => (
-                        <motion.span
-                          key={exercise}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.5 + index * 0.05 }}
-                          whileHover={{ scale: 1.05, y: -2 }}
-                          className="px-4 py-2 bg-surface rounded-xl text-sm text-gray-300 border border-white/5 hover:border-primary/30 hover:bg-primary/5 hover:text-white transition-all duration-300 cursor-default"
-                        >
-                          {exercise}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
                 )}
 
                 {/* Navigation dots */}

@@ -140,14 +140,21 @@ export default function IntroStats() {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="block"
             >
-              <span className="relative">
-                <span className="gradient-text-pulse">{hero.title.highlight}</span>
+              <span className="relative inline-block">
+                <span
+                  className="relative text-primary"
+                  style={{
+                    textShadow: "0 0 30px rgba(82,82,255,0.3)"
+                  }}
+                >
+                  {hero.title.highlight}
+                </span>
                 {/* Underline accent */}
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={isInView ? { scaleX: 1 } : {}}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary origin-left rounded-full"
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-primary origin-left rounded-full"
                 />
               </span>
             </motion.span>
@@ -164,11 +171,10 @@ export default function IntroStats() {
           {hero.subtitle}
         </motion.p>
 
-        {/* Stats Grid - Asymmetric Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-20">
+        {/* Stats Grid - Equal Height Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto mb-20">
           {hero.stats.map((stat, index) => {
             const { num, suffix } = parseValue(stat.value);
-            const isCenter = index === 1;
 
             return (
               <motion.div
@@ -184,31 +190,31 @@ export default function IntroStats() {
                   y: -8,
                   transition: { duration: 0.3 }
                 }}
-                className={`group relative ${isCenter ? "md:-mt-4" : ""}`}
+                className="group relative"
               >
                 {/* Card */}
-                <div className="relative h-full p-8 lg:p-10 rounded-3xl bg-surface/80 backdrop-blur-sm border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-primary/30">
+                <div className="relative h-full min-h-[220px] p-6 lg:p-8 rounded-2xl bg-surface/80 backdrop-blur-sm border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-primary/30 flex flex-col justify-between">
                   {/* Hover gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Corner accent */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-[80px]" />
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-[60px]" />
 
                   {/* Index number */}
-                  <div className="absolute top-4 left-4 text-xs font-mono text-gray-600">
+                  <div className="text-xs font-mono text-gray-600 mb-auto">
                     0{index + 1}
                   </div>
 
                   <div className="relative z-10">
                     {/* Stat Value with Counter Animation */}
-                    <div className="mb-4">
-                      <span className="text-5xl sm:text-6xl lg:text-7xl font-black text-white group-hover:text-glow transition-all duration-300">
+                    <div className="mb-3">
+                      <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-white group-hover:text-glow transition-all duration-300 whitespace-nowrap">
                         <AnimatedCounter value={num} suffix={suffix} />
                       </span>
                     </div>
 
                     {/* Label */}
-                    <p className="text-lg text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
+                    <p className="text-base text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
                       {stat.label}
                     </p>
 
@@ -217,7 +223,7 @@ export default function IntroStats() {
                       initial={{ scaleX: 0 }}
                       animate={isInView ? { scaleX: 1 } : {}}
                       transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                      className="mt-6 h-[2px] bg-gradient-to-r from-primary/50 to-transparent origin-left"
+                      className="mt-5 h-[2px] bg-gradient-to-r from-primary/50 to-transparent origin-left"
                     />
                   </div>
                 </div>

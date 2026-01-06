@@ -227,9 +227,10 @@ export default function Safety() {
                   className="object-cover"
                   unoptimized
                 />
-                {/* Gradient overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-void/50 via-transparent to-transparent" />
+                {/* Gradient overlays - 강화된 가독성 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-void/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-void/30 via-transparent to-void/30" />
               </div>
 
               {/* Safety shield badge */}
@@ -242,7 +243,7 @@ export default function Safety() {
                     ],
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="flex items-center gap-2 px-4 py-2 bg-green-500/20 backdrop-blur-md rounded-full border border-green-500/40"
+                  className="flex items-center gap-2 px-4 py-2 bg-black/80 backdrop-blur-xl rounded-full border border-green-500/50 shadow-lg"
                 >
                   <motion.div
                     animate={{ rotate: [0, 10, -10, 0] }}
@@ -283,13 +284,13 @@ export default function Safety() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : {}}
                   transition={{ delay: 0.8 }}
-                  className="bg-void/90 backdrop-blur-md rounded-2xl p-5 border border-green-500/20"
+                  className="bg-black/95 backdrop-blur-xl rounded-2xl p-5 border border-green-500/30 shadow-2xl"
                 >
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-bold text-green-400 uppercase tracking-wider">
                       안전 체크리스트
                     </span>
-                    <span className="text-xs text-gray-500">3/3 완료</span>
+                    <span className="text-xs text-green-400/80 font-medium">3/3 완료</span>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
                     {["가동범위 제한", "깔림방지", "자동 OFF"].map((label, i) => (
@@ -298,7 +299,7 @@ export default function Safety() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
                         transition={{ delay: 1 + i * 0.1 }}
-                        className="flex items-center gap-2 p-2 bg-green-500/10 rounded-xl"
+                        className="flex items-center gap-2 p-2 bg-green-500/20 rounded-xl border border-green-500/20"
                       >
                         <motion.div
                           initial={{ scale: 0 }}

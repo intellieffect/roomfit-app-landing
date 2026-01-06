@@ -62,113 +62,78 @@ export default function PainPoints() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with glitch effect */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          {/* Warning badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 mb-8"
-          >
-            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-sm font-medium text-red-400">공감하시나요?</span>
-          </motion.div>
-
           <h2 className="text-display-lg">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="block text-white"
+            >
+              {painPoints.title.line1}
+            </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="block text-white"
             >
-              {painPoints.title}
+              {painPoints.title.line2}
             </motion.span>
           </h2>
         </motion.div>
 
-        {/* Pain Points - Staggered Asymmetric Grid */}
-        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {/* Pain Points - 3 Column Grid */}
+        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
           {painPoints.items.map((item, index) => {
             const Icon = iconMap[item.icon];
             const isHovered = hoveredIndex === index;
-            const isEven = index % 2 === 0;
 
             return (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: isEven ? -40 : 40, y: 20 }}
-                animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{
-                  duration: 0.7,
-                  delay: 0.4 + index * 0.15,
+                  duration: 0.6,
+                  delay: 0.3 + index * 0.1,
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative ${isEven ? "lg:mt-0" : "lg:mt-12"}`}
+                className="group relative"
               >
                 {/* Card */}
                 <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
-                  className="relative p-8 lg:p-10 rounded-3xl bg-void/80 backdrop-blur-sm border border-white/5 overflow-hidden h-full"
+                  className="relative p-6 lg:p-8 rounded-2xl bg-void/80 backdrop-blur-sm border border-white/5 overflow-hidden h-full"
                 >
-                  {/* Animated border on hover */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
-                    className="absolute inset-0 rounded-3xl"
-                    style={{
-                      background: `linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, transparent 50%, rgba(239, 68, 68, 0.1) 100%)`,
-                    }}
-                  />
-
-                  {/* Danger gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
                   {/* Index number */}
-                  <div className="absolute top-6 right-6 text-6xl font-black text-red-500/10 select-none pointer-events-none">
+                  <div className="absolute top-4 right-4 text-5xl font-black text-red-500/10 select-none pointer-events-none">
                     0{index + 1}
                   </div>
 
-                  {/* X mark - animated */}
-                  <motion.div
-                    initial={{ rotate: 0, scale: 1 }}
-                    animate={{
-                      rotate: isHovered ? 90 : 0,
-                      scale: isHovered ? 1.2 : 1
-                    }}
-                    className="absolute top-6 left-6 w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center border border-red-500/30"
-                  >
-                    <X className="w-4 h-4 text-red-400" />
-                  </motion.div>
-
-                  <div className="relative z-10 pt-8">
-                    {/* Icon with glow */}
-                    <div className="relative mb-6">
-                      <motion.div
-                        animate={{
-                          boxShadow: isHovered
-                            ? "0 0 30px rgba(239, 68, 68, 0.3)"
-                            : "0 0 0px rgba(239, 68, 68, 0)"
-                        }}
-                        className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-red-500/20 to-red-600/10 text-red-400 border border-red-500/20 transition-all duration-300"
-                      >
-                        {Icon && <Icon className="w-8 h-8" />}
-                      </motion.div>
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-red-500/10 text-red-400 border border-red-500/20 mb-5">
+                      {Icon && <Icon className="w-6 h-6" />}
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-red-100 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-100 transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed text-lg group-hover:text-gray-300 transition-colors">
+                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
                       {item.description}
                     </p>
 
@@ -176,8 +141,8 @@ export default function PainPoints() {
                     <motion.div
                       initial={{ scaleX: 0 }}
                       animate={isInView ? { scaleX: 1 } : {}}
-                      transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                      className="mt-8 h-[2px] bg-gradient-to-r from-red-500/50 via-red-400/30 to-transparent origin-left"
+                      transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                      className="mt-6 h-[2px] bg-gradient-to-r from-red-500/50 to-transparent origin-left"
                     />
                   </div>
                 </motion.div>

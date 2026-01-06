@@ -326,28 +326,6 @@ body {
 }
 
 /* ============================================
-   SCROLLBAR
-   ============================================ */
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgb(var(--color-void));
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #5252FF, #BAFC27);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #7171FF, #C1FE4C);
-}
-
-/* ============================================
    SELECTION
    ============================================ */
 

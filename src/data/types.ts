@@ -31,7 +31,10 @@ export interface MainContent {
     stats: Stat[];
   };
   painPoints: {
-    title: string;
+    title: {
+      line1: string;
+      line2: string;
+    };
     items: FeatureItem[];
   };
   hwSpecs: {
@@ -43,6 +46,7 @@ export interface MainContent {
     specs: HWSpec[];
   };
   exerciseTypes: string[];
+  exerciseShowcase: ExerciseShowcase;
   weightModes: {
     badge: string;
     title: {
@@ -122,6 +126,21 @@ export interface HWSpec {
   description: string;
   note: string;
   image: string;
+}
+
+export interface ExerciseItem {
+  name: string;
+  gif: string;
+}
+
+export interface ExerciseShowcase {
+  badge: string;
+  title: {
+    line1: string;
+    line2: string;
+  };
+  subtitle: string;
+  exercises: ExerciseItem[];
 }
 
 export interface WeightMode {
