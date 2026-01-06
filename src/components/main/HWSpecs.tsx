@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { mainContent } from "@/data";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,16 +8,68 @@ import { Dumbbell, Maximize2, Grid3X3 } from "lucide-react";
 
 const specIcons = [Dumbbell, Maximize2, Grid3X3];
 
-// 각 스펙 시연용 운동 GIF
-const specGifs = [
-  "/roomfit/exercise-deadlift-back.gif",
-  "/roomfit/exercise-one-arm-row.gif",
-  "/roomfit/exercise-bench-press.gif",
-];
+// 스펙별 미디어 타입
+type SingleMedia = { type: "gif" | "image"; src: string };
+type RotatingMedia = { type: "rotating"; sources: string[] };
+type SpecMedia = SingleMedia | RotatingMedia;
+
+// 스펙별 미디어 매핑
+const specMedia: Record<string, SpecMedia> = {
+  // 120kg+ 최대 무게: 고중량 스쿼트로 무게감 표현
+  weight: {
+    type: "gif",
+    src: "/roomfit/exercise-squat-barbell.gif",
+  },
+  // 1평 설치 공간: 일반 헬스장 기구와 크기 비교
+  size: {
+    type: "image",
+    src: "/roomfit/compare-gym-machine.png",
+  },
+  // 146가지 운동: 다양한 운동 GIF 순환
+  exercises: {
+    type: "rotating",
+    sources: [
+      "/roomfit/exercise-bench-press.gif",
+      "/roomfit/exercise-deadlift-back.gif",
+      "/roomfit/exercise-shoulder-press.gif",
+      "/roomfit/exercise-barbell-row-white.gif",
+      "/roomfit/exercise-belt-squat-white.gif",
+      "/roomfit/exercise-concentration-curl.gif",
+    ],
+  },
+};
 
 export default function HWSpecs() {
   const { hwSpecs, exerciseTypes } = mainContent;
   const [activeSpec, setActiveSpec] = useState(0);
+  const [rotatingIndex, setRotatingIndex] = useState(0);
+
+  // 146가지 운동 스펙일 때 GIF 순환
+  useEffect(() => {
+    const imageKey = hwSpecs.specs[activeSpec].image;
+    const currentMedia = specMedia[imageKey];
+    if (!currentMedia || currentMedia.type !== "rotating") return;
+
+    const sources = currentMedia.sources;
+    const interval = setInterval(() => {
+      setRotatingIndex((prev) => (prev + 1) % sources.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [activeSpec, hwSpecs.specs]);
+
+  // 현재 스펙의 미디어 소스 가져오기
+  const getCurrentMediaSrc = (): string => {
+    const imageKey = hwSpecs.specs[activeSpec].image;
+    const media = specMedia[imageKey];
+
+    if (!media) return "/roomfit/exercise-squat-barbell.gif";
+
+    if (media.type === "rotating") {
+      return media.sources[rotatingIndex];
+    }
+    return media.src;
+  };
 
   return (
     <section id="specs" className="relative py-32 bg-void overflow-hidden">
@@ -153,9 +205,9 @@ export default function HWSpecs() {
             {/* Visual Area - 실제 roomfit GIF */}
             <div className="relative">
               <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-surface to-muted overflow-hidden border border-white/10">
-                {/* 실제 GIF 이미지 */}
+                {/* 스펙별 미디어 (GIF/이미지) */}
                 <motion.div
-                  key={`gif-${activeSpec}`}
+                  key={`media-${activeSpec}-${rotatingIndex}`}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -163,10 +215,14 @@ export default function HWSpecs() {
                   className="absolute inset-0"
                 >
                   <Image
-                    src={specGifs[activeSpec]}
+                    src={getCurrentMediaSrc()}
                     alt={hwSpecs.specs[activeSpec].label}
                     fill
-                    className="object-cover"
+                    className={
+                      hwSpecs.specs[activeSpec].image === "size"
+                        ? "object-contain p-8" // 공간 비교 이미지는 전체 보이도록
+                        : "object-cover"
+                    }
                     unoptimized
                   />
                   {/* 그라디언트 오버레이 */}
