@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.89.0",
+    "@types/dompurify": "^3.0.5",
+    "dompurify": "^3.3.1",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.378.0",
     "next": "^16.1.1",
@@ -20,6 +24,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.19",
+    "csv-parse": "^6.1.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",
     "typescript": "^5"

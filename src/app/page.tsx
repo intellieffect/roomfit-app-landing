@@ -1,28 +1,34 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
-import VBTAnalysis from "@/components/sections/VBTAnalysis";
-import TrainingModes from "@/components/sections/TrainingModes";
-import HandsfreeControl from "@/components/sections/HandsfreeControl";
-import DataInsights from "@/components/sections/DataInsights";
-import AIAssistant from "@/components/sections/AIAssistant";
-import Connectivity from "@/components/sections/Connectivity";
-import DownloadCTA from "@/components/sections/DownloadCTA";
+import {
+  MainHero,
+  IntroStats,
+  PainPoints,
+  HWSpecs,
+  WeightModes,
+  ExerciseShowcase,
+  Safety,
+  AppEnhancement,
+  Lifestyle,
+  SocialProof,
+  MainCTA,
+} from "@/components/main";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white dark:bg-[#0a0a0f]">
       <Navbar />
-      <Hero />
-      <Features />
-      <VBTAnalysis />
-      <TrainingModes />
-      <HandsfreeControl />
-      <DataInsights />
-      <AIAssistant />
-      <Connectivity />
-      <DownloadCTA />
+      <MainHero />
+      <IntroStats />
+      <PainPoints />
+      <HWSpecs />
+      <WeightModes />
+      <ExerciseShowcase />
+      <Safety />
+      <AppEnhancement />
+      <Lifestyle />
+      <SocialProof />
+      <MainCTA />
       <Footer />
     </main>
   );

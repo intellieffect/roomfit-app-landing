@@ -1,0 +1,11 @@
+export { default as MainHero } from "./MainHero";
+export { default as IntroStats } from "./IntroStats";
+export { default as PainPoints } from "./PainPoints";
+export { default as HWSpecs } from "./HWSpecs";
+export { default as WeightModes } from "./WeightModes";
+export { default as ExerciseShowcase } from "./ExerciseShowcase";
+export { default as Safety } from "./Safety";
+export { default as AppEnhancement } from "./AppEnhancement";
+export { default as Lifestyle } from "./Lifestyle";
+export { default as SocialProof } from "./SocialProof";
+export { default as MainCTA } from "./MainCTA";
