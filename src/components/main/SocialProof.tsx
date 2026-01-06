@@ -1,35 +1,10 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { Star, Quote, TrendingUp, Users, Award, BadgeCheck, Shield, Truck, RotateCcw, Wrench } from "lucide-react";
+import { useRef, useState } from "react";
+import { Star, Quote, BadgeCheck, Shield, Truck, RotateCcw, Wrench } from "lucide-react";
 import { mainContent } from "@/data";
 import { motion, useInView } from "framer-motion";
 
-// Animated counter hook
-function useAnimatedCounter(end: number, duration: number = 2000) {
-  const [count, setCount] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    if (!isAnimating) return;
-
-    let startTime: number;
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * end));
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    };
-    requestAnimationFrame(step);
-  }, [end, duration, isAnimating]);
-
-  return { count, startAnimation: () => setIsAnimating(true) };
-}
-
-const achievementIcons = [Users, TrendingUp, Award, Star];
 const trustBadges = [
   { icon: Shield, label: "품질 보증" },
   { icon: Truck, label: "무료 배송" },
@@ -41,19 +16,7 @@ export default function SocialProof() {
   const { socialProof } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
   const [hoveredTestimonial, setHoveredTestimonial] = useState<number | null>(null);
-
-  // Parse numbers from achievement values
-  const counter1 = useAnimatedCounter(2400, 2000);
-  const counter2 = useAnimatedCounter(98, 1800);
-
-  useEffect(() => {
-    if (isInView) {
-      counter1.startAnimation();
-      counter2.startAnimation();
-    }
-  }, [isInView]);
 
   return (
     <section
@@ -156,100 +119,6 @@ export default function SocialProof() {
               {socialProof.title.line2}
             </motion.span>
           </h2>
-        </motion.div>
-
-        {/* Achievements - Big Numbers with Enhanced Design */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-20"
-        >
-          {socialProof.achievements.map((achievement, index) => {
-            const Icon = achievementIcons[index];
-            const numericValue = parseInt(achievement.value.replace(/[^0-9]/g, ""));
-            const suffix = achievement.value.replace(/[0-9]/g, "");
-            const displayValue = index === 0 ? counter1.count : index === 1 ? counter2.count : numericValue;
-            const isHovered = hoveredAchievement === index;
-
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                onMouseEnter={() => setHoveredAchievement(index)}
-                onMouseLeave={() => setHoveredAchievement(null)}
-                className="group relative"
-              >
-                <motion.div
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className="relative p-6 lg:p-8 rounded-2xl bg-void/80 backdrop-blur-sm border border-white/5 hover:border-yellow-500/30 transition-all duration-500 text-center overflow-hidden h-full"
-                >
-                  {/* Hover gradient effect */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
-                    className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-transparent to-primary/5"
-                  />
-
-                  {/* Glow effect */}
-                  <motion.div
-                    animate={{
-                      opacity: isHovered ? 0.5 : 0,
-                      scale: isHovered ? 1 : 0.8,
-                    }}
-                    className="absolute -top-10 left-1/2 -translate-x-1/2 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl"
-                  />
-
-                  {/* Index number watermark */}
-                  <div className="absolute top-4 right-4 text-4xl font-black text-yellow-500/5 select-none pointer-events-none">
-                    0{index + 1}
-                  </div>
-
-                  <div className="relative z-10">
-                    {/* Icon with glow */}
-                    <motion.div
-                      animate={{
-                        boxShadow: isHovered
-                          ? "0 0 30px rgba(234,179,8,0.3)"
-                          : "0 0 0 rgba(234,179,8,0)",
-                      }}
-                      className="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-yellow-500/20 transition-all duration-300"
-                    >
-                      <Icon className="w-7 h-7 text-yellow-400" />
-                    </motion.div>
-
-                    {/* Value */}
-                    <div className="mb-3">
-                      <motion.span
-                        className="text-4xl sm:text-5xl lg:text-6xl font-black text-white"
-                        animate={{ scale: isHovered ? 1.05 : 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {displayValue.toLocaleString()}
-                      </motion.span>
-                      <span className="text-xl sm:text-2xl font-bold text-secondary ml-1">
-                        {suffix}
-                      </span>
-                    </div>
-
-                    {/* Label */}
-                    <p className="text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
-                      {achievement.label}
-                    </p>
-                  </div>
-
-                  {/* Bottom accent line */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: isHovered ? 1 : 0 }}
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-yellow-500 via-secondary to-primary origin-left"
-                  />
-                </motion.div>
-              </motion.div>
-            );
-          })}
         </motion.div>
 
         {/* Testimonials - Magazine Style with Enhanced Design */}

@@ -7,7 +7,6 @@
   "nav": {
     "links": [
       { "href": "#specs", "label": "제품 스펙" },
-      { "href": "#modes", "label": "무게 모드" },
       { "href": "#app", "label": "스마트 앱" }
     ],
     "appLink": {
@@ -251,8 +250,7 @@
       "line2": "그 머신"
     },
     "achievements": [
-      { "value": "6회 연속", "label": "펀딩 완판" },
-      { "value": "300만+", "label": "영상 조회수" }
+      { "value": "180만+", "label": "영상 조회수" }
     ],
     "testimonials": [
       {
