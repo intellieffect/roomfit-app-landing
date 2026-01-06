@@ -1,53 +1,156 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { mainContent } from "@/data";
-import { motion, useInView } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { Zap, ChevronRight } from "lucide-react";
+
+// Animated counter component
+function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+  const spring = useSpring(0, { stiffness: 50, damping: 20 });
+  const display = useTransform(spring, (current) => Math.round(current));
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      spring.set(value);
+    }
+  }, [isInView, value, spring]);
+
+  useEffect(() => {
+    return display.on("change", (v) => setDisplayValue(v));
+  }, [display]);
+
+  return (
+    <span ref={ref} className="tabular-nums">
+      {displayValue}
+      {suffix}
+    </span>
+  );
+}
 
 export default function IntroStats() {
   const { hero } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
+  // Parse stat values for animation
+  const parseValue = (val: string) => {
+    const num = parseInt(val.replace(/[^0-9]/g, ""));
+    const suffix = val.replace(/[0-9]/g, "");
+    return { num, suffix };
+  };
+
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 bg-void overflow-hidden"
+      className="relative py-32 lg:py-40 bg-void overflow-hidden"
     >
-      {/* Background gradient */}
+      {/* Dramatic Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-void to-surface" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
+        {/* Radial gradient spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-60" />
+
+        {/* Animated grid lines */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(90deg, white 1px, transparent 1px),
+                linear-gradient(white 1px, transparent 1px)
+              `,
+              backgroundSize: "100px 100px",
+            }}
+          />
+        </div>
+
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.6, 0.3]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-20 right-[15%] w-64 h-64 bg-primary/20 rounded-full blur-[100px]"
+        />
+        <motion.div
+          animate={{
+            y: [0, 20, 0],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-20 left-[10%] w-48 h-48 bg-secondary/20 rounded-full blur-[80px]"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Badge */}
+        {/* Badge with pulse effect */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">
-              {hero.badge}
-            </span>
-          </div>
+          <motion.div
+            className="relative group cursor-default"
+            whileHover={{ scale: 1.02 }}
+          >
+            {/* Glow ring */}
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 0 0 rgba(186, 252, 39, 0.4)",
+                  "0 0 0 8px rgba(186, 252, 39, 0)",
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute inset-0 rounded-full"
+            />
+            <div className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary/10 border border-secondary/30 backdrop-blur-sm">
+              <Zap className="w-4 h-4 text-secondary" />
+              <span className="text-sm font-bold text-secondary tracking-wide">
+                {hero.badge}
+              </span>
+            </div>
+          </motion.div>
         </motion.div>
 
-        {/* Title */}
+        {/* Title with stagger reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-center mb-6"
+          className="text-center mb-8"
         >
-          <h2 className="text-display-lg text-white">
-            {hero.title.line1}
-            <br />
-            <span className="text-primary">{hero.title.highlight}</span>
+          <h2 className="text-display-lg">
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="block text-white"
+            >
+              {hero.title.line1}
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="block"
+            >
+              <span className="relative">
+                <span className="gradient-text-pulse">{hero.title.highlight}</span>
+                {/* Underline accent */}
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary origin-left rounded-full"
+                />
+              </span>
+            </motion.span>
           </h2>
         </motion.div>
 
@@ -55,58 +158,108 @@ export default function IntroStats() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-xl sm:text-2xl text-gray-400 mb-16"
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="text-center text-xl sm:text-2xl text-gray-400 mb-20 max-w-2xl mx-auto"
         >
           {hero.subtitle}
         </motion.p>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto mb-16"
-        >
-          {hero.stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-              className="text-center p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors"
-            >
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm sm:text-base text-gray-500">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Stats Grid - Asymmetric Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-20">
+          {hero.stats.map((stat, index) => {
+            const { num, suffix } = parseValue(stat.value);
+            const isCenter = index === 1;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.4 + index * 0.15,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                whileHover={{
+                  y: -8,
+                  transition: { duration: 0.3 }
+                }}
+                className={`group relative ${isCenter ? "md:-mt-4" : ""}`}
+              >
+                {/* Card */}
+                <div className="relative h-full p-8 lg:p-10 rounded-3xl bg-surface/80 backdrop-blur-sm border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-primary/30">
+                  {/* Hover gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Corner accent */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-[80px]" />
+
+                  {/* Index number */}
+                  <div className="absolute top-4 left-4 text-xs font-mono text-gray-600">
+                    0{index + 1}
+                  </div>
+
+                  <div className="relative z-10">
+                    {/* Stat Value with Counter Animation */}
+                    <div className="mb-4">
+                      <span className="text-5xl sm:text-6xl lg:text-7xl font-black text-white group-hover:text-glow transition-all duration-300">
+                        <AnimatedCounter value={num} suffix={suffix} />
+                      </span>
+                    </div>
+
+                    {/* Label */}
+                    <p className="text-lg text-gray-400 font-medium group-hover:text-gray-300 transition-colors">
+                      {stat.label}
+                    </p>
+
+                    {/* Decorative line */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      animate={isInView ? { scaleX: 1 } : {}}
+                      transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                      className="mt-6 h-[2px] bg-gradient-to-r from-primary/50 to-transparent origin-left"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* CTA Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
+          {/* Primary CTA */}
+          <motion.a
             href="#purchase"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-primary hover:bg-primary-dark rounded-xl transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-black bg-secondary rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(186,252,39,0.5)]"
           >
-            {hero.cta.primary}
-          </a>
-          <a
+            {/* Shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <span className="relative">{hero.cta.primary}</span>
+            <ChevronRight className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" />
+          </motion.a>
+
+          {/* Secondary CTA */}
+          <motion.a
             href="#experience"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition-colors"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-white rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
           >
-            {hero.cta.secondary}
-          </a>
+            <span>{hero.cta.secondary}</span>
+          </motion.a>
         </motion.div>
       </div>
+
+      {/* Bottom gradient fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-surface to-transparent pointer-events-none" />
     </section>
   );
 }
