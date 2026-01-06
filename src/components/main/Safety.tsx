@@ -108,7 +108,7 @@ export default function Safety() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-xl text-gray-400 leading-relaxed mb-12"
+              className="text-xl text-gray-400 leading-relaxed mb-12 whitespace-pre-line"
             >
               {safety.description}
             </motion.p>

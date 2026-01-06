@@ -502,7 +502,7 @@ export default function HWSpecs() {
                   {hwSpecs.specs[activeSpec].title}
                 </h3>
 
-                <p className="text-xl text-gray-400 leading-relaxed mb-6">
+                <p className="text-xl text-gray-400 leading-relaxed mb-6 whitespace-pre-line">
                   {hwSpecs.specs[activeSpec].description}
                 </p>
 

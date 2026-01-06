@@ -385,7 +385,7 @@ export default function Lifestyle() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-gray-500 mb-10 leading-relaxed"
+              className="text-gray-500 mb-10 leading-relaxed whitespace-pre-line"
             >
               {lifestyle.description}
             </motion.p>

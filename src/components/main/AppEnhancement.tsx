@@ -185,7 +185,7 @@ export default function AppEnhancement() {
                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors whitespace-pre-line">
                       {feature.description}
                     </p>
 
@@ -237,9 +237,9 @@ export default function AppEnhancement() {
             />
 
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-              {/* Phone mockup - Enhanced */}
+              {/* App Logo */}
               <div className="flex-shrink-0 relative">
-                {/* Glow behind phone */}
+                {/* Glow behind logo */}
                 <div className="absolute inset-0 bg-primary/30 blur-3xl scale-75" />
 
                 <motion.div
@@ -249,68 +249,11 @@ export default function AppEnhancement() {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="relative"
                 >
-                  <div className="relative w-56 h-[28rem] rounded-[3rem] bg-void border-[6px] border-gray-700 shadow-2xl overflow-hidden">
-                    {/* Notch */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-gray-700 rounded-b-2xl z-10" />
-
-                    {/* Screen content with animation */}
-                    <div className="absolute inset-3 top-10 rounded-[2rem] bg-gradient-to-br from-primary/20 via-surface to-secondary/20 flex flex-col items-center justify-center overflow-hidden">
-                      {/* Animated rings */}
-                      {[1, 2, 3].map((ring) => (
-                        <motion.div
-                          key={ring}
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.2, 0, 0.2],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            delay: ring * 0.5,
-                          }}
-                          className="absolute w-24 h-24 border border-primary/30 rounded-full"
-                        />
-                      ))}
-
-                      <motion.div
-                        animate={{
-                          scale: [1, 1.1, 1],
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="relative z-10"
-                      >
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-primary flex items-center justify-center shadow-lg shadow-primary/30">
-                          <Play className="w-8 h-8 text-black ml-1" fill="currentColor" />
-                        </div>
-                      </motion.div>
-
-                      <p className="text-white font-bold text-xl mt-6 relative z-10">ROOMFIT</p>
-                      <p className="text-gray-400 text-sm relative z-10">Smart Training App</p>
-
-                      {/* Stats preview */}
-                      <div className="absolute bottom-4 left-4 right-4 bg-void/80 backdrop-blur-sm rounded-2xl p-3">
-                        <div className="flex items-center justify-between text-xs">
-                          <div className="text-center">
-                            <div className="text-secondary font-bold">128</div>
-                            <div className="text-gray-500">운동</div>
-                          </div>
-                          <div className="w-px h-6 bg-gray-700" />
-                          <div className="text-center">
-                            <div className="text-primary font-bold">12kg</div>
-                            <div className="text-gray-500">성장</div>
-                          </div>
-                          <div className="w-px h-6 bg-gray-700" />
-                          <div className="text-center">
-                            <div className="text-white font-bold">97%</div>
-                            <div className="text-gray-500">달성</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Home indicator */}
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-1.5 bg-gray-500 rounded-full" />
-                  </div>
+                  <img
+                    src="/images/app-icon-large.png"
+                    alt="Roomfit App"
+                    className="w-36 h-36 rounded-3xl shadow-2xl shadow-primary/30"
+                  />
                 </motion.div>
               </div>
 
@@ -322,9 +265,7 @@ export default function AppEnhancement() {
                   transition={{ duration: 0.6, delay: 1 }}
                 >
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                    하드웨어의 잠재력을
-                    <br />
-                    <span className="gradient-text">100% 끌어내는 앱</span>
+                    <span className="gradient-text">AI 트레이너 만나보기</span>
                   </h3>
                   <p className="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
                     AI 기반 운동 분석, 실시간 피드백, 개인화된 프로그램까지.

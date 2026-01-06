@@ -372,7 +372,7 @@ export default function WeightModes() {
                 </p>
 
                 {/* Description */}
-                <p className="text-lg text-gray-400 leading-relaxed mb-8">
+                <p className="text-lg text-gray-400 leading-relaxed mb-8 whitespace-pre-line">
                   {currentMode.description}
                 </p>
 
