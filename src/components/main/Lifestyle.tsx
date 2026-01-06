@@ -7,6 +7,30 @@ import { motion, useInView } from "framer-motion";
 
 const highlightIcons = [Moon, Clock, Home];
 
+// 고정된 별 위치 (hydration 오류 방지)
+const starPositions = [
+  { left: 5, top: 8, duration: 2.5, delay: 0.3 },
+  { left: 12, top: 25, duration: 3.2, delay: 1.1 },
+  { left: 23, top: 12, duration: 2.8, delay: 0.7 },
+  { left: 35, top: 45, duration: 3.5, delay: 1.5 },
+  { left: 42, top: 18, duration: 2.3, delay: 0.2 },
+  { left: 55, top: 72, duration: 3.1, delay: 1.8 },
+  { left: 63, top: 35, duration: 2.9, delay: 0.9 },
+  { left: 72, top: 58, duration: 3.4, delay: 1.3 },
+  { left: 78, top: 15, duration: 2.6, delay: 0.5 },
+  { left: 85, top: 42, duration: 3.0, delay: 1.0 },
+  { left: 92, top: 68, duration: 2.7, delay: 1.6 },
+  { left: 18, top: 78, duration: 3.3, delay: 0.4 },
+  { left: 28, top: 55, duration: 2.4, delay: 1.2 },
+  { left: 48, top: 85, duration: 3.6, delay: 0.8 },
+  { left: 68, top: 22, duration: 2.2, delay: 1.4 },
+  { left: 8, top: 48, duration: 3.0, delay: 0.6 },
+  { left: 38, top: 32, duration: 2.8, delay: 1.7 },
+  { left: 58, top: 8, duration: 3.2, delay: 0.1 },
+  { left: 88, top: 88, duration: 2.5, delay: 1.9 },
+  { left: 95, top: 28, duration: 3.4, delay: 0.0 },
+];
+
 export default function Lifestyle() {
   const { lifestyle } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,22 +44,22 @@ export default function Lifestyle() {
       {/* Background - Night atmosphere */}
       <div className="absolute inset-0">
         {/* Stars effect */}
-        {[...Array(30)].map((_, i) => (
+        {starPositions.map((star, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/30 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
             }}
             animate={{
               opacity: [0.2, 0.8, 0.2],
               scale: [1, 1.2, 1],
             }}
             transition={{
-              duration: 2 + Math.random() * 2,
+              duration: star.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}
