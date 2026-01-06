@@ -9,6 +9,10 @@
       { "href": "#specs", "label": "제품 스펙" },
       { "href": "#app", "label": "스마트 앱" }
     ],
+    "communityLink": {
+      "href": "/community",
+      "label": "커뮤니티"
+    },
     "appLink": {
       "href": "/app",
       "label": "앱 자세히 보기"

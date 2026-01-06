@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X, Building2, Smartphone, Home } from "lucide-react";
+import { Menu, X, Building2, Smartphone, Home, MessageSquare } from "lucide-react";
 import { mainContent, appContent } from "@/data";
 
 export default function Navbar() {
@@ -15,7 +15,8 @@ export default function Navbar() {
   // Use appropriate content based on current path
   const isAppPage = pathname === "/app";
   const isBusinessPage = pathname === "/business";
-  const isSubPage = isAppPage || isBusinessPage;
+  const isCommunityPage = pathname?.startsWith("/community");
+  const isSubPage = isAppPage || isBusinessPage || isCommunityPage;
   const content = isAppPage ? appContent : mainContent;
   const { nav } = content;
 
@@ -99,6 +100,17 @@ export default function Navbar() {
               </Link>
             )}
 
+            {/* Community Link - don't show on community page */}
+            {!isCommunityPage && "communityLink" in nav && (
+              <Link
+                href={nav.communityLink.href}
+                className="flex items-center gap-2 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
+              >
+                <MessageSquare className="w-4 h-4" />
+                {nav.communityLink.label}
+              </Link>
+            )}
+
             {/* Business Link - don't show on business page */}
             {!isBusinessPage && (
               <Link
@@ -171,6 +183,18 @@ export default function Navbar() {
               >
                 <Smartphone className="w-4 h-4" />
                 {nav.appLink.label}
+              </Link>
+            )}
+
+            {/* Community Link - don't show on community page */}
+            {!isCommunityPage && "communityLink" in nav && (
+              <Link
+                href={nav.communityLink.href}
+                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <MessageSquare className="w-4 h-4" />
+                {nav.communityLink.label}
               </Link>
             )}
 

@@ -17,3 +17,12 @@ export function getScreenshot(key: keyof SiteImages["screenshots"]) {
 }
 
 export * from "./types";
+export {
+  testimonials,
+  getTestimonialsByCategory,
+  getPopularTestimonials,
+  getRecentTestimonials,
+  getRandomTestimonials,
+  testimonialStats,
+  type Testimonial as DetailedTestimonial,
+} from "./testimonials";

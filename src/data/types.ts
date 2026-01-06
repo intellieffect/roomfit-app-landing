@@ -12,6 +12,7 @@ export interface MainContent {
   };
   nav: {
     links: NavLink[];
+    communityLink: NavLink;
     appLink: NavLink;
     businessLink: NavLink;
     cta: string;
