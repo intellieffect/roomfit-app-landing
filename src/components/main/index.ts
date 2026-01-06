@@ -1,4 +1,5 @@
 export { default as MainHero } from "./MainHero";
+export { default as IntroStats } from "./IntroStats";
 export { default as PainPoints } from "./PainPoints";
 export { default as HWSpecs } from "./HWSpecs";
 export { default as WeightModes } from "./WeightModes";
