@@ -34,7 +34,7 @@ export default function AppEnhancement() {
     <section
       ref={sectionRef}
       id="app"
-      className="relative py-32 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -78,16 +78,16 @@ export default function AppEnhancement() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 lg:mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
-            <Smartphone className="w-4 h-4 text-primary" />
-            <span className="text-sm font-bold text-primary tracking-wide">
+            <Smartphone className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+            <span className="text-xs sm:text-sm font-bold text-primary tracking-wide">
               {appEnhancement.badge}
             </span>
           </motion.div>
@@ -115,14 +115,14 @@ export default function AppEnhancement() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto mt-6"
+            className="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-6"
           >
             {appEnhancement.subtitle}
           </motion.p>
         </motion.div>
 
         {/* Features Grid - Bento Style */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 mb-10 sm:mb-16 lg:mb-20">
           {appEnhancement.features.map((feature, index) => {
             const Icon = iconMap[feature.icon];
             const isHovered = hoveredFeature === index;
@@ -140,11 +140,11 @@ export default function AppEnhancement() {
                 }}
                 onMouseEnter={() => setHoveredFeature(index)}
                 onMouseLeave={() => setHoveredFeature(null)}
-                className={`group relative ${isLarge ? "md:col-span-2 lg:col-span-1" : ""}`}
+                className={`group relative ${isLarge ? "sm:col-span-2 lg:col-span-1" : ""}`}
               >
                 <motion.div
                   whileHover={{ y: -6 }}
-                  className="relative p-8 lg:p-10 rounded-3xl bg-void/80 backdrop-blur-sm border border-white/5 hover:border-primary/30 transition-all duration-500 h-full overflow-hidden"
+                  className="relative p-5 sm:p-6 lg:p-8 xl:p-10 rounded-2xl sm:rounded-3xl bg-void/80 backdrop-blur-sm border border-white/5 hover:border-primary/30 transition-all duration-500 h-full overflow-hidden"
                 >
                   {/* Hover gradient effect */}
                   <motion.div
@@ -163,7 +163,7 @@ export default function AppEnhancement() {
                   />
 
                   {/* Index */}
-                  <div className="absolute top-6 right-6 text-5xl font-black text-primary/10 select-none pointer-events-none">
+                  <div className="absolute top-4 right-4 sm:top-6 sm:right-6 text-4xl sm:text-5xl font-black text-primary/10 select-none pointer-events-none">
                     0{index + 1}
                   </div>
 
@@ -176,16 +176,16 @@ export default function AppEnhancement() {
                           ? "0 0 40px rgba(82,82,255,0.3)"
                           : "0 0 0 rgba(82,82,255,0)",
                       }}
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-br from-primary/20 to-primary/10 text-primary border border-primary/20 transition-all duration-300"
+                      className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 bg-gradient-to-br from-primary/20 to-primary/10 text-primary border border-primary/20 transition-all duration-300"
                     >
-                      {Icon && <Icon className="w-8 h-8" />}
+                      {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />}
                     </motion.div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-primary transition-colors">
                       {feature.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors whitespace-pre-line">
+                    <p className="text-sm sm:text-base text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors whitespace-pre-line">
                       {feature.description}
                     </p>
 
@@ -193,7 +193,7 @@ export default function AppEnhancement() {
                     <motion.div
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: isHovered ? 1 : 0 }}
-                      className="mt-6 h-0.5 bg-gradient-to-r from-primary to-secondary origin-left"
+                      className="mt-4 sm:mt-6 h-0.5 bg-gradient-to-r from-primary to-secondary origin-left"
                     />
                   </div>
                 </motion.div>
@@ -212,7 +212,7 @@ export default function AppEnhancement() {
           {/* Glow behind card */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-secondary/10 to-primary/20 blur-3xl scale-95 rounded-3xl" />
 
-          <div className="relative p-8 sm:p-12 lg:p-16 rounded-3xl bg-gradient-to-br from-void via-surface to-void border border-white/10 overflow-hidden">
+          <div className="relative p-6 sm:p-10 lg:p-16 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-void via-surface to-void border border-white/10 overflow-hidden">
             {/* Background pattern */}
             <div className="absolute inset-0 opacity-10">
               <div
@@ -236,7 +236,7 @@ export default function AppEnhancement() {
               className="absolute -bottom-16 -left-16 w-32 h-32 border border-secondary/20 rounded-full"
             />
 
-            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-16">
               {/* App Logo */}
               <div className="flex-shrink-0 relative">
                 {/* Glow behind logo */}
@@ -252,7 +252,7 @@ export default function AppEnhancement() {
                   <img
                     src="/images/app-icon-large.png"
                     alt="Roomfit App"
-                    className="w-36 h-36 rounded-3xl shadow-2xl shadow-primary/30"
+                    className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-2xl sm:rounded-3xl shadow-2xl shadow-primary/30"
                   />
                 </motion.div>
               </div>
@@ -264,17 +264,17 @@ export default function AppEnhancement() {
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: 1 }}
                 >
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                     <span className="gradient-text">AI 트레이너 만나보기</span>
                   </h3>
-                  <p className="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-400 mb-6 sm:mb-8 lg:mb-10 max-w-lg leading-relaxed">
                     AI 기반 운동 분석, 실시간 피드백, 개인화된 프로그램까지.
                     룸핏 앱과 함께라면 전문 트레이너 없이도 최적의 운동이 가능합니다.
                   </p>
 
                   <Link
                     href={appEnhancement.cta.href}
-                    className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105"
+                    className="group relative inline-flex items-center gap-2 sm:gap-3 px-6 py-3 sm:px-8 sm:py-4 lg:px-10 lg:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg overflow-hidden transition-all duration-300 hover:scale-105"
                   >
                     {/* Button gradient background */}
                     <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary to-primary" />

@@ -23,7 +23,7 @@ export default function HandsfreeControl() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           {/* Screenshot */}
           <div className="relative flex justify-center">
             <div className="rounded-3xl overflow-hidden shadow-2xl">
@@ -32,7 +32,7 @@ export default function HandsfreeControl() {
                 alt={mainScreenshot.alt}
                 width={300}
                 height={600}
-                className="w-[300px]"
+                className="w-[260px] sm:w-[300px]"
               />
             </div>
           </div>

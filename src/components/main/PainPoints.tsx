@@ -21,7 +21,7 @@ export default function PainPoints() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -67,7 +67,7 @@ export default function PainPoints() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <h2 className="text-display-lg">
             <motion.span
@@ -90,7 +90,7 @@ export default function PainPoints() {
         </motion.div>
 
         {/* Pain Points - 3 Column Grid */}
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 max-w-6xl mx-auto">
           {painPoints.items.map((item, index) => {
             const Icon = iconMap[item.icon];
             const isHovered = hoveredIndex === index;
@@ -113,24 +113,24 @@ export default function PainPoints() {
                 <motion.div
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.3 }}
-                  className="relative p-6 lg:p-8 rounded-2xl bg-void/80 backdrop-blur-sm border border-white/5 overflow-hidden h-full"
+                  className="relative p-5 sm:p-6 lg:p-8 rounded-2xl bg-void/80 backdrop-blur-sm border border-white/5 overflow-hidden h-full"
                 >
                   {/* Hover gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-transparent to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
                   {/* Index number */}
-                  <div className="absolute top-4 right-4 text-5xl font-black text-red-500/10 select-none pointer-events-none">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-4xl sm:text-5xl font-black text-red-500/10 select-none pointer-events-none">
                     0{index + 1}
                   </div>
 
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-red-500/10 text-red-400 border border-red-500/20 mb-5">
-                      {Icon && <Icon className="w-6 h-6" />}
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center bg-red-500/10 text-red-400 border border-red-500/20 mb-4 sm:mb-5">
+                      {Icon && <Icon className="w-5 h-5 sm:w-6 sm:h-6" />}
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-100 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-red-100 transition-colors">
                       {item.title}
                     </h3>
                     <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
@@ -156,23 +156,23 @@ export default function PainPoints() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 1.2 }}
-          className="relative mt-24 text-center"
+          className="relative mt-12 sm:mt-16 lg:mt-24 text-center"
         >
           {/* Connecting line */}
           <motion.div
             initial={{ height: 0 }}
             animate={isInView ? { height: 60 } : {}}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="w-px bg-gradient-to-b from-red-500/50 to-secondary/50 mx-auto mb-8"
+            className="w-px bg-gradient-to-b from-red-500/50 to-secondary/50 mx-auto mb-6 sm:mb-8"
           />
 
           {/* Arrow indicator */}
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary/10 border border-secondary/30 mb-8"
+            className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary/10 border border-secondary/30 mb-6 sm:mb-8"
           >
-            <ArrowDown className="w-5 h-5 text-secondary" />
+            <ArrowDown className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
           </motion.div>
 
           {/* Transition text with gradient */}
@@ -181,7 +181,7 @@ export default function PainPoints() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.6 }}
           >
-            <p className="text-3xl sm:text-4xl font-bold">
+            <p className="text-2xl sm:text-3xl md:text-4xl font-bold">
               <span className="text-gray-500">그래서</span>
               <br />
               <span className="gradient-text">만들었습니다</span>

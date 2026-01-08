@@ -45,7 +45,7 @@ export default function DataInsights() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {dataInsights.items.map((item, index) => {
             const Icon = iconMap[item.icon];
             return (

@@ -46,7 +46,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-md shadow-sm"
+          ? "bg-void/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -132,7 +132,7 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-3"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -147,7 +147,7 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-[#0a0a0f] border-t border-gray-100 dark:border-gray-800">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-5 py-5 space-y-3">
             {nav.links.map((link) => (
               <a
                 key={link.href}

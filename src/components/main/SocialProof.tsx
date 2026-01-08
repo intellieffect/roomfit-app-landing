@@ -23,7 +23,7 @@ export default function SocialProof() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -66,7 +66,7 @@ export default function SocialProof() {
 
       <div className="relative z-10">
         {/* Header */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -77,7 +77,7 @@ export default function SocialProof() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-8"
+              className="inline-block mb-6 sm:mb-8"
             >
               <motion.div
                 animate={{
@@ -87,16 +87,16 @@ export default function SocialProof() {
                   ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-500/10 border border-yellow-500/30"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-yellow-500/10 border border-yellow-500/30"
               >
-                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                <span className="text-sm font-bold text-yellow-400 tracking-wide">
+                <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
+                <span className="text-xs sm:text-sm font-bold text-yellow-400 tracking-wide">
                   {socialProof.badge}
                 </span>
               </motion.div>
             </motion.div>
 
-            <h2 className="text-display-lg mb-8">
+            <h2 className="text-display-lg mb-6 sm:mb-8">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -120,22 +120,22 @@ export default function SocialProof() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-8 lg:gap-12"
+              className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:gap-12"
             >
-              <div className="flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-secondary" />
-                <span className="text-2xl font-bold text-white">{testimonialStats.total}</span>
-                <span className="text-gray-400">리뷰</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
+                <span className="text-lg sm:text-2xl font-bold text-white">{testimonialStats.total}</span>
+                <span className="text-sm sm:text-base text-gray-400">리뷰</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Eye className="w-5 h-5 text-secondary" />
-                <span className="text-2xl font-bold text-white">{(testimonialStats.totalViews / 1000).toFixed(1)}K</span>
-                <span className="text-gray-400">조회수</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
+                <span className="text-lg sm:text-2xl font-bold text-white">{(testimonialStats.totalViews / 1000).toFixed(1)}K</span>
+                <span className="text-sm sm:text-base text-gray-400">조회수</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-2xl font-bold text-white">{testimonialStats.avgRating}</span>
-                <span className="text-gray-400">평점</span>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-yellow-400" />
+                <span className="text-lg sm:text-2xl font-bold text-white">{testimonialStats.avgRating}</span>
+                <span className="text-sm sm:text-base text-gray-400">평점</span>
               </div>
             </motion.div>
           </motion.div>
@@ -149,8 +149,8 @@ export default function SocialProof() {
           className="relative overflow-hidden"
         >
           {/* Gradient Masks */}
-          <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 left-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
 
           {/* Infinite Scroll Container */}
           <div
@@ -160,9 +160,9 @@ export default function SocialProof() {
             {duplicatedTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
-                className="group relative flex-shrink-0 w-[350px]"
+                className="group relative flex-shrink-0 w-[260px] sm:w-[300px] lg:w-[350px]"
               >
-                <div className="relative p-6 rounded-3xl bg-void/80 backdrop-blur-sm border border-white/5 hover:border-secondary/30 transition-all duration-500 h-full overflow-hidden">
+                <div className="relative p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-void/80 backdrop-blur-sm border border-white/5 hover:border-secondary/30 transition-all duration-500 h-full overflow-hidden">
                   {/* Quote icon */}
                   <div className="absolute top-5 right-5">
                     <Quote className="w-10 h-10 text-secondary/10 group-hover:text-secondary/20 transition-colors" />
@@ -246,12 +246,12 @@ export default function SocialProof() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-20 pt-10 border-t border-white/5"
+            className="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-white/5"
           >
-            <p className="text-center text-xs font-bold text-gray-600 uppercase tracking-widest mb-8">
+            <p className="text-center text-[10px] sm:text-xs font-bold text-gray-600 uppercase tracking-widest mb-6 sm:mb-8">
               신뢰할 수 있는 약속
             </p>
-            <div className="flex flex-wrap justify-center gap-4 lg:gap-6">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 lg:gap-6">
               {trustBadges.map((badge, index) => {
                 const Icon = badge.icon;
                 return (
@@ -261,12 +261,12 @@ export default function SocialProof() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 1 + index * 0.1 }}
                     whileHover={{ y: -4, scale: 1.05 }}
-                    className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-void/50 border border-white/5 hover:border-secondary/20 transition-all duration-300"
+                    className="group flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-void/50 border border-white/5 hover:border-secondary/20 transition-all duration-300"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                      <Icon className="w-5 h-5 text-secondary" />
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
+                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
                     </div>
-                    <span className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
+                    <span className="text-xs sm:text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
                       {badge.label}
                     </span>
                   </motion.div>

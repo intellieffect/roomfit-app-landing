@@ -62,7 +62,7 @@ export default function WeightModes() {
     <section
       ref={sectionRef}
       id="modes"
-      className="relative py-32 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -115,16 +115,16 @@ export default function WeightModes() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 lg:mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-bold text-primary">{weightModes.badge}</span>
+            <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+            <span className="text-xs sm:text-sm font-bold text-primary">{weightModes.badge}</span>
           </motion.div>
 
           <h2 className="text-display-lg">
@@ -150,7 +150,7 @@ export default function WeightModes() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto mt-6"
+            className="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-6"
           >
             {weightModes.subtitle}
           </motion.p>
@@ -161,7 +161,7 @@ export default function WeightModes() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-10 sm:mb-16"
         >
           {weightModes.modes.map((mode, index) => {
             const Icon = iconMap[mode.icon];
@@ -174,7 +174,7 @@ export default function WeightModes() {
                 onClick={() => setActiveMode(index)}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative p-4 lg:p-6 rounded-2xl text-left transition-all duration-500 ${
+                className={`group relative p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-left transition-all duration-500 ${
                   isActive
                     ? "bg-void ring-2"
                     : "bg-void/50 hover:bg-void border border-white/5"
@@ -199,11 +199,11 @@ export default function WeightModes() {
                   animate={{
                     backgroundColor: isActive ? `${style.color}20` : "rgba(255,255,255,0.05)",
                   }}
-                  className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center mb-4 transition-colors"
+                  className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 transition-colors"
                 >
                   {Icon && (
                     <Icon
-                      className="w-5 h-5 lg:w-6 lg:h-6 transition-colors"
+                      className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors"
                       style={{ color: isActive ? style.color : "#9CA3AF" }}
                     />
                   )}
@@ -349,9 +349,9 @@ export default function WeightModes() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 {/* Mode number */}
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-4 sm:mb-6">
                   <span
-                    className="text-7xl lg:text-8xl font-black opacity-20"
+                    className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black opacity-20"
                     style={{ color: currentStyle.color }}
                   >
                     {String(activeMode + 1).padStart(2, "0")}
@@ -359,29 +359,29 @@ export default function WeightModes() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
                   {currentMode.title}
                 </h3>
 
                 {/* Subtitle */}
                 <p
-                  className="text-xl font-medium mb-6"
+                  className="text-base sm:text-lg lg:text-xl font-medium mb-4 sm:mb-6"
                   style={{ color: currentStyle.color }}
                 >
                   {currentMode.subtitle}
                 </p>
 
                 {/* Description */}
-                <p className="text-lg text-gray-400 leading-relaxed mb-8 whitespace-pre-line">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed mb-6 sm:mb-8 whitespace-pre-line">
                   {currentMode.description}
                 </p>
 
                 {/* Use case tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="px-4 py-2 bg-white/5 rounded-xl text-sm text-gray-300 border border-white/5">
+                <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                  <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/5 rounded-lg sm:rounded-xl text-xs sm:text-sm text-gray-300 border border-white/5">
                     근력 강화
                   </span>
-                  <span className="px-4 py-2 bg-white/5 rounded-xl text-sm text-gray-300 border border-white/5">
+                  <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/5 rounded-lg sm:rounded-xl text-xs sm:text-sm text-gray-300 border border-white/5">
                     맞춤형 훈련
                   </span>
                 </div>

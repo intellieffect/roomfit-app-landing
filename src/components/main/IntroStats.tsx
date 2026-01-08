@@ -109,9 +109,9 @@ export default function IntroStats() {
               transition={{ duration: 2, repeat: Infinity }}
               className="absolute inset-0 rounded-full"
             />
-            <div className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-secondary/10 border border-secondary/30 backdrop-blur-sm">
-              <Zap className="w-4 h-4 text-secondary" />
-              <span className="text-sm font-bold text-secondary tracking-wide">
+            <div className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-secondary/10 border border-secondary/30 backdrop-blur-sm">
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-secondary" />
+              <span className="text-xs sm:text-sm font-bold text-secondary tracking-wide">
                 {hero.badge}
               </span>
             </div>
@@ -166,13 +166,13 @@ export default function IntroStats() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="text-center text-xl sm:text-2xl text-gray-400 mb-20 max-w-2xl mx-auto"
+          className="text-center text-base sm:text-xl md:text-2xl text-gray-400 mb-12 sm:mb-20 max-w-2xl mx-auto"
         >
           {hero.subtitle}
         </motion.p>
 
         {/* Stats Grid - Equal Height Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-5xl mx-auto mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 max-w-5xl mx-auto mb-12 sm:mb-20">
           {hero.stats.map((stat, index) => {
             const { num, suffix } = parseValue(stat.value);
 
@@ -193,7 +193,7 @@ export default function IntroStats() {
                 className="group relative"
               >
                 {/* Card */}
-                <div className="relative h-full min-h-[220px] p-6 lg:p-8 rounded-2xl bg-surface/80 backdrop-blur-sm border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-primary/30 flex flex-col justify-between">
+                <div className="relative h-full min-h-[180px] sm:min-h-[220px] p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-surface/80 backdrop-blur-sm border border-white/5 overflow-hidden transition-all duration-500 group-hover:border-primary/30 flex flex-col justify-between">
                   {/* Hover gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -208,7 +208,7 @@ export default function IntroStats() {
                   <div className="relative z-10">
                     {/* Stat Value with Counter Animation */}
                     <div className="mb-3">
-                      <span className="text-4xl sm:text-5xl lg:text-6xl font-black text-white group-hover:text-glow transition-all duration-300 whitespace-nowrap">
+                      <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-white group-hover:text-glow transition-all duration-300 whitespace-nowrap">
                         <AnimatedCounter value={num} suffix={suffix} />
                       </span>
                     </div>
@@ -244,12 +244,12 @@ export default function IntroStats() {
             href="#purchase"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-black bg-secondary rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(186,252,39,0.5)]"
+            className="group relative inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-lg font-bold text-black bg-secondary rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(186,252,39,0.5)]"
           >
             {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             <span className="relative">{hero.cta.primary}</span>
-            <ChevronRight className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 relative group-hover:translate-x-1 transition-transform" />
           </motion.a>
 
           {/* Secondary CTA */}
@@ -257,7 +257,7 @@ export default function IntroStats() {
             href="#experience"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-white rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
+            className="group relative inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-lg font-bold text-white rounded-lg sm:rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
           >
             <span>{hero.cta.secondary}</span>
           </motion.a>

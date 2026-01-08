@@ -20,7 +20,7 @@ export default function MainCTA() {
     <section
       ref={sectionRef}
       id="purchase"
-      className="relative py-32 lg:py-40 overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 overflow-hidden"
     >
       {/* Background - Electric gradient enhanced */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-indigo-700">
@@ -126,7 +126,7 @@ export default function MainCTA() {
             initial={{ scale: 0 }}
             animate={isInView ? { scale: 1 } : {}}
             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="relative inline-block mb-10"
+            className="relative inline-block mb-6 sm:mb-10"
           >
             {/* Pulsing rings */}
             {[1, 2].map((ring) => (
@@ -141,11 +141,11 @@ export default function MainCTA() {
                   repeat: Infinity,
                   delay: ring * 0.5,
                 }}
-                className="absolute inset-0 rounded-3xl border-2 border-secondary/30"
+                className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-secondary/30"
               />
             ))}
 
-            <div className="relative w-24 h-24 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-2xl shadow-black/20">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-2xl sm:rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-2xl shadow-black/20">
               <motion.div
                 animate={{
                   rotate: [0, 10, -10, 0],
@@ -153,18 +153,18 @@ export default function MainCTA() {
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Zap className="w-12 h-12 text-secondary drop-shadow-lg" />
+                <Zap className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-secondary drop-shadow-lg" />
               </motion.div>
             </div>
           </motion.div>
 
           {/* Title - Enhanced with staggered animation */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-6 lg:mb-8">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight"
+              className="text-2xl sm:text-4xl lg:text-5xl xl:text-7xl font-black text-white leading-tight"
             >
               {cta.title}
             </motion.h2>
@@ -174,7 +174,7 @@ export default function MainCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl sm:text-2xl text-white/80 mb-14 max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-lg lg:text-xl xl:text-2xl text-white/80 mb-8 sm:mb-10 lg:mb-14 max-w-2xl mx-auto leading-relaxed"
           >
             {cta.subtitle}
           </motion.p>
@@ -184,14 +184,14 @@ export default function MainCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-14"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-8 sm:mb-10 lg:mb-14"
           >
             {/* Primary CTA - Enhanced */}
             <motion.a
               href={cta.buttons.primary.href}
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative inline-flex items-center justify-center gap-3 bg-secondary text-black px-12 py-6 rounded-2xl font-bold text-lg overflow-hidden transition-all shadow-2xl shadow-secondary/40"
+              className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-secondary text-black px-6 py-3 sm:px-10 sm:py-5 lg:px-12 lg:py-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg overflow-hidden transition-all shadow-2xl shadow-secondary/40"
             >
               {/* Animated gradient background */}
               <motion.div
@@ -210,14 +210,14 @@ export default function MainCTA() {
                 transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
               />
 
-              <ShoppingCart className="w-6 h-6 relative z-10" />
-              <span className="relative z-10 text-lg">{cta.buttons.primary.text}</span>
+              <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
+              <span className="relative z-10">{cta.buttons.primary.text}</span>
               <motion.div
                 className="relative z-10"
                 animate={{ x: [0, 4, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <ArrowRight className="w-6 h-6" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </motion.div>
             </motion.a>
 
@@ -226,9 +226,9 @@ export default function MainCTA() {
               href={cta.buttons.secondary.href}
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white px-12 py-6 rounded-2xl font-bold text-lg transition-all border-2 border-white/30 hover:border-white/60 hover:bg-white/20"
+              className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md text-white px-6 py-3 sm:px-10 sm:py-5 lg:px-12 lg:py-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg transition-all border-2 border-white/30 hover:border-white/60 hover:bg-white/20"
             >
-              <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
               <span>{cta.buttons.secondary.text}</span>
             </motion.a>
           </motion.div>
@@ -238,7 +238,7 @@ export default function MainCTA() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap justify-center gap-6 lg:gap-10"
+            className="flex flex-wrap justify-center gap-3 sm:gap-6 lg:gap-10"
           >
             {trustItems.map((item, index) => {
               const Icon = item.icon;
@@ -249,12 +249,12 @@ export default function MainCTA() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8 + index * 0.1 }}
                   whileHover={{ y: -2 }}
-                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors"
+                  className="flex items-center gap-2 sm:gap-3 text-white/80 hover:text-white transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/10">
-                    <Icon className="w-5 h-5 text-secondary" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/10">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
                   </div>
-                  <span className="font-medium">{item.text}</span>
+                  <span className="text-sm sm:text-base font-medium">{item.text}</span>
                 </motion.div>
               );
             })}

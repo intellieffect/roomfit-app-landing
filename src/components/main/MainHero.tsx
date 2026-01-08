@@ -50,14 +50,14 @@ export default function MainHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-4"
+          className="mb-4 flex justify-center"
         >
           <Image
             src="/roomfit/logo.svg"
             alt="ROOMFIT"
             width={280}
             height={50}
-            className="h-8 sm:h-10 lg:h-12 w-auto"
+            className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto"
             priority
           />
         </motion.div>
