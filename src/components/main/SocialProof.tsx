@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Star, Quote, BadgeCheck, Shield, Truck, Wrench, MessageSquare, Eye, Heart } from "lucide-react";
-import { mainContent, testimonials, testimonialStats } from "@/data";
+import { Star, Quote, BadgeCheck, Shield, Truck, Wrench, Eye, Heart } from "lucide-react";
+import { mainContent, testimonials } from "@/data";
 import { motion, useInView, PanInfo } from "framer-motion";
 
 const SCROLL_SPEED = 0.3; // pixels per frame (slower for testimonials)
@@ -196,30 +196,6 @@ export default function SocialProof() {
                 {socialProof.title.line2}
               </motion.span>
             </h2>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-4 sm:gap-8 lg:gap-12"
-            >
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
-                <span className="text-lg sm:text-2xl font-bold text-white">{testimonialStats.total}</span>
-                <span className="text-sm sm:text-base text-gray-400">리뷰</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
-                <span className="text-lg sm:text-2xl font-bold text-white">{(testimonialStats.totalViews / 1000).toFixed(1)}K</span>
-                <span className="text-sm sm:text-base text-gray-400">조회수</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-lg sm:text-2xl font-bold text-white">{testimonialStats.avgRating}</span>
-                <span className="text-sm sm:text-base text-gray-400">평점</span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
 
