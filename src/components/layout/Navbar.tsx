@@ -136,9 +136,9 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900 dark:text-white" />
+              <X className="w-6 h-6 text-white" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
+              <Menu className="w-6 h-6 text-white" />
             )}
           </button>
         </div>
