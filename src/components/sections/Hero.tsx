@@ -24,7 +24,7 @@ export default function Hero() {
               {hero.badge}
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               {hero.title.line1}
               <br />
               <span className="gradient-text">{hero.title.line2}</span>
@@ -32,11 +32,11 @@ export default function Hero() {
               {hero.title.line3}
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-lg sm:text-xl text-gray-400 mb-4">
               {hero.subtitle}
             </p>
 
-            <p className="text-gray-500 dark:text-gray-500 mb-8">
+            <p className="text-gray-500 mb-8">
               {hero.description}
             </p>
 
@@ -50,7 +50,7 @@ export default function Hero() {
               </a>
               <Link
                 href="/business"
-                className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-5 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-sm sm:text-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-gray-800 text-white px-5 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-sm sm:text-lg hover:bg-gray-700 transition-all"
               >
                 <Building2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 {hero.cta.secondary}
@@ -58,7 +58,7 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-800">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800">
               {hero.stats.map((stat) => (
                 <div key={stat.label}>
                   <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">

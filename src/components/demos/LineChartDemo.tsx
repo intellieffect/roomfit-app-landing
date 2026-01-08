@@ -46,10 +46,10 @@ export function LineChartDemo() {
   return (
     <div
       ref={ref}
-      className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-xl w-[280px]"
+      className="bg-gray-800 rounded-2xl p-4 shadow-xl w-[280px]"
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        <span className="text-xs font-medium text-gray-400">
           속도 변화
         </span>
         <span className="text-xs text-primary font-medium">m/s</span>

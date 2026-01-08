@@ -35,12 +35,12 @@ export default function DataInsights() {
             {dataInsights.badge}
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
             {dataInsights.title.line1}{" "}
             <span className="gradient-text">{dataInsights.title.line2}</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto">
             {dataInsights.subtitle}
           </p>
         </div>
@@ -51,15 +51,15 @@ export default function DataInsights() {
             return (
               <div
                 key={index}
-                className="text-center p-4 sm:p-6 lg:p-8 bg-gray-50 dark:bg-gray-800 rounded-xl sm:rounded-2xl"
+                className="text-center p-4 sm:p-6 lg:p-8 bg-gray-800 rounded-xl sm:rounded-2xl"
               >
                 <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-primary/10 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
                   {Icon && <Icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-primary" />}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
                   {item.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                <p className="text-sm sm:text-base text-gray-400">
                   {item.description}
                 </p>
               </div>

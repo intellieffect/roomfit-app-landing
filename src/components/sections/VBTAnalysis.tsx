@@ -36,17 +36,17 @@ export default function VBTAnalysis() {
               {vbtAnalysis.badge}
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
               {vbtAnalysis.title.line1}
               <br />
               <span className="gradient-text">{vbtAnalysis.title.line2}</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+            <p className="text-base sm:text-lg text-gray-400 mb-4 sm:mb-6">
               {vbtAnalysis.subtitle}
             </p>
 
-            <p className="text-sm sm:text-base text-gray-500 dark:text-gray-500 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8">
               {vbtAnalysis.description}
             </p>
 
@@ -59,10 +59,10 @@ export default function VBTAnalysis() {
                       {Icon && <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />}
                     </div>
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white mb-0.5 sm:mb-1">
+                      <h4 className="text-sm sm:text-base font-semibold text-white mb-0.5 sm:mb-1">
                         {item.title}
                       </h4>
-                      <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
+                      <p className="text-gray-400 text-xs sm:text-sm">
                         {item.description}
                       </p>
                     </div>

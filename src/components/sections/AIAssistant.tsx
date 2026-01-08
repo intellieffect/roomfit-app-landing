@@ -111,7 +111,7 @@ export default function AIAssistant() {
   return (
     <section
       ref={ref}
-      className="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800"
+      className="py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-gray-800"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
@@ -126,7 +126,7 @@ export default function AIAssistant() {
           </motion.div>
 
           <motion.h2
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -136,7 +136,7 @@ export default function AIAssistant() {
           </motion.h2>
 
           <motion.p
-            className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+            className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -210,28 +210,28 @@ export default function AIAssistant() {
         >
           <div className="text-center p-4 sm:p-6">
             <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">🎯</div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-1.5 sm:mb-2">
+            <h4 className="font-semibold text-white mb-1.5 sm:mb-2">
               맞춤형 목표 설정
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-400">
               과거 데이터를 분석해 현실적인 목표를 제안합니다
             </p>
           </div>
           <div className="text-center p-4 sm:p-6">
             <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">📊</div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-1.5 sm:mb-2">
+            <h4 className="font-semibold text-white mb-1.5 sm:mb-2">
               진행 상황 분석
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-400">
               매 세션 후 발전 상황을 알기 쉽게 설명합니다
             </p>
           </div>
           <div className="text-center p-4 sm:p-6">
             <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">💪</div>
-            <h4 className="font-semibold text-gray-900 dark:text-white mb-1.5 sm:mb-2">
+            <h4 className="font-semibold text-white mb-1.5 sm:mb-2">
               동기부여 코칭
             </h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-400">
               꾸준한 운동을 위한 격려와 피드백을 제공합니다
             </p>
           </div>

@@ -51,7 +51,7 @@ export default async function PostPage({ params }: PostPageProps) {
   incrementViewCount(id);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0f]">
+    <main className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <PostDetail post={post} />
       <Footer />

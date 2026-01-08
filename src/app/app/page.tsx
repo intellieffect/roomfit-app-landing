@@ -12,7 +12,7 @@ import DownloadCTA from "@/components/sections/DownloadCTA";
 
 export default function AppPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0f]">
+    <main className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <Hero />
       <Features />

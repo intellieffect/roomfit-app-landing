@@ -29,11 +29,11 @@ export function ROMCompleteDialog() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 40, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-2xl max-w-sm w-full"
+            className="bg-gray-800 rounded-2xl p-6 shadow-2xl max-w-sm w-full"
           >
             <div className="flex justify-center mb-4">
               <motion.div
-                className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center"
+                className="w-14 h-14 bg-green-900/30 rounded-full flex items-center justify-center"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1, type: "spring", stiffness: 400 }}
@@ -50,7 +50,7 @@ export function ROMCompleteDialog() {
             </div>
 
             <motion.h3
-              className="text-center font-bold text-lg text-gray-900 dark:text-white mb-5"
+              className="text-center font-bold text-lg text-white mb-5"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -60,15 +60,15 @@ export function ROMCompleteDialog() {
 
             <div className="grid grid-cols-2 gap-3">
               <motion.div
-                className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl text-center"
+                className="bg-blue-900/20 p-4 rounded-xl text-center"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.35 }}
               >
-                <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+                <span className="text-xs text-blue-400 font-medium">
                   왼쪽
                 </span>
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">
+                <div className="text-2xl font-bold text-blue-400 mt-1">
                   <AnimatedCounter
                     to={85.5}
                     duration={1}
@@ -81,15 +81,15 @@ export function ROMCompleteDialog() {
               </motion.div>
 
               <motion.div
-                className="bg-red-50 dark:bg-red-900/20 p-4 rounded-xl text-center"
+                className="bg-red-900/20 p-4 rounded-xl text-center"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <span className="text-xs text-red-600 dark:text-red-400 font-medium">
+                <span className="text-xs text-red-400 font-medium">
                   오른쪽
                 </span>
-                <div className="text-2xl font-bold text-red-600 dark:text-red-400 mt-1">
+                <div className="text-2xl font-bold text-red-400 mt-1">
                   <AnimatedCounter
                     to={87.2}
                     duration={1}
@@ -108,7 +108,7 @@ export function ROMCompleteDialog() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              <button className="flex-1 py-2.5 px-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-xl text-sm font-medium">
+              <button className="flex-1 py-2.5 px-4 bg-gray-700 text-gray-300 rounded-xl text-sm font-medium">
                 다시 측정
               </button>
               <button className="flex-1 py-2.5 px-4 bg-primary text-white rounded-xl text-sm font-medium">
