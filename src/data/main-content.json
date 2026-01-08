@@ -6,8 +6,7 @@
   },
   "nav": {
     "links": [
-      { "href": "#specs", "label": "제품 스펙" },
-      { "href": "#app", "label": "스마트 앱" }
+      { "href": "#specs", "label": "제품 스펙" }
     ],
     "communityLink": {
       "href": "/community",
@@ -15,7 +14,7 @@
     },
     "appLink": {
       "href": "/app",
-      "label": "앱 자세히 보기"
+      "label": "룸핏 앱"
     },
     "businessLink": {
       "href": "/business",
@@ -146,7 +145,7 @@
       },
       {
         "id": "variable",
-        "title": "가변 저항 모드",
+        "title": "밴드 모드",
         "subtitle": "최대 수축, 최대 자극",
         "description": "동작의 정점에서 저항이 최대가 되어 근육이 최대로 수축되도록 도와줍니다.\n최대수축 x 최대자극 x 지속시간 = 폭발적 근성장",
         "icon": "TrendingUp",
@@ -173,7 +172,7 @@
   "safety": {
     "badge": "안전 시스템",
     "title": {
-      "line1": "안전.",
+      "line1": "안전. 안전",
       "line2": "그리고 또 안전."
     },
     "description": "룸핏은 사용자의 가동범위를 자동으로 인식해\n가동범위 내에서만 무게를 설정합니다.",

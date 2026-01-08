@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Minus, TrendingUp, ArrowDown, Gauge, LucideIcon, Zap } from "lucide-react";
 import { mainContent } from "@/data";
@@ -41,19 +41,50 @@ const modeStyles: Record<string, { color: string; gradient: string }> = {
   },
 };
 
-// 모드별 저항 그래프 SVG 패스
-const graphPaths: Record<string, string> = {
-  constant: "M 0 60 L 200 60", // 일정한 직선
-  variable: "M 0 80 Q 50 20, 100 60 Q 150 100, 200 40", // 변동 곡선
-  negative: "M 0 30 L 100 30 L 100 80 L 200 80", // 계단식 하강
-  isokinetic: "M 0 60 C 30 60, 50 30, 80 30 C 110 30, 130 90, 160 90 C 180 90, 190 60, 200 60", // 파형
-};
+const AUTO_ADVANCE_INTERVAL = 5000; // 5초마다 자동 전환
+const RESUME_DELAY = 4000; // 유저 개입 후 4초 뒤 재개
 
 export default function WeightModes() {
   const { weightModes } = mainContent;
   const [activeMode, setActiveMode] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeRef = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // 자동 전환
+  useEffect(() => {
+    if (isPaused || !isInView) return;
+
+    autoAdvanceRef.current = setTimeout(() => {
+      setActiveMode((prev) => (prev + 1) % weightModes.modes.length);
+    }, AUTO_ADVANCE_INTERVAL);
+
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    };
+  }, [activeMode, isPaused, isInView, weightModes.modes.length]);
+
+  // 유저 개입 처리
+  const handleUserSelect = (index: number) => {
+    setActiveMode(index);
+    setIsPaused(true);
+
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+
+    resumeRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_DELAY);
+  };
+
+  // 클린업
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+      if (resumeRef.current) clearTimeout(resumeRef.current);
+    };
+  }, []);
 
   const currentMode = weightModes.modes[activeMode];
   const currentStyle = modeStyles[currentMode.id];
@@ -62,7 +93,7 @@ export default function WeightModes() {
     <section
       ref={sectionRef}
       id="modes"
-      className="relative py-32 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -115,16 +146,16 @@ export default function WeightModes() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-16 lg:mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-bold text-primary">{weightModes.badge}</span>
+            <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+            <span className="text-xs sm:text-sm font-bold text-primary">{weightModes.badge}</span>
           </motion.div>
 
           <h2 className="text-display-lg">
@@ -150,7 +181,7 @@ export default function WeightModes() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-xl text-gray-400 max-w-2xl mx-auto mt-6"
+            className="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto mt-4 sm:mt-6"
           >
             {weightModes.subtitle}
           </motion.p>
@@ -161,7 +192,7 @@ export default function WeightModes() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-10 sm:mb-16"
         >
           {weightModes.modes.map((mode, index) => {
             const Icon = iconMap[mode.icon];
@@ -171,10 +202,10 @@ export default function WeightModes() {
             return (
               <motion.button
                 key={mode.id}
-                onClick={() => setActiveMode(index)}
+                onClick={() => handleUserSelect(index)}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative p-4 lg:p-6 rounded-2xl text-left transition-all duration-500 ${
+                className={`group relative p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl overflow-hidden text-left transition-all duration-500 ${
                   isActive
                     ? "bg-void ring-2"
                     : "bg-void/50 hover:bg-void border border-white/5"
@@ -185,12 +216,16 @@ export default function WeightModes() {
                     : undefined
                 }
               >
-                {/* Active indicator bar */}
+                {/* Progress indicator */}
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl origin-left"
+                  key={`progress-${index}-${isActive}`}
+                  initial={{ width: "0%" }}
+                  animate={{ width: isActive && !isPaused ? "100%" : "0%" }}
+                  transition={{
+                    duration: isActive && !isPaused ? AUTO_ADVANCE_INTERVAL / 1000 : 0.3,
+                    ease: "linear",
+                  }}
+                  className="absolute top-0 left-0 h-1"
                   style={{ backgroundColor: style.color }}
                 />
 
@@ -199,11 +234,11 @@ export default function WeightModes() {
                   animate={{
                     backgroundColor: isActive ? `${style.color}20` : "rgba(255,255,255,0.05)",
                   }}
-                  className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center mb-4 transition-colors"
+                  className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl flex items-center justify-center mb-3 sm:mb-4 transition-colors"
                 >
                   {Icon && (
                     <Icon
-                      className="w-5 h-5 lg:w-6 lg:h-6 transition-colors"
+                      className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors"
                       style={{ color: isActive ? style.color : "#9CA3AF" }}
                     />
                   )}
@@ -273,44 +308,6 @@ export default function WeightModes() {
                   {/* Gradient overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
 
-                  {/* Resistance Graph Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="bg-void/90 backdrop-blur-md rounded-2xl p-4 border border-white/10"
-                    >
-                      {/* Mini resistance graph */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                          저항 패턴
-                        </span>
-                        <span
-                          className="text-xs font-bold px-2 py-0.5 rounded-full"
-                          style={{ backgroundColor: `${currentStyle.color}20`, color: currentStyle.color }}
-                        >
-                          {currentMode.title}
-                        </span>
-                      </div>
-                      <svg className="w-full h-16" viewBox="0 0 200 100" preserveAspectRatio="none">
-                        <motion.path
-                          key={`path-${activeMode}`}
-                          initial={{ pathLength: 0 }}
-                          animate={{ pathLength: 1 }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                          d={graphPaths[currentMode.id]}
-                          fill="none"
-                          stroke={currentStyle.color}
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                        />
-                        {/* Grid lines */}
-                        <line x1="0" y1="50" x2="200" y2="50" stroke="#374151" strokeWidth="0.5" strokeDasharray="4" />
-                      </svg>
-                    </motion.div>
-                  </div>
-
                   {/* Mode indicator */}
                   <div className="absolute top-4 left-4">
                     <div
@@ -349,9 +346,9 @@ export default function WeightModes() {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 {/* Mode number */}
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-4 sm:mb-6">
                   <span
-                    className="text-7xl lg:text-8xl font-black opacity-20"
+                    className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black opacity-20"
                     style={{ color: currentStyle.color }}
                   >
                     {String(activeMode + 1).padStart(2, "0")}
@@ -359,29 +356,29 @@ export default function WeightModes() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4">
                   {currentMode.title}
                 </h3>
 
                 {/* Subtitle */}
                 <p
-                  className="text-xl font-medium mb-6"
+                  className="text-base sm:text-lg lg:text-xl font-medium mb-4 sm:mb-6"
                   style={{ color: currentStyle.color }}
                 >
                   {currentMode.subtitle}
                 </p>
 
                 {/* Description */}
-                <p className="text-lg text-gray-400 leading-relaxed mb-8 whitespace-pre-line">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-400 leading-relaxed mb-6 sm:mb-8 whitespace-pre-line">
                   {currentMode.description}
                 </p>
 
                 {/* Use case tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  <span className="px-4 py-2 bg-white/5 rounded-xl text-sm text-gray-300 border border-white/5">
+                <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
+                  <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/5 rounded-lg sm:rounded-xl text-xs sm:text-sm text-gray-300 border border-white/5">
                     근력 강화
                   </span>
-                  <span className="px-4 py-2 bg-white/5 rounded-xl text-sm text-gray-300 border border-white/5">
+                  <span className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white/5 rounded-lg sm:rounded-xl text-xs sm:text-sm text-gray-300 border border-white/5">
                     맞춤형 훈련
                   </span>
                 </div>
@@ -391,7 +388,7 @@ export default function WeightModes() {
                   {weightModes.modes.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveMode(index)}
+                      onClick={() => handleUserSelect(index)}
                       className="group relative"
                     >
                       <motion.div

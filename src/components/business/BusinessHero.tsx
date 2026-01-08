@@ -13,19 +13,19 @@ export default function BusinessHero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-[128px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary/20 rounded-full blur-[128px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Text Content */}
           <div className="text-center lg:text-left animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Building2 className="w-4 h-4" />
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-secondary/20 text-secondary px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+              <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               {hero.badge}
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-4 sm:mb-6">
               {hero.title.line1}
               <br />
               <span className="text-secondary">{hero.title.line2}</span>
@@ -33,36 +33,36 @@ export default function BusinessHero() {
               {hero.title.line3}
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 mb-4">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-3 sm:mb-4">
               {hero.subtitle}
             </p>
 
-            <p className="text-gray-400 mb-8">{hero.description}</p>
+            <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8">{hero.description}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-secondary text-gray-900 px-8 py-4 rounded-full font-semibold text-lg hover:bg-secondary-400 transition-all hover:scale-105 shadow-lg shadow-secondary/30"
+                className="inline-flex items-center justify-center gap-2 bg-secondary text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-secondary-400 transition-all hover:scale-105 shadow-lg shadow-secondary/30"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 {hero.cta.primary}
               </a>
               <a
                 href="#features"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all border border-white/20"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-white/20 transition-all border border-white/20"
               >
                 {hero.cta.secondary}
               </a>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-700">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-700">
               {hero.stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-2xl sm:text-3xl font-bold text-secondary">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-secondary">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -77,7 +77,7 @@ export default function BusinessHero() {
                   alt={mainScreenshot.alt}
                   width={280}
                   height={560}
-                  className="w-[280px]"
+                  className="w-[220px] sm:w-[280px]"
                 />
               </div>
             </div>

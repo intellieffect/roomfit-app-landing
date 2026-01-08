@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="py-12 bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8">
           {/* Logo and Site Name */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-4">

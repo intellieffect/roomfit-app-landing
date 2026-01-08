@@ -44,7 +44,7 @@ export default function Lifestyle() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-40 bg-void overflow-hidden"
+      className="relative py-16 sm:py-24 lg:py-40 bg-void overflow-hidden"
     >
       {/* Dramatic Night Background */}
       <div className="absolute inset-0">
@@ -131,7 +131,7 @@ export default function Lifestyle() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Visual - Enhanced Night Scene */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -335,7 +335,7 @@ export default function Lifestyle() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="inline-block mb-8"
+              className="inline-block mb-6 sm:mb-8"
             >
               <motion.div
                 animate={{
@@ -345,21 +345,21 @@ export default function Lifestyle() {
                   ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-indigo-500/10 border border-indigo-500/30"
+                className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-indigo-500/10 border border-indigo-500/30"
               >
-                <Star className="w-4 h-4 text-indigo-400" />
-                <span className="text-sm font-bold text-indigo-400 tracking-wide">
+                <Star className="w-3 h-3 sm:w-4 sm:h-4 text-indigo-400" />
+                <span className="text-xs sm:text-sm font-bold text-indigo-400 tracking-wide">
                   새벽 운동러를 위한
                 </span>
               </motion.div>
             </motion.div>
 
-            <h2 className="text-display-lg mb-6">
+            <h2 className="text-display-lg mb-4 sm:mb-6">
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="block text-white whitespace-nowrap"
+                className="block text-white"
               >
                 {lifestyle.title.line1}
               </motion.span>
@@ -377,7 +377,7 @@ export default function Lifestyle() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-xl text-gray-300 mb-4 leading-relaxed"
+              className="text-base sm:text-lg lg:text-xl text-gray-300 mb-3 sm:mb-4 leading-relaxed"
             >
               {lifestyle.subtitle}
             </motion.p>
@@ -385,13 +385,13 @@ export default function Lifestyle() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="text-gray-500 mb-10 leading-relaxed whitespace-pre-line"
+              className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-10 leading-relaxed whitespace-pre-line"
             >
               {lifestyle.description}
             </motion.p>
 
             {/* Highlights - Enhanced with hover effects */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               {lifestyle.highlights.map((highlight, index) => {
                 const Icon = highlightIcons[index];
                 const isHovered = hoveredHighlight === index;
@@ -408,7 +408,7 @@ export default function Lifestyle() {
                   >
                     <motion.div
                       whileHover={{ y: -4, scale: 1.02 }}
-                      className={`flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300 ${
+                      className={`flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-5 sm:py-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 ${
                         isHovered
                           ? "bg-secondary/10 border-secondary/40"
                           : "bg-surface border-white/5"
@@ -423,11 +423,11 @@ export default function Lifestyle() {
                             ? "0 0 20px rgba(186,252,39,0.3)"
                             : "0 0 0 rgba(186,252,39,0)",
                         }}
-                        className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300"
                       >
-                        <Icon className="w-5 h-5 text-secondary" />
+                        <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
                       </motion.div>
-                      <span className={`font-medium transition-colors ${
+                      <span className={`text-sm sm:text-base font-medium transition-colors ${
                         isHovered ? "text-secondary" : "text-white"
                       }`}>
                         {highlight}
@@ -437,27 +437,6 @@ export default function Lifestyle() {
                 );
               })}
             </div>
-
-            {/* Night usage stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.1 }}
-              className="flex items-center gap-8 mt-10 pt-8 border-t border-white/5"
-            >
-              <div>
-                <div className="text-3xl font-black text-indigo-400">40dB</div>
-                <div className="text-sm text-gray-500">최대 소음</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-white">24시간</div>
-                <div className="text-sm text-gray-500">운동 가능</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-secondary">0건</div>
-                <div className="text-sm text-gray-500">민원 사례</div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

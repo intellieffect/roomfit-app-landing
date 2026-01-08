@@ -24,7 +24,7 @@ const HEATMAP_DATA: number[][] = [
 ];
 
 const intensityColors = [
-  "bg-gray-100 dark:bg-gray-700",
+  "bg-gray-700",
   "bg-primary/20",
   "bg-primary/40",
   "bg-primary/60",
@@ -45,13 +45,13 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
   return (
     <div
       ref={ref}
-      className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg"
+      className="bg-gray-800 rounded-2xl p-6 shadow-lg"
     >
       <div className="flex items-center justify-between mb-4">
-        <h4 className="text-sm font-medium text-gray-900 dark:text-white">
+        <h4 className="text-sm font-medium text-white">
           운동 기록
         </h4>
-        <span className="text-xs text-gray-500 dark:text-gray-400">
+        <span className="text-xs text-gray-400">
           최근 16주
         </span>
       </div>
@@ -90,7 +90,7 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-end gap-2 mt-4 text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex items-center justify-end gap-2 mt-4 text-xs text-gray-400">
         <span>Less</span>
         {intensityColors.map((color, i) => (
           <div key={i} className={`w-3 h-3 rounded-sm ${color}`} />
@@ -99,7 +99,7 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+      <div className="grid grid-cols-3 gap-4 mt-6 pt-4 border-t border-gray-700">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -107,7 +107,7 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
           className="text-center"
         >
           <div className="text-2xl font-bold text-primary">47</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
+          <div className="text-xs text-gray-400">
             총 운동일
           </div>
         </motion.div>
@@ -118,7 +118,7 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
           className="text-center"
         >
           <div className="text-2xl font-bold text-primary">7</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
+          <div className="text-xs text-gray-400">
             연속 기록
           </div>
         </motion.div>
@@ -129,7 +129,7 @@ export function ActivityHeatmap({ isInView: isInViewProp }: ActivityHeatmapProps
           className="text-center"
         >
           <div className="text-2xl font-bold text-primary">42%</div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">
+          <div className="text-xs text-gray-400">
             이번 달
           </div>
         </motion.div>

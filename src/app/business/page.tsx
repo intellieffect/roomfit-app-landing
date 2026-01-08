@@ -13,7 +13,7 @@ import ContactCTA from "@/components/business/ContactCTA";
 
 export default function BusinessPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0f]">
+    <main className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <BusinessHero />
       <BusinessFeatures />

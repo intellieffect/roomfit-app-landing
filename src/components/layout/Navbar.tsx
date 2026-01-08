@@ -46,7 +46,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/90 dark:bg-[#0a0a0f]/90 backdrop-blur-md shadow-sm"
+          ? "bg-void/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
@@ -71,18 +71,18 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors whitespace-nowrap text-sm xl:text-base"
+                className="text-gray-300 hover:text-primary transition-colors whitespace-nowrap text-sm xl:text-base"
               >
                 {link.label}
               </a>
             ))}
-            <div className="w-px h-6 bg-gray-200 dark:bg-gray-700" />
+            <div className="w-px h-6 bg-gray-700" />
 
             {/* Main Page Link - show on app/business pages */}
             {isSubPage && (
               <Link
                 href="/"
-                className="flex items-center gap-2 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
+                className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
               >
                 <Home className="w-4 h-4" />
                 메인
@@ -104,7 +104,7 @@ export default function Navbar() {
             {!isCommunityPage && "communityLink" in nav && (
               <Link
                 href={nav.communityLink.href}
-                className="flex items-center gap-2 px-3 py-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
+                className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
               >
                 <MessageSquare className="w-4 h-4" />
                 {nav.communityLink.label}
@@ -132,13 +132,13 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-3"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900 dark:text-white" />
+              <X className="w-6 h-6 text-white" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-900 dark:text-white" />
+              <Menu className="w-6 h-6 text-white" />
             )}
           </button>
         </div>
@@ -146,13 +146,13 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-[#0a0a0f] border-t border-gray-100 dark:border-gray-800">
-          <div className="px-4 py-4 space-y-3">
+        <div className="lg:hidden bg-[#0a0a0f] border-t border-gray-800">
+          <div className="px-5 py-5 space-y-3">
             {nav.links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-gray-600 dark:text-gray-300 hover:text-primary transition-colors py-2"
+                className="block text-gray-300 hover:text-primary transition-colors py-2"
                 onClick={(e) => {
                   scrollToSection(e, link.href);
                   setMobileMenuOpen(false);
@@ -166,7 +166,7 @@ export default function Navbar() {
             {isSubPage && (
               <Link
                 href="/"
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary py-2"
+                className="flex items-center gap-2 text-gray-300 hover:text-primary py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <Home className="w-4 h-4" />
@@ -190,7 +190,7 @@ export default function Navbar() {
             {!isCommunityPage && "communityLink" in nav && (
               <Link
                 href={nav.communityLink.href}
-                className="flex items-center gap-2 text-gray-600 dark:text-gray-300 py-2"
+                className="flex items-center gap-2 text-gray-300 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <MessageSquare className="w-4 h-4" />

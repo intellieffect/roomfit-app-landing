@@ -65,7 +65,7 @@ export function LiveMetricCard({
   return (
     <motion.div
       ref={ref}
-      className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-xl"
+      className="bg-gray-800 p-4 rounded-xl shadow-xl"
       animate={isPulsing ? { scale: [1, 1.03, 1] } : {}}
       transition={{ duration: 0.2 }}
     >
@@ -76,9 +76,9 @@ export function LiveMetricCard({
           <Icon className={`w-5 h-5 ${colors.text}`} />
         </div>
         <div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
+          <div className="text-xs text-gray-400">{label}</div>
           <motion.div
-            className="font-bold text-gray-900 dark:text-white"
+            className="font-bold text-white"
             key={value}
             initial={{ opacity: 0.5, y: -3 }}
             animate={{ opacity: 1, y: 0 }}

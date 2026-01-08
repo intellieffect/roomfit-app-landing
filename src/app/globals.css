@@ -78,11 +78,11 @@ body {
   }
 
   .text-display-xl {
-    @apply text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.85];
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black tracking-tighter leading-[0.85];
   }
 
   .text-display-lg {
-    @apply text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.9];
+    @apply text-[1.75rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight;
   }
 
   /* Gradient Text Effects */
