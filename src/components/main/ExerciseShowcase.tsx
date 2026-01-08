@@ -1,21 +1,104 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Dumbbell } from "lucide-react";
 import { mainContent } from "@/data";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, PanInfo } from "framer-motion";
+
+const SCROLL_SPEED = 0.5; // pixels per frame
+const RESUME_DELAY = 3000; // 3초 후 재개
 
 export default function ExerciseShowcase() {
   const { exerciseShowcase } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  const [isPaused, setIsPaused] = useState(false);
+  const [scrollX, setScrollX] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const animationRef = useRef<number | null>(null);
 
   // 무한 슬라이드를 위해 아이템 복제
   const duplicatedExercises = [
     ...exerciseShowcase.exercises,
     ...exerciseShowcase.exercises,
   ];
+
+  // 컨테이너 너비 측정
+  useEffect(() => {
+    const measureWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.scrollWidth / 2);
+      }
+    };
+
+    // 초기 측정 + 뷰포트 진입 시 재측정
+    measureWidth();
+
+    // DOM 렌더링 완료 후 재측정
+    const timer = setTimeout(measureWidth, 100);
+    return () => clearTimeout(timer);
+  }, [isInView]);
+
+  // 자동 스크롤 애니메이션
+  useEffect(() => {
+    if (isPaused || !isInView || containerWidth === 0) return;
+
+    const animate = () => {
+      setScrollX((prev) => {
+        const next = prev - SCROLL_SPEED;
+        // 절반 지점에서 리셋 (무한 루프)
+        if (Math.abs(next) >= containerWidth) {
+          return 0;
+        }
+        return next;
+      });
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isInView, containerWidth]);
+
+  // 드래그 핸들러
+  const handleDragStart = () => {
+    setIsPaused(true);
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+  };
+
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    setScrollX((prev) => {
+      let next = prev + info.delta.x;
+      // 무한 루프 경계 처리
+      if (next > 0) next = -containerWidth + next;
+      if (Math.abs(next) >= containerWidth) next = next + containerWidth;
+      return next;
+    });
+  };
+
+  const handleDragEnd = () => {
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_DELAY);
+  };
+
+  // 클린업
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
 
   return (
     <section
@@ -114,10 +197,18 @@ export default function ExerciseShowcase() {
           <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-void to-transparent z-10 pointer-events-none" />
 
           {/* Infinite Scroll Container */}
-          <div
-            className="flex gap-6 py-4 animate-infinite-scroll hover:pause-animation"
+          <motion.div
+            ref={containerRef}
+            drag="x"
+            dragConstraints={{ left: -containerWidth, right: 0 }}
+            dragElastic={0.1}
+            onDragStart={handleDragStart}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
+            className="flex gap-6 py-4 cursor-grab active:cursor-grabbing"
             style={{
               width: "max-content",
+              x: scrollX,
             }}
           >
             {duplicatedExercises.map((exercise, index) => (
@@ -164,7 +255,7 @@ export default function ExerciseShowcase() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Bottom decorative element */}
@@ -185,23 +276,6 @@ export default function ExerciseShowcase() {
         </motion.div>
       </div>
 
-      {/* CSS for infinite scroll animation */}
-      <style jsx>{`
-        @keyframes infinite-scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-infinite-scroll {
-          animation: infinite-scroll 15s linear infinite;
-        }
-        .animate-infinite-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }

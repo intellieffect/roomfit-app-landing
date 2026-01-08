@@ -1,9 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { Star, Quote, BadgeCheck, Shield, Truck, RotateCcw, Wrench, MessageSquare, Eye, Heart } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { Star, Quote, BadgeCheck, Shield, Truck, Wrench, MessageSquare, Eye, Heart } from "lucide-react";
 import { mainContent, testimonials, testimonialStats } from "@/data";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, PanInfo } from "framer-motion";
+
+const SCROLL_SPEED = 0.3; // pixels per frame (slower for testimonials)
+const RESUME_DELAY = 3000; // 3초 후 재개
 
 const trustBadges = [
   { icon: Shield, label: "품질 보증" },
@@ -14,10 +17,90 @@ const trustBadges = [
 export default function SocialProof() {
   const { socialProof } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  const [isPaused, setIsPaused] = useState(false);
+  const [scrollX, setScrollX] = useState(0);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const animationRef = useRef<number | null>(null);
 
   // 무한 슬라이드를 위해 아이템 복제
   const duplicatedTestimonials = [...testimonials, ...testimonials];
+
+  // 컨테이너 너비 측정
+  useEffect(() => {
+    const measureWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.scrollWidth / 2);
+      }
+    };
+
+    // 초기 측정 + 뷰포트 진입 시 재측정
+    measureWidth();
+
+    // DOM 렌더링 완료 후 재측정
+    const timer = setTimeout(measureWidth, 100);
+    return () => clearTimeout(timer);
+  }, [isInView]);
+
+  // 자동 스크롤 애니메이션
+  useEffect(() => {
+    if (isPaused || !isInView || containerWidth === 0) return;
+
+    const animate = () => {
+      setScrollX((prev) => {
+        const next = prev - SCROLL_SPEED;
+        // 절반 지점에서 리셋 (무한 루프)
+        if (Math.abs(next) >= containerWidth) {
+          return 0;
+        }
+        return next;
+      });
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused, isInView, containerWidth]);
+
+  // 드래그 핸들러
+  const handleDragStart = () => {
+    setIsPaused(true);
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+  };
+
+  const handleDrag = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    setScrollX((prev) => {
+      let next = prev + info.delta.x;
+      // 무한 루프 경계 처리
+      if (next > 0) next = -containerWidth + next;
+      if (Math.abs(next) >= containerWidth) next = next + containerWidth;
+      return next;
+    });
+  };
+
+  const handleDragEnd = () => {
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_DELAY);
+  };
+
+  // 클린업
+  useEffect(() => {
+    return () => {
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    };
+  }, []);
 
   return (
     <section
@@ -152,9 +235,19 @@ export default function SocialProof() {
           <div className="absolute top-0 bottom-0 right-0 w-16 sm:w-24 lg:w-32 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
 
           {/* Infinite Scroll Container */}
-          <div
-            className="flex gap-5 py-4 animate-testimonial-scroll hover:pause-animation"
-            style={{ width: "max-content" }}
+          <motion.div
+            ref={containerRef}
+            drag="x"
+            dragConstraints={{ left: -containerWidth, right: 0 }}
+            dragElastic={0.1}
+            onDragStart={handleDragStart}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
+            className="flex gap-5 py-4 cursor-grab active:cursor-grabbing"
+            style={{
+              width: "max-content",
+              x: scrollX,
+            }}
           >
             {duplicatedTestimonials.map((testimonial, index) => (
               <div
@@ -236,7 +329,7 @@ export default function SocialProof() {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Trust badges */}
@@ -276,23 +369,6 @@ export default function SocialProof() {
         </div>
       </div>
 
-      {/* CSS for infinite scroll animation */}
-      <style jsx>{`
-        @keyframes testimonial-scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        .animate-testimonial-scroll {
-          animation: testimonial-scroll 40s linear infinite;
-        }
-        .animate-testimonial-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }
