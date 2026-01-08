@@ -254,7 +254,7 @@ export default function IntroStats() {
 
           {/* Secondary CTA */}
           <motion.a
-            href="#experience"
+            href="https://roomfit.notion.site/23f478cb1fa581e288cae8dfee2f90d6"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-lg font-bold text-white rounded-lg sm:rounded-xl border border-white/20 overflow-hidden transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
