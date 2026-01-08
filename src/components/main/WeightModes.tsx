@@ -41,14 +41,6 @@ const modeStyles: Record<string, { color: string; gradient: string }> = {
   },
 };
 
-// 모드별 저항 그래프 SVG 패스
-const graphPaths: Record<string, string> = {
-  constant: "M 0 60 L 200 60", // 일정한 직선
-  variable: "M 0 80 Q 50 20, 100 60 Q 150 100, 200 40", // 변동 곡선
-  negative: "M 0 30 L 100 30 L 100 80 L 200 80", // 계단식 하강
-  isokinetic: "M 0 60 C 30 60, 50 30, 80 30 C 110 30, 130 90, 160 90 C 180 90, 190 60, 200 60", // 파형
-};
-
 const AUTO_ADVANCE_INTERVAL = 5000; // 5초마다 자동 전환
 const RESUME_DELAY = 4000; // 유저 개입 후 4초 뒤 재개
 
@@ -315,44 +307,6 @@ export default function WeightModes() {
 
                   {/* Gradient overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-void via-transparent to-transparent" />
-
-                  {/* Resistance Graph Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="bg-void/90 backdrop-blur-md rounded-2xl p-4 border border-white/10"
-                    >
-                      {/* Mini resistance graph */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">
-                          저항 패턴
-                        </span>
-                        <span
-                          className="text-xs font-bold px-2 py-0.5 rounded-full"
-                          style={{ backgroundColor: `${currentStyle.color}20`, color: currentStyle.color }}
-                        >
-                          {currentMode.title}
-                        </span>
-                      </div>
-                      <svg className="w-full h-16" viewBox="0 0 200 100" preserveAspectRatio="none">
-                        <motion.path
-                          key={`path-${activeMode}`}
-                          initial={{ pathLength: 0 }}
-                          animate={{ pathLength: 1 }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                          d={graphPaths[currentMode.id]}
-                          fill="none"
-                          stroke={currentStyle.color}
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                        />
-                        {/* Grid lines */}
-                        <line x1="0" y1="50" x2="200" y2="50" stroke="#374151" strokeWidth="0.5" strokeDasharray="4" />
-                      </svg>
-                    </motion.div>
-                  </div>
 
                   {/* Mode indicator */}
                   <div className="absolute top-4 left-4">

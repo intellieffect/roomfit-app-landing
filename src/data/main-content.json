@@ -146,7 +146,7 @@
       },
       {
         "id": "variable",
-        "title": "가변 저항 모드",
+        "title": "밴드 모드",
         "subtitle": "최대 수축, 최대 자극",
         "description": "동작의 정점에서 저항이 최대가 되어 근육이 최대로 수축되도록 도와줍니다.\n최대수축 x 최대자극 x 지속시간 = 폭발적 근성장",
         "icon": "TrendingUp",
