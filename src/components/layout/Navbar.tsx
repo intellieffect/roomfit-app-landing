@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X, Building2, Smartphone, Home, MessageSquare } from "lucide-react";
+import { Menu, X, Building2, Smartphone, Home, MessageSquare, HelpCircle } from "lucide-react";
 import { mainContent, appContent } from "@/data";
 
 export default function Navbar() {
@@ -16,7 +16,8 @@ export default function Navbar() {
   const isAppPage = pathname === "/app";
   const isBusinessPage = pathname === "/business";
   const isCommunityPage = pathname?.startsWith("/community");
-  const isSubPage = isAppPage || isBusinessPage || isCommunityPage;
+  const isFAQPage = pathname === "/faq";
+  const isSubPage = isAppPage || isBusinessPage || isCommunityPage || isFAQPage;
   const content = isAppPage ? appContent : mainContent;
   const { nav } = content;
 
@@ -111,6 +112,17 @@ export default function Navbar() {
               </Link>
             )}
 
+            {/* FAQ Link - don't show on FAQ page */}
+            {!isFAQPage && (
+              <Link
+                href="/faq"
+                className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
+              >
+                <HelpCircle className="w-4 h-4" />
+                FAQ
+              </Link>
+            )}
+
             {/* Business Link - don't show on business page */}
             {!isBusinessPage && (
               <Link
@@ -195,6 +207,18 @@ export default function Navbar() {
               >
                 <MessageSquare className="w-4 h-4" />
                 {nav.communityLink.label}
+              </Link>
+            )}
+
+            {/* FAQ Link - don't show on FAQ page */}
+            {!isFAQPage && (
+              <Link
+                href="/faq"
+                className="flex items-center gap-2 text-gray-300 py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <HelpCircle className="w-4 h-4" />
+                FAQ
               </Link>
             )}
 

@@ -290,6 +290,25 @@ export interface Screenshot {
   alt: string;
 }
 
+// FAQ Types
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface FAQCategory {
+  id: number;
+  name: string;
+  items: FAQItem[];
+}
+
+export interface FAQContent {
+  source: string;
+  crawledAt: string;
+  categories: FAQCategory[];
+  totalItems: number;
+}
+
 export interface SiteImages {
   logo: string;
   device: string;
