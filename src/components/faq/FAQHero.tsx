@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { MessageSquare } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 
-export default function CommunityHero() {
+export default function FAQHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -42,9 +42,9 @@ export default function CommunityHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6 sm:mb-8"
           >
-            <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+            <HelpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
             <span className="text-xs sm:text-sm font-bold text-primary tracking-wide">
-              커뮤니티
+              FAQ
             </span>
           </motion.div>
 
@@ -55,9 +55,9 @@ export default function CommunityHero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 sm:mb-6"
           >
-            룸핏 유저들의
+            자주 묻는
             <br />
-            <span className="gradient-text">소통 공간</span>
+            <span className="gradient-text">질문</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -67,7 +67,7 @@ export default function CommunityHero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4"
           >
-            의견, 질문, 후기를 자유롭게 나누세요
+            룸핏에 대해 궁금한 점을 확인하세요
           </motion.p>
         </motion.div>
       </div>

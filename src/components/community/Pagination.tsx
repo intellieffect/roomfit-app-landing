@@ -16,10 +16,10 @@ export default function Pagination({
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  // Generate page numbers to display
-  const getPageNumbers = () => {
+  // Generate page numbers to display - fewer on mobile
+  const getPageNumbers = (isMobile: boolean) => {
     const pages: (number | "...")[] = [];
-    const showPages = 5;
+    const showPages = isMobile ? 3 : 5;
     const halfShow = Math.floor(showPages / 2);
 
     let startPage = Math.max(1, currentPage - halfShow);
@@ -46,35 +46,60 @@ export default function Pagination({
     return pages;
   };
 
-  const pageNumbers = getPageNumbers();
+  const mobilePageNumbers = getPageNumbers(true);
+  const desktopPageNumbers = getPageNumbers(false);
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className="flex items-center justify-center gap-1 sm:gap-2">
       {/* Previous Button */}
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`p-2 rounded-lg border transition-all duration-300 ${
+        className={`p-1.5 sm:p-2 rounded-lg border transition-all duration-300 ${
           currentPage === 1
             ? "border-white/5 text-gray-600 cursor-not-allowed"
-            : "border-white/10 text-gray-400 hover:border-primary/50 hover:text-primary"
+            : "border-white/10 text-gray-400 hover:border-primary/50 hover:text-primary active:bg-primary/10"
         }`}
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
       </motion.button>
 
-      {/* Page Numbers */}
-      <div className="flex items-center gap-1">
-        {pageNumbers.map((page, index) =>
+      {/* Page Numbers - Mobile */}
+      <div className="flex sm:hidden items-center gap-0.5">
+        {mobilePageNumbers.map((page, index) =>
           page === "..." ? (
-            <span key={`ellipsis-${index}`} className="px-3 py-2 text-gray-500">
+            <span key={`ellipsis-mobile-${index}`} className="px-1.5 py-1 text-gray-500 text-xs">
               ...
             </span>
           ) : (
             <motion.button
-              key={page}
+              key={`mobile-${page}`}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => onPageChange(page)}
+              className={`min-w-[32px] h-8 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                currentPage === page
+                  ? "bg-primary text-white"
+                  : "border border-white/10 text-gray-400 active:bg-white/10"
+              }`}
+            >
+              {page}
+            </motion.button>
+          )
+        )}
+      </div>
+
+      {/* Page Numbers - Desktop */}
+      <div className="hidden sm:flex items-center gap-1">
+        {desktopPageNumbers.map((page, index) =>
+          page === "..." ? (
+            <span key={`ellipsis-desktop-${index}`} className="px-3 py-2 text-gray-500">
+              ...
+            </span>
+          ) : (
+            <motion.button
+              key={`desktop-${page}`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => onPageChange(page)}
@@ -96,13 +121,13 @@ export default function Pagination({
         whileTap={{ scale: 0.95 }}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`p-2 rounded-lg border transition-all duration-300 ${
+        className={`p-1.5 sm:p-2 rounded-lg border transition-all duration-300 ${
           currentPage === totalPages
             ? "border-white/5 text-gray-600 cursor-not-allowed"
-            : "border-white/10 text-gray-400 hover:border-primary/50 hover:text-primary"
+            : "border-white/10 text-gray-400 hover:border-primary/50 hover:text-primary active:bg-primary/10"
         }`}
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
       </motion.button>
     </div>
   );

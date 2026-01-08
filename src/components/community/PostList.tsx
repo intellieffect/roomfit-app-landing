@@ -75,24 +75,28 @@ export default function PostList({ initialData }: PostListProps) {
   };
 
   return (
-    <section className="py-16 bg-void min-h-[60vh]">
+    <section className="py-8 sm:py-12 lg:py-16 bg-void min-h-[60vh]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Filters Bar */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+          {/* Category Filter - Full width on mobile with scroll */}
           <CategoryFilter
             activeCategory={currentCategory}
             onCategoryChange={handleCategoryChange}
           />
 
+          {/* Search and Sort - Stack on mobile */}
           <div className="flex flex-col sm:flex-row gap-3">
-            <div className="w-full sm:w-64">
+            <div className="flex-1 sm:max-w-xs lg:max-w-sm">
               <SearchBar
                 initialValue={currentSearch}
                 onSearch={handleSearch}
                 placeholder="제목, 내용 검색"
               />
             </div>
-            <SortDropdown value={currentSort} onChange={handleSortChange} />
+            <div className="self-start sm:self-auto">
+              <SortDropdown value={currentSort} onChange={handleSortChange} />
+            </div>
           </div>
         </div>
 
@@ -108,7 +112,7 @@ export default function PostList({ initialData }: PostListProps) {
           {initialData.posts.length > 0 ? (
             <motion.div
               layout
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
             >
               {initialData.posts.map((post, index) => (
                 <PostCard key={post.id} post={post} index={index} />
@@ -137,7 +141,7 @@ export default function PostList({ initialData }: PostListProps) {
 
         {/* Pagination */}
         {initialData.totalPages > 1 && (
-          <div className="mt-12">
+          <div className="mt-8 sm:mt-12">
             <Pagination
               currentPage={currentPage}
               totalPages={initialData.totalPages}
@@ -148,7 +152,7 @@ export default function PostList({ initialData }: PostListProps) {
 
         {/* Stats */}
         {initialData.total > 0 && (
-          <div className="mt-6 text-center text-sm text-gray-500">
+          <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500">
             총 {initialData.total}개의 게시글
           </div>
         )}
