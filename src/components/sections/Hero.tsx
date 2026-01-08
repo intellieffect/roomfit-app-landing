@@ -12,15 +12,15 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-bg" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[128px]" />
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-primary/20 rounded-full blur-[128px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-[128px]" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <div className="text-center lg:text-left animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Zap className="w-4 h-4" />
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary/10 text-primary px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+              <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               {hero.badge}
             </div>
 
@@ -40,31 +40,31 @@ export default function Hero() {
               {hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <a
                 href="#download"
-                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary-600 transition-all hover:scale-105 shadow-lg shadow-primary/30"
+                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-5 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-sm sm:text-lg hover:bg-primary-600 transition-all hover:scale-105 shadow-lg shadow-primary/30"
               >
-                <Download className="w-5 h-5" />
+                <Download className="w-4 h-4 sm:w-5 sm:h-5" />
                 {hero.cta.primary}
               </a>
               <Link
                 href="/business"
-                className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-5 py-2.5 sm:px-8 sm:py-4 rounded-full font-semibold text-sm sm:text-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
               >
-                <Building2 className="w-5 h-5" />
+                <Building2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 {hero.cta.secondary}
               </Link>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-800">
               {hero.stats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-2xl sm:text-3xl font-bold text-primary">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-500">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">{stat.label}</div>
                 </div>
               ))}
             </div>
