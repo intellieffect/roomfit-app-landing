@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Minus, TrendingUp, ArrowDown, Gauge, LucideIcon, Zap } from "lucide-react";
 import { mainContent } from "@/data";
@@ -49,11 +49,50 @@ const graphPaths: Record<string, string> = {
   isokinetic: "M 0 60 C 30 60, 50 30, 80 30 C 110 30, 130 90, 160 90 C 180 90, 190 60, 200 60", // 파형
 };
 
+const AUTO_ADVANCE_INTERVAL = 5000; // 5초마다 자동 전환
+const RESUME_DELAY = 4000; // 유저 개입 후 4초 뒤 재개
+
 export default function WeightModes() {
   const { weightModes } = mainContent;
   const [activeMode, setActiveMode] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeRef = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // 자동 전환
+  useEffect(() => {
+    if (isPaused || !isInView) return;
+
+    autoAdvanceRef.current = setTimeout(() => {
+      setActiveMode((prev) => (prev + 1) % weightModes.modes.length);
+    }, AUTO_ADVANCE_INTERVAL);
+
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    };
+  }, [activeMode, isPaused, isInView, weightModes.modes.length]);
+
+  // 유저 개입 처리
+  const handleUserSelect = (index: number) => {
+    setActiveMode(index);
+    setIsPaused(true);
+
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+
+    resumeRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_DELAY);
+  };
+
+  // 클린업
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+      if (resumeRef.current) clearTimeout(resumeRef.current);
+    };
+  }, []);
 
   const currentMode = weightModes.modes[activeMode];
   const currentStyle = modeStyles[currentMode.id];
@@ -171,10 +210,10 @@ export default function WeightModes() {
             return (
               <motion.button
                 key={mode.id}
-                onClick={() => setActiveMode(index)}
+                onClick={() => handleUserSelect(index)}
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
-                className={`group relative p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl text-left transition-all duration-500 ${
+                className={`group relative p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl overflow-hidden text-left transition-all duration-500 ${
                   isActive
                     ? "bg-void ring-2"
                     : "bg-void/50 hover:bg-void border border-white/5"
@@ -185,12 +224,16 @@ export default function WeightModes() {
                     : undefined
                 }
               >
-                {/* Active indicator bar */}
+                {/* Progress indicator */}
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl origin-left"
+                  key={`progress-${index}-${isActive}`}
+                  initial={{ width: "0%" }}
+                  animate={{ width: isActive && !isPaused ? "100%" : "0%" }}
+                  transition={{
+                    duration: isActive && !isPaused ? AUTO_ADVANCE_INTERVAL / 1000 : 0.3,
+                    ease: "linear",
+                  }}
+                  className="absolute top-0 left-0 h-1"
                   style={{ backgroundColor: style.color }}
                 />
 
@@ -391,7 +434,7 @@ export default function WeightModes() {
                   {weightModes.modes.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveMode(index)}
+                      onClick={() => handleUserSelect(index)}
                       className="group relative"
                     >
                       <motion.div

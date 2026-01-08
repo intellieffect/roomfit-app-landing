@@ -32,12 +32,51 @@ const specMedia: Record<string, SpecMedia> = {
   },
 };
 
+const AUTO_ADVANCE_INTERVAL = 5000; // 5초마다 자동 전환
+const RESUME_DELAY = 4000; // 유저 개입 후 4초 뒤 재개
+
 export default function HWSpecs() {
   const { hwSpecs } = mainContent;
   const [activeSpec, setActiveSpec] = useState(0);
   const [comparisonPhase, setComparisonPhase] = useState<"product" | "compare">("product");
+  const [isPaused, setIsPaused] = useState(false);
+  const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeRef = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
+  // 자동 전환
+  useEffect(() => {
+    if (isPaused || !isInView) return;
+
+    autoAdvanceRef.current = setTimeout(() => {
+      setActiveSpec((prev) => (prev + 1) % hwSpecs.specs.length);
+    }, AUTO_ADVANCE_INTERVAL);
+
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    };
+  }, [activeSpec, isPaused, isInView, hwSpecs.specs.length]);
+
+  // 유저 개입 처리
+  const handleUserSelect = (index: number) => {
+    setActiveSpec(index);
+    setIsPaused(true);
+
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+
+    resumeRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, RESUME_DELAY);
+  };
+
+  // 클린업
+  useEffect(() => {
+    return () => {
+      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+      if (resumeRef.current) clearTimeout(resumeRef.current);
+    };
+  }, []);
 
   // 비교 애니메이션 시퀀스 (size 스펙일 때)
   useEffect(() => {
@@ -170,12 +209,12 @@ export default function HWSpecs() {
             return (
               <motion.button
                 key={spec.value}
-                onClick={() => setActiveSpec(index)}
+                onClick={() => handleUserSelect(index)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className={`group relative text-left p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl transition-all duration-500 ${
+                className={`group relative text-left p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 ${
                   isActive
                     ? "bg-surface ring-2 ring-primary"
                     : "bg-surface/50 hover:bg-surface border border-white/5"
@@ -192,10 +231,14 @@ export default function HWSpecs() {
 
                 {/* Progress indicator */}
                 <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: isActive ? "100%" : "0%" }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary rounded-t-2xl"
+                  key={`progress-${index}-${isActive}`}
+                  initial={{ width: "0%" }}
+                  animate={{ width: isActive && !isPaused ? "100%" : "0%" }}
+                  transition={{
+                    duration: isActive && !isPaused ? AUTO_ADVANCE_INTERVAL / 1000 : 0.3,
+                    ease: "linear",
+                  }}
+                  className="absolute top-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary"
                 />
 
                 <div className="relative z-10">
@@ -517,7 +560,7 @@ export default function HWSpecs() {
                   {hwSpecs.specs.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => setActiveSpec(index)}
+                      onClick={() => handleUserSelect(index)}
                       className={`transition-all duration-300 ${
                         activeSpec === index
                           ? "w-6 sm:w-8 h-1.5 sm:h-2 bg-primary rounded-full"
