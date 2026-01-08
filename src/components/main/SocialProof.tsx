@@ -8,7 +8,6 @@ import { motion, useInView } from "framer-motion";
 const trustBadges = [
   { icon: Shield, label: "품질 보증" },
   { icon: Truck, label: "무료 배송" },
-  { icon: RotateCcw, label: "30일 환불" },
   { icon: Wrench, label: "A/S 1년" },
 ];
 

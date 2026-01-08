@@ -7,7 +7,6 @@ import { motion, useInView } from "framer-motion";
 
 const trustItems = [
   { icon: Truck, text: "무료 배송" },
-  { icon: RotateCcw, text: "30일 환불 보장" },
   { icon: Shield, text: "1년 무상 A/S" },
 ];
 

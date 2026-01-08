@@ -437,27 +437,6 @@ export default function Lifestyle() {
                 );
               })}
             </div>
-
-            {/* Night usage stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.1 }}
-              className="flex items-center gap-4 sm:gap-8 mt-6 sm:mt-10 pt-6 sm:pt-8 border-t border-white/5"
-            >
-              <div>
-                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-indigo-400">40dB</div>
-                <div className="text-xs sm:text-sm text-gray-500">최대 소음</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">24시간</div>
-                <div className="text-xs sm:text-sm text-gray-500">운동 가능</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-secondary">0건</div>
-                <div className="text-xs sm:text-sm text-gray-500">민원 사례</div>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
