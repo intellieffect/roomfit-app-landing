@@ -6,8 +6,7 @@
   },
   "nav": {
     "links": [
-      { "href": "#specs", "label": "제품 스펙" },
-      { "href": "#app", "label": "스마트 앱" }
+      { "href": "#specs", "label": "제품 스펙" }
     ],
     "communityLink": {
       "href": "/community",
@@ -15,7 +14,7 @@
     },
     "appLink": {
       "href": "/app",
-      "label": "앱 자세히 보기"
+      "label": "룸핏 앱"
     },
     "businessLink": {
       "href": "/business",
