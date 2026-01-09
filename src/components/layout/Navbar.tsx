@@ -155,12 +155,12 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 {"ctaSecondary" in nav && (
                   <a
-                    href={nav.ctaSecondary.href}
+                    href={(nav.ctaSecondary as { href: string; text: string }).href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="border-2 border-primary text-primary px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm xl:text-base"
                   >
-                    {nav.ctaSecondary.text}
+                    {(nav.ctaSecondary as { href: string; text: string }).text}
                   </a>
                 )}
                 <a
@@ -281,13 +281,13 @@ export default function Navbar() {
               <div className="flex flex-col gap-2">
                 {"ctaSecondary" in nav && (
                   <a
-                    href={nav.ctaSecondary.href}
+                    href={(nav.ctaSecondary as { href: string; text: string }).href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block border-2 border-primary text-primary px-5 py-3 rounded-full font-medium text-center hover:bg-primary hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {nav.ctaSecondary.text}
+                    {(nav.ctaSecondary as { href: string; text: string }).text}
                   </a>
                 )}
                 <a
