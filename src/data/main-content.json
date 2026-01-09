@@ -20,7 +20,11 @@
       "href": "/business",
       "label": "트레이너/센터"
     },
-    "cta": "구매하기"
+    "cta": "구매하기",
+    "ctaSecondary": {
+      "text": "체험하기",
+      "href": "https://roomfit.notion.site/23f478cb1fa581e288cae8dfee2f90d6"
+    }
   },
   "hero": {
     "badge": "1차~6차 펀딩 성황리 마감",
