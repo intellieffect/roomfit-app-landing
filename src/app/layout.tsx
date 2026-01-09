@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description: "실시간 VBT 분석부터 음성 제어까지. Roomfit 앱으로 당신의 모든 움직임을 스마트하게 관리하세요.",
   keywords: ["Roomfit", "VBT", "속도 기반 트레이닝", "AI 트레이너", "피트니스 앱", "웨이트 트레이닝"],
   authors: [{ name: "Roomfit" }],
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "Roomfit - 데이터로 완성하는 AI 퍼스널 트레이너",
     description: "실시간 VBT 분석부터 음성 제어까지. Roomfit 앱으로 당신의 모든 움직임을 스마트하게 관리하세요.",

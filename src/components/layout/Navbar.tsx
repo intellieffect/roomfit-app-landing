@@ -115,6 +115,7 @@ export default function Navbar() {
             {!isCommunityPage && "communityLink" in nav && (
               <Link
                 href={nav.communityLink.href}
+                prefetch={false}
                 className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
               >
                 <MessageSquare className="w-4 h-4" />
@@ -235,6 +236,7 @@ export default function Navbar() {
             {!isCommunityPage && "communityLink" in nav && (
               <Link
                 href={nav.communityLink.href}
+                prefetch={false}
                 className="flex items-center gap-2 text-gray-300 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
