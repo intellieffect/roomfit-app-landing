@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import HashScrollHandler from "@/components/HashScrollHandler";
 
 export const metadata: Metadata = {
   title: "Roomfit - 데이터로 완성하는 AI 퍼스널 트레이너",
@@ -30,13 +31,13 @@ export default function RootLayout({
             __html: `
               if (typeof window !== 'undefined') {
                 window.history.scrollRestoration = 'manual';
-                window.scrollTo(0, 0);
               }
             `,
           }}
         />
       </head>
       <body className="antialiased">
+        <HashScrollHandler />
         {children}
       </body>
     </html>
