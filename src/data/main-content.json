@@ -276,7 +276,7 @@
     "buttons": {
       "primary": {
         "text": "룸핏 구매하기",
-        "href": "#purchase"
+        "href": "https://roomfit.kr/funding/?idx=11"
       },
       "secondary": {
         "text": "체험 신청하기",

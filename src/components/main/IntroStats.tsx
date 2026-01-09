@@ -241,7 +241,9 @@ export default function IntroStats() {
         >
           {/* Primary CTA */}
           <motion.a
-            href="#purchase"
+            href="https://roomfit.kr/funding/?idx=11"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="group relative inline-flex items-center justify-center gap-1.5 sm:gap-2 px-5 py-2.5 sm:px-8 sm:py-4 text-sm sm:text-lg font-bold text-black bg-secondary rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_-10px_rgba(186,252,39,0.5)]"

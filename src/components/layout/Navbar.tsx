@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
 import { Menu, X, Building2, Smartphone, Home, MessageSquare, HelpCircle } from "lucide-react";
 import { mainContent, appContent } from "@/data";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Use appropriate content based on current path
   const isAppPage = pathname === "/app";
@@ -35,13 +36,17 @@ export default function Navbar() {
       e.preventDefault();
       const targetId = href.substring(1);
       const element = document.getElementById(targetId);
+      
       if (element) {
+        // 현재 페이지에 요소가 있으면 같은 페이지 내 스크롤
         element.scrollIntoView({ behavior: "smooth" });
-        // Remove hash from URL after scroll
         window.history.replaceState(null, "", window.location.pathname);
+      } else if (pathname !== "/") {
+        // 현재 페이지에 요소가 없고 메인 페이지가 아니면 메인 페이지로 이동
+        router.push(`/${href}`);
       }
     }
-  }, []);
+  }, [pathname, router]);
 
   return (
     <nav
@@ -133,13 +138,24 @@ export default function Navbar() {
                 {nav.businessLink.label}
               </Link>
             )}
-            <a
-              href={isAppPage ? "#download" : "#purchase"}
-              onClick={(e) => scrollToSection(e, isAppPage ? "#download" : "#purchase")}
-              className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors whitespace-nowrap text-sm xl:text-base"
-            >
-              {nav.cta}
-            </a>
+            {isAppPage ? (
+              <a
+                href="#download"
+                onClick={(e) => scrollToSection(e, "#download")}
+                className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors whitespace-nowrap text-sm xl:text-base"
+              >
+                {nav.cta}
+              </a>
+            ) : (
+              <a
+                href="https://roomfit.kr/funding/?idx=11"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors whitespace-nowrap text-sm xl:text-base"
+              >
+                {nav.cta}
+              </a>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -233,16 +249,28 @@ export default function Navbar() {
                 {nav.businessLink.label}
               </Link>
             )}
-            <a
-              href={isAppPage ? "#download" : "#purchase"}
-              className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
-              onClick={(e) => {
-                scrollToSection(e, isAppPage ? "#download" : "#purchase");
-                setMobileMenuOpen(false);
-              }}
-            >
-              {nav.cta}
-            </a>
+            {isAppPage ? (
+              <a
+                href="#download"
+                className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
+                onClick={(e) => {
+                  scrollToSection(e, "#download");
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {nav.cta}
+              </a>
+            ) : (
+              <a
+                href="https://roomfit.kr/funding/?idx=11"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {nav.cta}
+              </a>
+            )}
           </div>
         </div>
       )}

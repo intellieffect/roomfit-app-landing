@@ -188,6 +188,8 @@ export default function MainCTA() {
             {/* Primary CTA - Enhanced */}
             <motion.a
               href={cta.buttons.primary.href}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-secondary text-black px-6 py-3 sm:px-10 sm:py-5 lg:px-12 lg:py-6 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base lg:text-lg overflow-hidden transition-all shadow-2xl shadow-secondary/40"
