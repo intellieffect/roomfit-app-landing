@@ -35,14 +35,19 @@ export default function Navbar() {
     if (href.startsWith("#")) {
       e.preventDefault();
       const targetId = href.substring(1);
-      const element = document.getElementById(targetId);
       
-      if (element) {
-        // 현재 페이지에 요소가 있으면 같은 페이지 내 스크롤
-        element.scrollIntoView({ behavior: "smooth" });
-        window.history.replaceState(null, "", window.location.pathname);
-      } else if (pathname !== "/") {
-        // 현재 페이지에 요소가 없고 메인 페이지가 아니면 메인 페이지로 이동
+      if (pathname === "/") {
+        // 메인 페이지: 요소 찾아서 스크롤, 없으면 해시로 폴백
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          window.history.replaceState(null, "", window.location.pathname);
+        } else {
+          // 요소가 아직 렌더링되지 않은 경우 폴백
+          window.location.hash = href;
+        }
+      } else {
+        // 서브 페이지: 메인으로 이동 후 해시 적용
         router.push(`/${href}`);
       }
     }
@@ -147,14 +152,26 @@ export default function Navbar() {
                 {nav.cta}
               </a>
             ) : (
-              <a
-                href="https://roomfit.kr/funding/?idx=11"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors whitespace-nowrap text-sm xl:text-base"
-              >
-                {nav.cta}
-              </a>
+              <div className="flex items-center gap-2">
+                {"ctaSecondary" in nav && (
+                  <a
+                    href={nav.ctaSecondary.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-2 border-primary text-primary px-4 py-2 rounded-full font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-sm xl:text-base"
+                  >
+                    {nav.ctaSecondary.text}
+                  </a>
+                )}
+                <a
+                  href="https://roomfit.kr/funding/?idx=11"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-primary text-white px-4 py-2 rounded-full font-medium hover:bg-primary-600 transition-colors whitespace-nowrap text-sm xl:text-base"
+                >
+                  {nav.cta}
+                </a>
+              </div>
             )}
           </div>
 
@@ -261,15 +278,28 @@ export default function Navbar() {
                 {nav.cta}
               </a>
             ) : (
-              <a
-                href="https://roomfit.kr/funding/?idx=11"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {nav.cta}
-              </a>
+              <div className="flex flex-col gap-2">
+                {"ctaSecondary" in nav && (
+                  <a
+                    href={nav.ctaSecondary.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block border-2 border-primary text-primary px-5 py-3 rounded-full font-medium text-center hover:bg-primary hover:text-white transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {nav.ctaSecondary.text}
+                  </a>
+                )}
+                <a
+                  href="https://roomfit.kr/funding/?idx=11"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {nav.cta}
+                </a>
+              </div>
             )}
           </div>
         </div>
