@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Instagram } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { mainContent, appContent, images } from "@/data";
 
 export default function Footer() {
@@ -44,6 +44,14 @@ export default function Footer() {
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href={(footer as typeof mainContent.footer).social.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <Youtube className="w-5 h-5" />
                 </a>
               </div>
             )}

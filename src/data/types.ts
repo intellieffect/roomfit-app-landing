@@ -116,6 +116,7 @@ export interface MainContent {
     links: NavLink[];
     social: {
       instagram: string;
+      youtube: string;
     };
   };
 }
