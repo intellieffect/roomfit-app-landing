@@ -59,9 +59,16 @@ export default function VBTAnalysis() {
                       {Icon && <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />}
                     </div>
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-white mb-0.5 sm:mb-1">
-                        {item.title}
-                      </h4>
+                      <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
+                        <h4 className="text-sm sm:text-base font-semibold text-white">
+                          {item.title}
+                        </h4>
+                        {item.comingSoon && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-secondary/20 text-secondary whitespace-nowrap">
+                            상반기 출시예정
+                          </span>
+                        )}
+                      </div>
                       <p className="text-gray-400 text-xs sm:text-sm">
                         {item.description}
                       </p>

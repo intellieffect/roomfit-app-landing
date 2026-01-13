@@ -41,9 +41,16 @@ export default function Features() {
                 >
                   {Icon && <Icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />}
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-1.5 sm:mb-2">
-                  {feature.title}
-                </h3>
+                <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">
+                    {feature.title}
+                  </h3>
+                  {feature.comingSoon && (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium bg-secondary/20 text-secondary whitespace-nowrap">
+                      상반기 출시예정
+                    </span>
+                  )}
+                </div>
                 <p className="text-sm sm:text-base text-gray-400">
                   {feature.description}
                 </p>

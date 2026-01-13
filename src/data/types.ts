@@ -171,6 +171,7 @@ export interface FeatureItem {
   title: string;
   description: string;
   color?: "primary" | "secondary";
+  comingSoon?: boolean;
 }
 
 export interface Mode {

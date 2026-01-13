@@ -116,13 +116,18 @@ export default function AIAssistant() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
           <motion.div
-            className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary/10 text-primary px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
+            className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            AI 코칭
+            <span className="inline-flex items-center gap-1.5 sm:gap-2 bg-primary/10 text-primary px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium">
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              AI 코칭
+            </span>
+            <span className="inline-flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium bg-secondary/20 text-secondary">
+              상반기 출시예정
+            </span>
           </motion.div>
 
           <motion.h2

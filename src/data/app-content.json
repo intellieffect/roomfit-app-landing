@@ -56,7 +56,8 @@
         "icon": "Hand",
         "title": "AI 피로도 감지",
         "description": "AI가 피로 누적을 감지하여 부상 전 운동 중단 권고",
-        "color": "primary"
+        "color": "primary",
+        "comingSoon": true
       },
       {
         "icon": "BarChart3",
@@ -87,17 +88,20 @@
       {
         "icon": "Activity",
         "title": "동작 품질 평가",
-        "description": "트레이너 없이도 내 동작이 일정한지 품질 점수로 확인"
+        "description": "트레이너 없이도 내 동작이 일정한지 품질 점수로 확인",
+        "comingSoon": true
       },
       {
         "icon": "TrendingUp",
         "title": "피로도 & RIR 예측",
-        "description": "\"지금 피로 누적됨\" 알림과 \"2개 더 가능\" AI 코칭"
+        "description": "\"지금 피로 누적됨\" 알림과 \"2개 더 가능\" AI 코칭",
+        "comingSoon": true
       },
       {
         "icon": "Zap",
         "title": "1RM 안전 추정",
-        "description": "위험한 테스트 없이 내 최대 근력을 파악할 수 있습니다"
+        "description": "위험한 테스트 없이 내 최대 근력을 파악할 수 있습니다",
+        "comingSoon": true
       }
     ]
   },
