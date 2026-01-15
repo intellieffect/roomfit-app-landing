@@ -4,12 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
-import { Menu, X, Building2, Smartphone, Home, MessageSquare, HelpCircle } from "lucide-react";
+import { Building2, Smartphone, Home, MessageSquare, HelpCircle } from "lucide-react";
 import { mainContent, appContent } from "@/data";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -62,21 +61,21 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/">
               <Image
-                src="/roomfit/logo.svg"
-                alt="ROOMFIT"
-                width={120}
-                height={28}
-                className="h-6 w-auto"
+                src="/images/Wespionlogo.png"
+                alt="WESPION"
+                width={140}
+                height={32}
+                className="h-7 w-auto"
               />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+          <div className="flex items-center gap-4 xl:gap-6">
             {nav.links.map((link) => (
               <a
                 key={link.href}
@@ -175,137 +174,84 @@ export default function Navbar() {
               </div>
             )}
           </div>
-
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden p-3"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6 text-white" />
-            ) : (
-              <Menu className="w-6 h-6 text-white" />
-            )}
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0a0f] border-t border-gray-800">
-          <div className="px-5 py-5 space-y-3">
-            {nav.links.map((link) => (
+        {/* Mobile Navigation - 2-row layout */}
+        <div className="lg:hidden">
+          {/* Row 1: Logo (center) + CTA button (right) */}
+          <div className="flex items-center justify-between h-14">
+            <div className="w-20" /> {/* Spacer for centering */}
+            <Link href="/" className="flex-1 flex justify-center">
+              <Image
+                src="/images/Wespionlogo.png"
+                alt="WESPION"
+                width={120}
+                height={28}
+                className="h-6 w-auto"
+              />
+            </Link>
+            <div className="w-20 flex justify-end">
               <a
-                key={link.href}
-                href={link.href}
-                className="block text-gray-300 hover:text-primary transition-colors py-2"
-                onClick={(e) => {
-                  scrollToSection(e, link.href);
-                  setMobileMenuOpen(false);
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-
-            {/* Main Page Link - show on app/business pages */}
-            {isSubPage && (
-              <Link
-                href="/"
-                className="flex items-center gap-2 text-gray-300 hover:text-primary py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Home className="w-4 h-4" />
-                메인
-              </Link>
-            )}
-
-            {/* App Link - only show on main page */}
-            {!isAppPage && "appLink" in nav && (
-              <Link
-                href={nav.appLink.href}
-                className="flex items-center gap-2 text-primary py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Smartphone className="w-4 h-4" />
-                {nav.appLink.label}
-              </Link>
-            )}
-
-            {/* Community Link - don't show on community page */}
-            {!isCommunityPage && "communityLink" in nav && (
-              <Link
-                href={nav.communityLink.href}
-                prefetch={false}
-                className="flex items-center gap-2 text-gray-300 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <MessageSquare className="w-4 h-4" />
-                {nav.communityLink.label}
-              </Link>
-            )}
-
-            {/* FAQ Link - don't show on FAQ page */}
-            {!isFAQPage && (
-              <Link
-                href="/faq"
-                className="flex items-center gap-2 text-gray-300 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <HelpCircle className="w-4 h-4" />
-                FAQ
-              </Link>
-            )}
-
-            {/* Business Link - don't show on business page */}
-            {!isBusinessPage && (
-              <Link
-                href={nav.businessLink.href}
-                className="flex items-center gap-2 text-secondary py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <Building2 className="w-4 h-4" />
-                {nav.businessLink.label}
-              </Link>
-            )}
-            {isAppPage ? (
-              <a
-                href="#download"
-                className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
-                onClick={(e) => {
-                  scrollToSection(e, "#download");
-                  setMobileMenuOpen(false);
-                }}
+                href="https://roomfit.kr/funding/?idx=11"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-white px-4 py-1.5 rounded-full font-medium text-sm"
               >
                 {nav.cta}
               </a>
-            ) : (
-              <div className="flex flex-col gap-2">
-                {"ctaSecondary" in nav && (
-                  <a
-                    href={(nav.ctaSecondary as { href: string; text: string }).href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block border-2 border-primary text-primary px-5 py-3 rounded-full font-medium text-center hover:bg-primary hover:text-white transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {(nav.ctaSecondary as { href: string; text: string }).text}
-                  </a>
-                )}
+            </div>
+          </div>
+
+          {/* Row 2: Menu items (horizontal) */}
+          <div className="flex items-center justify-center gap-1 pb-2 text-sm">
+            {/* Community Link */}
+            {"communityLink" in nav && (
+              <>
+                <Link
+                  href={nav.communityLink.href}
+                  prefetch={false}
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+                >
+                  {nav.communityLink.label}
+                </Link>
+                <span className="text-gray-600">|</span>
+              </>
+            )}
+
+            {/* 룸핏 체험 */}
+            {"ctaSecondary" in nav && (
+              <>
                 <a
-                  href="https://roomfit.kr/funding/?idx=11"
+                  href={(nav.ctaSecondary as { href: string; text: string }).href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-primary text-white px-5 py-3 rounded-full font-medium text-center hover:bg-primary-600 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
                 >
-                  {nav.cta}
+                  룸핏 체험
                 </a>
-              </div>
+                <span className="text-gray-600">|</span>
+              </>
             )}
+
+            {/* FAQ */}
+            <Link
+              href="/faq"
+              className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+            >
+              FAQ
+            </Link>
+            <span className="text-gray-600">|</span>
+
+            {/* 로그인 */}
+            <a
+              href="#"
+              className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+            >
+              로그인
+            </a>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
