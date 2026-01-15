@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ContactFAB from "@/components/ContactFAB";
 import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
 import VBTAnalysis from "@/components/sections/VBTAnalysis";
@@ -24,6 +25,7 @@ export default function AppPage() {
       <Connectivity />
       <DownloadCTA />
       <Footer />
+      <ContactFAB />
     </main>
   );
 }

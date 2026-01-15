@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ContactFAB from "@/components/ContactFAB";
 import BusinessHero from "@/components/business/BusinessHero";
 import BusinessFeatures from "@/components/business/BusinessFeatures";
 import BusinessVBTAnalysis from "@/components/business/BusinessVBTAnalysis";
@@ -26,6 +27,7 @@ export default function BusinessPage() {
       <Marketing />
       <ContactCTA />
       <Footer />
+      <ContactFAB />
     </main>
   );
 }

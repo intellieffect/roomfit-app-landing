@@ -6,6 +6,7 @@ import {
   OfficialLaunch,
   PainPoints,
   HWSpecs,
+  AddOns,
   WeightModes,
   ExerciseShowcase,
   Safety,
@@ -23,6 +24,7 @@ export default function Home() {
       <OfficialLaunch />
       <PainPoints />
       <HWSpecs />
+      <AddOns />
       <WeightModes />
       <ExerciseShowcase />
       <Safety />
