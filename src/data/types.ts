@@ -36,7 +36,13 @@ export interface MainContent {
       line1: string;
       line2: string;
     };
-    items: FeatureItem[];
+    tabs: { id: string; label: string }[];
+    general: {
+      items: PainPointItem[];
+    };
+    trainer: {
+      items: PainPointItem[];
+    };
   };
   hwSpecs: {
     badge: string;
@@ -172,6 +178,13 @@ export interface FeatureItem {
   description: string;
   color?: "primary" | "secondary";
   comingSoon?: boolean;
+}
+
+export interface PainPointItem {
+  icon: string;
+  title: string;
+  subtitle: string;
+  description: string;
 }
 
 export interface Mode {

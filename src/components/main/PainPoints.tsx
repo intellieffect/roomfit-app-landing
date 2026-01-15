@@ -59,10 +59,7 @@ export default function PainPoints() {
   };
 
   const currentItems = painPoints[activeTab]?.items || [];
-  const gridCols =
-    activeTab === "general"
-      ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4";
+  const gridCols = "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
   return (
     <section

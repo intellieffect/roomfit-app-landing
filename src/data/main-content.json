@@ -84,14 +84,8 @@
           "description": "옆 센터랑 똑같으면 회원이 왜 오겠어요"
         },
         {
-          "icon": "Gauge",
-          "title": "장비가 아쉬워요",
-          "subtitle": "전문 장비",
-          "description": "제대로 된 코칭을 하려면 측정 장비가 필요한데..."
-        },
-        {
           "icon": "Wallet",
-          "title": "너무 비싸요",
+          "title": "전문 장비는 너무 비싸요",
           "subtitle": "가격 문제",
           "description": "VBT, 등속성 장비는 수천만원이라 엄두가 안 나요"
         },
