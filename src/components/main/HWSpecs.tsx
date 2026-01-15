@@ -276,30 +276,31 @@ export default function HWSpecs() {
           })}
         </div>
 
-        {/* Spec Detail - Split Layout */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeSpec}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-          >
-            {/* Visual Area */}
-            <div className="relative order-2 lg:order-1">
+        {/* Spec Detail - Split Layout (고정 높이 컨테이너) */}
+        <div className="relative h-[650px] sm:h-[500px] lg:h-[520px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSpec}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute inset-0 grid lg:grid-cols-2 gap-6 lg:gap-12 items-start"
+            >
+            {/* Visual Area - 고정 높이로 레이아웃 시프트 방지 */}
+            <div className="relative order-2 lg:order-1 h-[400px] sm:h-[450px] lg:h-[500px]">
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
+                className="relative h-full"
               >
                 {/* Glow behind image */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/10 blur-3xl scale-110" />
 
                 {/* Comparison Layout for size spec - 2단계 시퀀스 애니메이션 */}
                 {specMedia[hwSpecs.specs[activeSpec].image]?.type === "comparison" ? (
-                  <div className="relative min-h-[400px] flex items-center justify-center">
+                  <div className="relative h-full flex items-center justify-center">
                     <AnimatePresence mode="wait">
                       {comparisonPhase === "product" ? (
                         /* Phase 1: 룸핏 제품 크게 보여주기 */
@@ -446,7 +447,7 @@ export default function HWSpecs() {
                   </div>
                 ) : (
                   /* Default single image layout */
-                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
+                  <div className="relative h-full rounded-3xl overflow-hidden">
                     <div className="relative h-full rounded-3xl bg-gradient-to-br from-surface to-muted overflow-hidden border border-white/10">
                       {/* Media */}
                       <AnimatePresence mode="wait">
@@ -502,13 +503,13 @@ export default function HWSpecs() {
               </motion.div>
             </div>
 
-            {/* Content */}
+            {/* Content - 고정 높이로 레이아웃 시프트 방지 */}
             <div className="order-1 lg:order-2">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="min-h-[180px] sm:min-h-[200px]"
+                className="h-[200px] sm:h-[220px] lg:h-[240px] overflow-hidden"
               >
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight">
                   {hwSpecs.specs[activeSpec].title}
@@ -541,8 +542,9 @@ export default function HWSpecs() {
                 </div>
               </motion.div>
             </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

@@ -27,20 +27,36 @@ export default function ExerciseShowcase() {
     ...exerciseShowcase.exercises,
   ];
 
-  // 컨테이너 너비 측정
+  // 컨테이너 너비 측정 (ResizeObserver로 안정적 측정)
   useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
     const measureWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.scrollWidth / 2);
+      const width = container.scrollWidth / 2;
+      if (width > 0) {
+        setContainerWidth(width);
       }
     };
 
-    // 초기 측정 + 뷰포트 진입 시 재측정
-    measureWidth();
+    // ResizeObserver로 컨테이너 크기 변화 감지
+    const resizeObserver = new ResizeObserver(() => {
+      measureWidth();
+    });
+    resizeObserver.observe(container);
 
-    // DOM 렌더링 완료 후 재측정
-    const timer = setTimeout(measureWidth, 100);
-    return () => clearTimeout(timer);
+    // 초기 측정 + 이미지 로딩 대기 후 재측정
+    measureWidth();
+    const timers = [
+      setTimeout(measureWidth, 100),
+      setTimeout(measureWidth, 500),
+      setTimeout(measureWidth, 1000),
+    ];
+
+    return () => {
+      resizeObserver.disconnect();
+      timers.forEach(clearTimeout);
+    };
   }, [isInView]);
 
   // 자동 스크롤 애니메이션
@@ -205,7 +221,7 @@ export default function ExerciseShowcase() {
             onDragStart={handleDragStart}
             onDrag={handleDrag}
             onDragEnd={handleDragEnd}
-            className="flex gap-6 py-4 cursor-grab active:cursor-grabbing"
+            className="flex gap-3 py-4 cursor-grab active:cursor-grabbing"
             style={{
               width: "max-content",
               x: scrollX,
