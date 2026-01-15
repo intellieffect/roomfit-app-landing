@@ -1,115 +1,85 @@
 "use client";
 
 import { useRef } from "react";
-import { mainContent } from "@/data";
 import { motion, useInView } from "framer-motion";
-import { ChevronRight } from "lucide-react";
-
-const reviews = [
-  "기다릴 가치가 있었으며, 펀딩 가격 기준으로는 행운이라 느껴질 정도 ",
-  "정가에 구매하더라도 아깝지 않을 하드웨어 품질",
-  "감탄이 나올 정도로 정교하고 우수한 퀄리티의 머신👍👍",
-];
 
 export default function OfficialLaunch() {
-  const { hero } = mainContent;
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 lg:py-28 bg-white overflow-hidden"
+      className="relative py-8 lg:py-12 bg-white overflow-hidden"
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Title */}
+        {/* Top message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="mb-3"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2">
-            직접 써보니 더 만족 하는 그 머신!
-          </h2>
-          <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800">
-            드디어 정식 출시 🎉
+          <p className="text-lg sm:text-xl font-bold text-gray-800">
+            올해는 반드시!!
+          </p>
+          <p className="text-base sm:text-lg text-gray-700">
+            꾸준한 운동을 응원합니다.
           </p>
         </motion.div>
 
-        {/* Badge */}
-        <motion.div
+        {/* Main title */}
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-4"
+          className="text-2xl sm:text-3xl lg:text-4xl font-black text-primary mb-4"
         >
-          <span className="text-lg sm:text-xl text-gray-600">
-            🔥 1차~6차 펀딩, 성황리에 마감 🔥
-          </span>
+          신년맞이 특별 쿠폰
+        </motion.h2>
+
+        {/* Coupon box */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="inline-block mb-4"
+        >
+          <div className="border-2 border-primary rounded-lg px-6 py-4 bg-gray-50">
+            <p className="text-3xl sm:text-4xl lg:text-5xl font-black text-primary mb-2">
+              300,000원
+            </p>
+            <p className="text-sm sm:text-base text-gray-700">
+              회원 전용, ~1/30
+            </p>
+            <p className="text-xs sm:text-sm text-gray-500">
+              재고 소진시 마감
+            </p>
+          </div>
         </motion.div>
 
-        {/* Highlight Text */}
+        {/* Coupon notice */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-sm sm:text-base text-gray-500 mb-4"
+        >
+          상품페이지에서 쿠폰 발급
+        </motion.p>
+
+        {/* Bottom message */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-10"
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <span className="text-xl sm:text-2xl font-bold text-[#5252ff]">
-            정규 출시 완료 !!
-          </span>
-        </motion.div>
-
-        {/* Reviews */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="space-y-4 mb-12"
-        >
-          {reviews.map((review, index) => (
-            <motion.p
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              className="text-base sm:text-lg text-gray-600 italic"
-            >
-              &ldquo;{review}&rdquo;
-            </motion.p>
-          ))}
-        </motion.div>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          {/* Primary CTA - 구매하기 */}
-          <motion.a
-            href="https://roomfit.kr/funding/?idx=11"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-white bg-[#5252ff] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg"
-          >
-            <span className="relative">{hero.cta.primary}</span>
-            <ChevronRight className="w-5 h-5 relative group-hover:translate-x-1 transition-transform" />
-          </motion.a>
-
-          {/* Secondary CTA - 직접 체험하기 */}
-          <motion.a
-            href="https://roomfit.notion.site/23f478cb1fa581e288cae8dfee2f90d6"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 text-lg font-bold text-[#7cb305] rounded-xl border-2 border-[#7cb305] overflow-hidden transition-all duration-300 hover:bg-[#7cb305]/5"
-          >
-            <span>{hero.cta.secondary}</span>
-          </motion.a>
+          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
+            활기찬 2026년을 위해,
+          </p>
+          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
+            고민은 배송만 늦출 뿐!
+          </p>
         </motion.div>
       </div>
     </section>
