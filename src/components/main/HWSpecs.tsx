@@ -508,6 +508,7 @@ export default function HWSpecs() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
+                className="min-h-[180px] sm:min-h-[200px]"
               >
                 <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight">
                   {hwSpecs.specs[activeSpec].title}

@@ -2,6 +2,7 @@ export { default as MainHero } from "./MainHero";
 export { default as OfficialLaunch } from "./OfficialLaunch";
 export { default as PainPoints } from "./PainPoints";
 export { default as HWSpecs } from "./HWSpecs";
+export { default as AddOns } from "./AddOns";
 export { default as WeightModes } from "./WeightModes";
 export { default as ExerciseShowcase } from "./ExerciseShowcase";
 export { default as Safety } from "./Safety";

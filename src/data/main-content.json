@@ -49,23 +49,60 @@
       "line1": "웨이트 트레이닝,",
       "line2": "이런 고민 없으셨나요?"
     },
-    "items": [
-      {
-        "icon": "Home",
-        "title": "공간 부족",
-        "description": "헬스장 가기 귀찮은데, 홈짐은 공간이 너무 많이 필요해요"
-      },
-      {
-        "icon": "ShieldAlert",
-        "title": "안전 우려",
-        "description": "고중량 혼자 하기엔 불안하고 위험해요"
-      },
-      {
-        "icon": "HelpCircle",
-        "title": "성장 확인 어려움",
-        "description": "제대로 하고 있는지, 늘고 있는지 모르겠어요"
-      }
-    ]
+    "tabs": [
+      { "id": "general", "label": "일반인" },
+      { "id": "trainer", "label": "트레이너/센터" }
+    ],
+    "general": {
+      "items": [
+        {
+          "icon": "Clock",
+          "title": "시간이 없어요",
+          "subtitle": "시간 문제",
+          "description": "출퇴근에 헬스장까지, 운동할 틈이 안 나요"
+        },
+        {
+          "icon": "Home",
+          "title": "집은 너무 좁아요",
+          "subtitle": "공간 문제",
+          "description": "홈짐 꾸리자니 공간도, 비용도 부담돼요"
+        },
+        {
+          "icon": "ShieldAlert",
+          "title": "혼자는 불안해요",
+          "subtitle": "안전 걱정",
+          "description": "고중량 들다 다치면 어쩌죠?"
+        }
+      ]
+    },
+    "trainer": {
+      "items": [
+        {
+          "icon": "TrendingUp",
+          "title": "뭔가 달라야 해요",
+          "subtitle": "차별화",
+          "description": "옆 센터랑 똑같으면 회원이 왜 오겠어요"
+        },
+        {
+          "icon": "Gauge",
+          "title": "장비가 아쉬워요",
+          "subtitle": "전문 장비",
+          "description": "제대로 된 코칭을 하려면 측정 장비가 필요한데..."
+        },
+        {
+          "icon": "Wallet",
+          "title": "너무 비싸요",
+          "subtitle": "가격 문제",
+          "description": "VBT, 등속성 장비는 수천만원이라 엄두가 안 나요"
+        },
+        {
+          "icon": "Users",
+          "title": "보여줄 게 없어요",
+          "subtitle": "회원 관리",
+          "description": "출석 체크 말고, 성장을 객관적으로 증명하고 싶어요"
+        }
+      ]
+    }
   },
   "hwSpecs": {
     "badge": "압도적 컴팩트함",
@@ -142,8 +179,8 @@
       {
         "id": "constant",
         "title": "콘스턴트 모드",
-        "subtitle": "일정한 저항 유지",
-        "description": "전체 가동범위에 걸쳐 일정한 저항을 유지합니다.\n일반 헬스장 기구처럼 익숙한 느낌으로 운동하세요.",
+        "subtitle": "날림 없이 묵직한 자극",
+        "description": "전체 가동범위에 걸쳐 일정한 저항을 유지합니다.\n날림 없이 묵직한 자극감으로 운동하세요.",
         "icon": "Minus",
         "gif": "constant"
       },
