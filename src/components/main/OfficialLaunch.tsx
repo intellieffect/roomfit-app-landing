@@ -73,6 +73,7 @@ export default function OfficialLaunch() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-6"
         >
           <p className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
             활기찬 2026년을 위해,
@@ -80,6 +81,31 @@ export default function OfficialLaunch() {
           <p className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
             고민은 배송만 늦출 뿐!
           </p>
+        </motion.div>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+        >
+          <a
+            href="https://roomfit.kr/funding/?idx=11"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-primary text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-primary-600 transition-colors"
+          >
+            구매하기
+          </a>
+          <a
+            href="https://roomfit.notion.site/23f478cb1fa581e288cae8dfee2f90d6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-secondary text-gray-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-secondary/80 transition-colors"
+          >
+            직접 체험하기
+          </a>
         </motion.div>
       </div>
     </section>

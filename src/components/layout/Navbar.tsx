@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect, useCallback } from "react";
-import { Building2, Smartphone, Home, MessageSquare, HelpCircle } from "lucide-react";
+import { Building2, Smartphone, Home, MessageSquare } from "lucide-react";
 import { mainContent, appContent } from "@/data";
 
 export default function Navbar() {
@@ -15,9 +15,7 @@ export default function Navbar() {
   // Use appropriate content based on current path
   const isAppPage = pathname === "/app";
   const isBusinessPage = pathname === "/business";
-  const isCommunityPage = pathname?.startsWith("/community");
-  const isFAQPage = pathname === "/faq";
-  const isSubPage = isAppPage || isBusinessPage || isCommunityPage || isFAQPage;
+  const isSubPage = isAppPage || isBusinessPage;
   const content = isAppPage ? appContent : mainContent;
   const { nav } = content;
 
@@ -110,27 +108,17 @@ export default function Navbar() {
               </Link>
             )}
 
-            {/* Community Link - don't show on community page */}
-            {!isCommunityPage && "communityLink" in nav && (
-              <Link
-                href={nav.communityLink.href}
-                prefetch={false}
+            {/* Community Link */}
+            {"communityLink" in nav && (
+              <a
+                href="https://shop.roomfit.kr/community"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
               >
                 <MessageSquare className="w-4 h-4" />
                 {nav.communityLink.label}
-              </Link>
-            )}
-
-            {/* FAQ Link - don't show on FAQ page */}
-            {!isFAQPage && (
-              <Link
-                href="/faq"
-                className="flex items-center gap-2 px-3 py-2 text-gray-300 hover:text-primary transition-colors font-medium whitespace-nowrap text-sm xl:text-base"
-              >
-                <HelpCircle className="w-4 h-4" />
-                FAQ
-              </Link>
+              </a>
             )}
 
             {/* Business Link - don't show on business page */}
@@ -179,9 +167,8 @@ export default function Navbar() {
         {/* Mobile Navigation - 2-row layout */}
         <div className="lg:hidden">
           {/* Row 1: Logo (center) + CTA button (right) */}
-          <div className="flex items-center justify-between h-14">
-            <div className="w-20" /> {/* Spacer for centering */}
-            <Link href="/" className="flex-1 flex justify-center">
+          <div className="flex items-center justify-center h-14 relative">
+            <Link href="/">
               <Image
                 src="/images/Wespionlogo.png"
                 alt="WESPION"
@@ -190,64 +177,82 @@ export default function Navbar() {
                 className="h-6 w-auto"
               />
             </Link>
-            <div className="w-20 flex justify-end">
-              <a
-                href="https://roomfit.kr/funding/?idx=11"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-primary text-white px-4 py-1.5 rounded-full font-medium text-sm"
-              >
-                {nav.cta}
-              </a>
-            </div>
+            <a
+              href="https://roomfit.kr/funding/?idx=11"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute right-0 bg-primary text-white px-3 py-1.5 rounded-full font-medium text-xs whitespace-nowrap"
+            >
+              {nav.cta}
+            </a>
           </div>
 
-          {/* Row 2: Menu items (horizontal) */}
-          <div className="flex items-center justify-center gap-1 pb-2 text-sm">
+          {/* Row 2: Menu items (horizontal, scrollable on small screens) */}
+          <div className="flex items-center justify-center gap-1 pb-2 text-sm overflow-x-auto">
             {/* Community Link */}
             {"communityLink" in nav && (
               <>
-                <Link
-                  href={nav.communityLink.href}
-                  prefetch={false}
-                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+                <a
+                  href="https://shop.roomfit.kr/community"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1 whitespace-nowrap"
                 >
                   {nav.communityLink.label}
+                </a>
+                <span className="text-gray-600">|</span>
+              </>
+            )}
+
+            {/* App Link */}
+            {!isAppPage && "appLink" in nav && (
+              <>
+                <Link
+                  href={nav.appLink.href}
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1 whitespace-nowrap"
+                >
+                  {nav.appLink.label}
                 </Link>
                 <span className="text-gray-600">|</span>
               </>
             )}
 
-            {/* 룸핏 체험 */}
+            {/* 체험 신청 */}
             {"ctaSecondary" in nav && (
               <>
                 <a
                   href={(nav.ctaSecondary as { href: string; text: string }).href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1 whitespace-nowrap"
                 >
-                  룸핏 체험
+                  체험 신청
                 </a>
                 <span className="text-gray-600">|</span>
               </>
             )}
 
-            {/* FAQ */}
-            <Link
-              href="/faq"
-              className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
-            >
-              FAQ
-            </Link>
-            <span className="text-gray-600">|</span>
+            {/* Business Link */}
+            {!isBusinessPage && (
+              <>
+                <Link
+                  href={nav.businessLink.href}
+                  className="text-gray-300 hover:text-primary transition-colors px-2 py-1 whitespace-nowrap"
+                >
+                  {nav.businessLink.label}
+                </Link>
+                <span className="text-gray-600">|</span>
+              </>
+            )}
 
-            {/* 로그인 */}
+            {/* 마이페이지 */}
             <a
-              href="#"
-              className="text-gray-300 hover:text-primary transition-colors px-2 py-1"
+              href="https://shop.roomfit.kr/shop_mypage"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-primary transition-colors px-2 py-1 whitespace-nowrap"
             >
-              로그인
+              마이페이지
             </a>
           </div>
         </div>
