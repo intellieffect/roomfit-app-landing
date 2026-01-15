@@ -83,7 +83,7 @@
         "image": "weight"
       },
       {
-        "value": "1평",
+        "value": "0.5평",
         "label": "설치 공간",
         "title": "8배 더 작은 사이즈",
         "description": "일반 랙 대비 8배 작은 공간으로 어디든 설치 가능합니다",
@@ -91,12 +91,12 @@
         "image": "size"
       },
       {
-        "value": "Add-Ons",
-        "label": "애드온",
-        "title": "확장 가능한 시스템",
-        "description": "컴팩트함을 유지하면서 거의 모든 운동을 가능하게.\n애드온이 곧 찾아옵니다",
-        "note": "출시 예정",
-        "image": "addons"
+        "value": "0.0001초",
+        "label": "안전감지 시간",
+        "title": "즉각적인 안전 감지",
+        "description": "0.0001초 이내에 위험을 감지하여 즉시 무게를 해제합니다.\n혼자서도 안전하게 운동할 수 있습니다",
+        "note": "",
+        "image": "safety"
       }
     ]
   },
@@ -148,14 +148,6 @@
         "gif": "constant"
       },
       {
-        "id": "variable",
-        "title": "밴드 모드",
-        "subtitle": "최대 수축, 최대 자극",
-        "description": "동작의 정점에서 저항이 최대가 되어 근육이 최대로 수축되도록 도와줍니다.\n최대수축 x 최대자극 x 지속시간 = 폭발적 근성장",
-        "icon": "TrendingUp",
-        "gif": "variable"
-      },
-      {
         "id": "negative",
         "title": "네거티브 모드",
         "subtitle": "근비대 효과 극대화",
@@ -164,12 +156,21 @@
         "gif": "negative"
       },
       {
+        "id": "squeeze",
+        "title": "스퀴즈 모드",
+        "subtitle": "최대 수축, 최대 자극",
+        "description": "동작의 정점에서 저항이 최대가 되어 근육이 최대로 수축되도록 도와줍니다.\n최대수축 x 최대자극 x 지속시간 = 폭발적 근성장",
+        "icon": "TrendingUp",
+        "gif": "squeeze"
+      },
+      {
         "id": "isokinetic",
         "title": "등속성 모드",
         "subtitle": "관절 보호 운동",
         "description": "일정한 속도로 동작하도록 도와줍니다.\n관절에 부담 적은 초반 + 강한 마무리로 안전한 운동이 가능합니다.",
         "icon": "Gauge",
-        "gif": "isokinetic"
+        "gif": "isokinetic",
+        "comingSoon": true
       }
     ]
   },
