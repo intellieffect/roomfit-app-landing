@@ -1,8 +1,9 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ContactFAB from "@/components/ContactFAB";
 import {
   MainHero,
-  IntroStats,
+  OfficialLaunch,
   PainPoints,
   HWSpecs,
   WeightModes,
@@ -19,7 +20,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#0a0a0f]">
       <Navbar />
       <MainHero />
-      <IntroStats />
+      <OfficialLaunch />
       <PainPoints />
       <HWSpecs />
       <WeightModes />
@@ -30,6 +31,7 @@ export default function Home() {
       <SocialProof />
       <MainCTA />
       <Footer />
+      <ContactFAB />
     </main>
   );
 }
