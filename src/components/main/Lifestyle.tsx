@@ -44,7 +44,7 @@ export default function Lifestyle() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 sm:py-24 lg:py-40 bg-void overflow-hidden"
+      className="relative py-8 sm:py-12 lg:py-16 bg-void overflow-hidden"
     >
       {/* Dramatic Night Background */}
       <div className="absolute inset-0">

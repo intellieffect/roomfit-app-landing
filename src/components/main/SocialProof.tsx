@@ -105,7 +105,7 @@ export default function SocialProof() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 sm:py-24 lg:py-40 bg-surface overflow-hidden"
+      className="relative py-8 sm:py-12 lg:py-16 bg-surface overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">

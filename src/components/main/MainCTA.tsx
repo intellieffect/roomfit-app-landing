@@ -19,7 +19,7 @@ export default function MainCTA() {
     <section
       ref={sectionRef}
       id="purchase"
-      className="relative py-16 sm:py-24 lg:py-40 overflow-hidden"
+      className="relative py-8 sm:py-12 lg:py-16 overflow-hidden"
     >
       {/* Background - Electric gradient enhanced */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-indigo-700">
