@@ -18,7 +18,7 @@ export default function MainHero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-end justify-center pb-32 overflow-hidden bg-black"
+      className="relative h-[60vh] flex items-end justify-center pb-32 overflow-hidden bg-black"
     >
       {/* Background - YouTube 영상 배경 */}
       <div className="absolute inset-0">
