@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { mainContent } from "@/data";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Dumbbell, Maximize2, Grid3X3, Check } from "lucide-react";
+import { Dumbbell, Maximize2, ShieldCheck, Check } from "lucide-react";
 
-const specIcons = [Dumbbell, Maximize2, Grid3X3];
+const specIcons = [Dumbbell, Maximize2, ShieldCheck];
 
 // 스펙별 미디어 타입
 type SingleMedia = { type: "gif" | "image"; src: string };
@@ -26,9 +26,9 @@ const specMedia: Record<string, SpecMedia> = {
     beforeLabel: "일반 홈짐",
     afterLabel: "룸핏",
   },
-  addons: {
-    type: "image",
-    src: "/roomfit/product-fullset.png",
+  safety: {
+    type: "gif",
+    src: "/roomfit/tech-motor-assembly.gif",
   },
 };
 
@@ -115,7 +115,7 @@ export default function HWSpecs() {
     <section
       ref={sectionRef}
       id="specs"
-      className="relative py-16 sm:py-24 lg:py-40 bg-void overflow-hidden"
+      className="relative py-8 sm:py-12 lg:py-16 bg-void overflow-hidden"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">
@@ -166,13 +166,13 @@ export default function HWSpecs() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl mb-10 sm:mb-16 lg:mb-20"
+          className="max-w-2xl mb-6 sm:mb-8"
         >
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 sm:mb-6"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 sm:mb-4"
           >
             <Check className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
             <span className="text-xs sm:text-sm font-bold text-primary tracking-wide">
@@ -201,7 +201,7 @@ export default function HWSpecs() {
         </motion.div>
 
         {/* Spec Cards - Horizontal Tab Style */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-10 sm:mb-16">
+        <div className="grid grid-cols-3 gap-1.5 xs:gap-2 sm:gap-4 mb-6 sm:mb-8">
           {hwSpecs.specs.map((spec, index) => {
             const Icon = specIcons[index];
             const isActive = activeSpec === index;
@@ -214,7 +214,7 @@ export default function HWSpecs() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className={`group relative text-left p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 ${
+                className={`group relative text-center p-1.5 xs:p-2 sm:p-4 rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-500 ${
                   isActive
                     ? "bg-surface ring-2 ring-primary"
                     : "bg-surface/50 hover:bg-surface border border-white/5"
@@ -242,61 +242,29 @@ export default function HWSpecs() {
                 />
 
                 <div className="relative z-10">
-                  {/* Icon and index */}
-                  <div className="flex items-center justify-between mb-4 sm:mb-6">
-                    <div
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-300 ${
-                        isActive
-                          ? "bg-primary text-black shadow-[0_0_30px_-5px_rgba(82,82,255,0.5)]"
-                          : "bg-white/5 text-gray-400 group-hover:bg-white/10 group-hover:text-white"
-                      }`}
-                    >
-                      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </div>
-                    <span
-                      className={`text-xs font-mono transition-colors ${
-                        isActive ? "text-primary" : "text-gray-600"
-                      }`}
-                    >
-                      0{index + 1}
-                    </span>
+                  {/* Icon */}
+                  <div
+                    className={`w-8 h-8 xs:w-9 xs:h-9 sm:w-12 sm:h-12 rounded-md xs:rounded-lg flex items-center justify-center transition-all duration-300 mb-1.5 xs:mb-2 mx-auto ${
+                      isActive
+                        ? "bg-primary text-black shadow-[0_0_30px_-5px_rgba(82,82,255,0.5)]"
+                        : "bg-white/5 text-gray-400 group-hover:bg-white/10 group-hover:text-white"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
                   </div>
 
                   {/* Value */}
-                  <div className="mb-2 sm:mb-3">
-                    {spec.value.match(/[0-9]/) ? (
-                      <>
-                        <span
-                          className={`text-3xl sm:text-4xl lg:text-5xl font-black transition-colors ${
-                            isActive ? "text-white" : "text-gray-500 group-hover:text-white"
-                          }`}
-                        >
-                          {spec.value.replace(/[^0-9+]/g, "")}
-                        </span>
-                        <span
-                          className={`text-base sm:text-xl font-bold ml-1 transition-colors ${
-                            isActive
-                              ? "text-secondary"
-                              : "text-gray-600 group-hover:text-gray-400"
-                          }`}
-                        >
-                          {spec.value.replace(/[0-9+]/g, "")}
-                        </span>
-                      </>
-                    ) : (
-                      <span
-                        className={`text-2xl sm:text-3xl lg:text-4xl font-black transition-colors ${
-                          isActive ? "gradient-text" : "text-gray-500 group-hover:text-white"
-                        }`}
-                      >
-                        {spec.value}
-                      </span>
-                    )}
-                  </div>
+                  <span
+                    className={`block text-sm xs:text-base sm:text-xl font-black transition-colors leading-tight ${
+                      isActive ? "text-white" : "text-gray-500 group-hover:text-white"
+                    }`}
+                  >
+                    {spec.value}
+                  </span>
 
                   {/* Label */}
                   <p
-                    className={`text-sm sm:text-base font-medium transition-colors ${
+                    className={`text-[9px] xs:text-[10px] sm:text-sm font-medium transition-colors leading-tight ${
                       isActive ? "text-gray-300" : "text-gray-500"
                     }`}
                   >
@@ -541,22 +509,22 @@ export default function HWSpecs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 leading-tight">
                   {hwSpecs.specs[activeSpec].title}
                 </h3>
 
-                <p className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed mb-4 sm:mb-6 whitespace-pre-line">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 whitespace-pre-line">
                   {hwSpecs.specs[activeSpec].description}
                 </p>
 
                 {hwSpecs.specs[activeSpec].note && (
-                  <p className="text-xs sm:text-sm text-gray-600 mb-6 sm:mb-8 pl-3 sm:pl-4 border-l-2 border-gray-800">
+                  <p className="text-xs text-gray-600 mb-4 pl-3 border-l-2 border-gray-800">
                     {hwSpecs.specs[activeSpec].note}
                   </p>
                 )}
 
                 {/* Navigation dots */}
-                <div className="flex items-center gap-2 sm:gap-3 mt-8 sm:mt-12">
+                <div className="flex items-center gap-2 mt-4 sm:mt-6">
                   {hwSpecs.specs.map((_, index) => (
                     <button
                       key={index}
