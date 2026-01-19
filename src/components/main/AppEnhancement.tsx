@@ -111,6 +111,15 @@ export default function AppEnhancement() {
             </motion.span>
           </h2>
 
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="inline-flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium bg-secondary/20 text-secondary mt-3 sm:mt-4"
+          >
+            상반기 출시예정
+          </motion.span>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -265,7 +274,7 @@ export default function AppEnhancement() {
                   transition={{ duration: 0.6, delay: 1 }}
                 >
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-                    <span className="gradient-text">AI 트레이너 만나보기</span>
+                    <span className="gradient-text">룸핏 앱 살펴보기</span>
                   </h3>
                   <p className="text-sm sm:text-base lg:text-lg text-gray-400 mb-6 sm:mb-8 lg:mb-10 max-w-lg leading-relaxed">
                     AI 기반 운동 분석, 실시간 피드백, 개인화된 프로그램까지.
