@@ -10,11 +10,19 @@
       { "href": "#modes", "label": "트레이닝 모드" },
       { "href": "#data", "label": "데이터" }
     ],
+    "communityLink": {
+      "href": "/community",
+      "label": "커뮤니티"
+    },
     "businessLink": {
       "href": "/business",
       "label": "트레이너/센터"
     },
-    "cta": "다운로드"
+    "cta": "다운로드",
+    "ctaSecondary": {
+      "text": "체험하기",
+      "href": "https://roomfit.notion.site/23f478cb1fa581e288cae8dfee2f90d6"
+    }
   },
   "hero": {
     "badge": "VBT + AI 스마트 트레이닝",

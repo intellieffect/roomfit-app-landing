@@ -48,8 +48,8 @@ const config: Config = {
         sans: ["Pretendard", "system-ui", "sans-serif"],
       },
       animation: {
-        "fade-up": "fadeUp 0.5s ease-out",
-        "fade-in": "fadeIn 0.5s ease-out",
+        "fade-up": "fadeUp 0.5s ease-out forwards",
+        "fade-in": "fadeIn 0.5s ease-out forwards",
         float: "float 6s ease-in-out infinite",
         pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },

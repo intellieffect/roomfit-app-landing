@@ -1,4 +1,3 @@
-"use client";
 
 import { Smartphone, CheckCircle2 } from "lucide-react";
 import { businessContent } from "@/data";

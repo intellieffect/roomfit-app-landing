@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { ChevronDown, Mail, Building2 } from "lucide-react";
 import { businessContent, images, getScreenshot } from "@/data";
@@ -10,7 +8,7 @@ export default function BusinessHero() {
   const mainScreenshot = getScreenshot(heroImages.main);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden pt-20">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" />
       <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-secondary/20 rounded-full blur-[128px]" />
