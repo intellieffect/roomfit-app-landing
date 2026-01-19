@@ -63,7 +63,8 @@
         "icon": "BarChart3",
         "title": "AI 성장 분석",
         "description": "운동 잔디를 채우며 AI가 \"한 달 전보다 강해졌네!\" 알려줌",
-        "color": "secondary"
+        "color": "secondary",
+        "comingSoon": true
       }
     ]
   },
