@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import { ShoppingCart, Calendar, Sparkles, ArrowRight, Zap, Check, Shield, Truck, RotateCcw } from "lucide-react";
+import { ShoppingCart, Calendar, Sparkles, ArrowRight, Zap, Check, Shield, RotateCcw } from "lucide-react";
 import { mainContent } from "@/data";
 import { motion, useInView } from "framer-motion";
 
 const trustItems = [
-  { icon: Truck, text: "무료 배송" },
+  { icon: Shield, text: "품질 보증" },
   { icon: Shield, text: "1년 무상 A/S" },
 ];
 

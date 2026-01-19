@@ -1,18 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { Star, Quote, BadgeCheck, Shield, Truck, Wrench, Eye, Heart } from "lucide-react";
+import { Star, Quote, BadgeCheck, Eye, Heart } from "lucide-react";
 import { mainContent, testimonials } from "@/data";
 import { motion, useInView, PanInfo } from "framer-motion";
 
 const SCROLL_SPEED = 0.3; // pixels per frame (slower for testimonials)
 const RESUME_DELAY = 3000; // 3초 후 재개
-
-const trustBadges = [
-  { icon: Shield, label: "품질 보증" },
-  { icon: Truck, label: "무료 배송" },
-  { icon: Wrench, label: "A/S 1년" },
-];
 
 export default function SocialProof() {
   const { socialProof } = mainContent;
@@ -240,13 +234,8 @@ export default function SocialProof() {
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   <div className="relative z-10">
-                    {/* Header: Stars + Category */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-                        ))}
-                      </div>
+                    {/* Header: Category */}
+                    <div className="flex items-center justify-end mb-4">
                       <span className="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded-full">
                         {testimonial.category}
                       </span>
@@ -308,41 +297,6 @@ export default function SocialProof() {
           </motion.div>
         </motion.div>
 
-        {/* Trust badges */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-white/5"
-          >
-            <p className="text-center text-[10px] sm:text-xs font-bold text-gray-600 uppercase tracking-widest mb-6 sm:mb-8">
-              신뢰할 수 있는 약속
-            </p>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 lg:gap-6">
-              {trustBadges.map((badge, index) => {
-                const Icon = badge.icon;
-                return (
-                  <motion.div
-                    key={badge.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 1 + index * 0.1 }}
-                    whileHover={{ y: -4, scale: 1.05 }}
-                    className="group flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-void/50 border border-white/5 hover:border-secondary/20 transition-all duration-300"
-                  >
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-secondary/10 flex items-center justify-center group-hover:bg-secondary/20 transition-colors">
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-secondary" />
-                    </div>
-                    <span className="text-xs sm:text-sm font-medium text-gray-400 group-hover:text-white transition-colors">
-                      {badge.label}
-                    </span>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
       </div>
 
     </section>
