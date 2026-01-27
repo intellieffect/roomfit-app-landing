@@ -1,0 +1,8 @@
+name = "roomfit-landing"
+account_id = "18166e72b77ea4752be554d6014d1875"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+
+[assets]
+directory = ".open-next/assets"
