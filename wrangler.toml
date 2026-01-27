@@ -4,5 +4,10 @@ compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
 
+routes = [
+  { pattern = "roomfit.kr", custom_domain = true },
+  { pattern = "www.roomfit.kr", custom_domain = true }
+]
+
 [assets]
 directory = ".open-next/assets"
