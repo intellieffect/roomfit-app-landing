@@ -5,8 +5,8 @@ compatibility_flags = ["nodejs_compat"]
 main = ".open-next/worker.js"
 
 routes = [
-  { pattern = "roomfit.kr", custom_domain = true },
-  { pattern = "www.roomfit.kr", custom_domain = true }
+  { pattern = "roomfit.kr", custom_domain = true, override_existing_dns_record = true },
+  { pattern = "www.roomfit.kr", custom_domain = true, override_existing_dns_record = true }
 ]
 
 [assets]
