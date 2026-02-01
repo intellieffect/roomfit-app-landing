@@ -28,6 +28,14 @@ yarn-error.log*
 # Vercel
 .vercel
 
+# Cloudflare
+.open-next/
+.wrangler/
+
+# Misc
+.mcp.json
+firebase-debug.log
+
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
