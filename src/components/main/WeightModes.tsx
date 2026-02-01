@@ -15,7 +15,8 @@ const iconMap: Record<string, LucideIcon> = {
 
 // 각 모드 시연용 운동 GIF
 const modeGifs: Record<string, string> = {
-  constant: "/roomfit/exercise-deadlift-back.gif",
+  // TODO: exercise-deadlift-back.gif 에셋 확보 후 교체 필요 (임시 placeholder)
+  constant: "/roomfit/exercise-barbell-row-white.gif",
   negative: "/roomfit/exercise-concentration-curl.gif",
   squeeze: "/roomfit/exercise-squat-barbell.gif",
   isokinetic: "/roomfit/exercise-barbell-curl.gif",
