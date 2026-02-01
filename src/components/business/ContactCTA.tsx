@@ -1,10 +1,58 @@
 
+
+"use client";
+
 import Link from "next/link";
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, MessageCircle, Phone, User } from "lucide-react";
 import { businessContent } from "@/data";
+import { useEffect, useState } from "react";
+
+declare global {
+  interface Window {
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Channel: {
+        chat: (options: { channelPublicId: string }) => void;
+      };
+    };
+  }
+}
 
 export default function ContactCTA() {
   const { contactCTA } = businessContent;
+  const [sdkReady, setSdkReady] = useState(false);
+
+  useEffect(() => {
+    if (window.Kakao) {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init("023670d4f258fae12b34694b2eaa8153");
+      }
+      setSdkReady(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) {
+        window.Kakao.init("023670d4f258fae12b34694b2eaa8153");
+      }
+      setSdkReady(true);
+    };
+    document.head.appendChild(script);
+  }, []);
+
+  const handleKakaoChat = () => {
+    if (!sdkReady || !window.Kakao) {
+      window.open("https://pf.kakao.com/_xfkxeJG/chat", "_blank");
+      return;
+    }
+    window.Kakao.Channel.chat({
+      channelPublicId: contactCTA.contact.kakaoChannelId || "_xfkxeJG",
+    });
+  };
 
   return (
     <section
@@ -26,6 +74,13 @@ export default function ContactCTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
+          <button
+            onClick={handleKakaoChat}
+            className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#FEE500] text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl hover:bg-[#FDD835] transition-all hover:scale-105 text-sm sm:text-base font-semibold cursor-pointer"
+          >
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            카카오톡 문의
+          </button>
           <a
             href={`mailto:${contactCTA.contact.email}`}
             className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-gray-900 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl hover:bg-gray-800 transition-all hover:scale-105 text-sm sm:text-base"

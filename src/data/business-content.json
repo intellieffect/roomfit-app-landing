@@ -245,8 +245,9 @@
       "secondary": "개인 사용자이신가요?"
     },
     "contact": {
-      "email": "business@roomfit.io",
-      "phone": "02-0000-0000"
+      "email": "contact@wespion.com",
+      "phone": "02-0000-0000",
+      "kakaoChannelId": "_xfkxeJG"
     }
   }
 }
