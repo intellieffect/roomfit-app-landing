@@ -1,6 +1,7 @@
 
+
 import Link from "next/link";
-import { Mail, Phone, User } from "lucide-react";
+import { Mail, MessageCircle, User } from "lucide-react";
 import { businessContent } from "@/data";
 
 export default function ContactCTA() {
@@ -27,7 +28,18 @@ export default function ContactCTA() {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
           <a
-            href={`mailto:${contactCTA.contact.email}`}
+            href="https://pf.kakao.com/_xfkxeJG/chat"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#FEE500] text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl hover:bg-[#FDD835] transition-all hover:scale-105 text-sm sm:text-base font-semibold"
+          >
+            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            카카오톡 문의
+          </a>
+          <a
+            href={`https://mail.google.com/mail/?view=cm&to=${contactCTA.contact.email}&su=도입 문의`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-gray-900 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg sm:rounded-xl hover:bg-gray-800 transition-all hover:scale-105 text-sm sm:text-base"
           >
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -43,20 +55,15 @@ export default function ContactCTA() {
         </div>
 
         {/* Contact info */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center">
+        <div className="flex justify-center items-center">
           <a
-            href={`mailto:${contactCTA.contact.email}`}
+            href={`https://mail.google.com/mail/?view=cm&to=${contactCTA.contact.email}&su=도입 문의`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 text-gray-800 hover:text-gray-900 transition-colors text-sm sm:text-base"
           >
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
             {contactCTA.contact.email}
-          </a>
-          <a
-            href={`tel:${contactCTA.contact.phone}`}
-            className="flex items-center gap-2 text-gray-800 hover:text-gray-900 transition-colors text-sm sm:text-base"
-          >
-            <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-            {contactCTA.contact.phone}
           </a>
         </div>
       </div>
