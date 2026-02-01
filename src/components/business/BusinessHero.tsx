@@ -39,7 +39,9 @@ export default function BusinessHero() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a
-                href="#contact"
+                href="https://mail.google.com/mail/?view=cm&to=contact@wespion.com&su=도입 문의"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-secondary text-gray-900 px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-secondary-400 transition-all hover:scale-105 shadow-lg shadow-secondary/30"
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
