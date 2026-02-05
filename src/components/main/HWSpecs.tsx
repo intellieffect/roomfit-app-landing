@@ -115,7 +115,7 @@ export default function HWSpecs() {
     <section
       ref={sectionRef}
       id="specs"
-      className="relative py-8 sm:py-12 lg:py-16 bg-void overflow-hidden"
+      className="relative py-8 sm:py-12 lg:py-16 bg-void"
     >
       {/* Dramatic Background */}
       <div className="absolute inset-0">

@@ -7,8 +7,10 @@ export const metadata = {
 
 export default function SpecsPage() {
   return (
-    <main className="min-h-screen bg-[#0a0a0f]">
-      <HWSpecs />
+    <main className="h-screen bg-[#0a0a0f] flex flex-col">
+      <div className="flex-1 flex flex-col [&>section]:flex-1">
+        <HWSpecs />
+      </div>
     </main>
   );
 }
