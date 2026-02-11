@@ -1,4 +1,3 @@
-import ContactFAB from "@/components/ContactFAB";
 import BusinessHero from "@/components/business/BusinessHero";
 import BusinessFeatures from "@/components/business/BusinessFeatures";
 import BusinessVBTAnalysis from "@/components/business/BusinessVBTAnalysis";
@@ -23,7 +22,6 @@ export default function BusinessPage() {
       <DeviceManagement />
       <Marketing />
       <ContactCTA />
-      <ContactFAB />
     </main>
   );
 }

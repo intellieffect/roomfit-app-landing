@@ -1,4 +1,3 @@
-import ContactFAB from "@/components/ContactFAB";
 import {
   PainPoints,
   HWSpecs,
@@ -25,7 +24,6 @@ export default function Home() {
       <Lifestyle />
       <SocialProof />
       <MainCTA />
-      <ContactFAB />
     </main>
   );
 }

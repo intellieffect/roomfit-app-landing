@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import ContactFAB from "@/components/ContactFAB";
 import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
 import TrainingModes from "@/components/sections/TrainingModes";
@@ -32,7 +31,6 @@ export default function AppPage() {
       <AIAssistant />
       <Connectivity />
       <DownloadCTA />
-      <ContactFAB />
     </main>
   );
 }
