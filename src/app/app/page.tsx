@@ -1,6 +1,4 @@
 import dynamic from "next/dynamic";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import ContactFAB from "@/components/ContactFAB";
 import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
@@ -25,7 +23,6 @@ const AIAssistant = dynamic(() => import("@/components/sections/AIAssistant"), {
 export default function AppPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0f]">
-      <Navbar />
       <Hero />
       <Features />
       <VBTAnalysis />
@@ -35,7 +32,6 @@ export default function AppPage() {
       <AIAssistant />
       <Connectivity />
       <DownloadCTA />
-      <Footer />
       <ContactFAB />
     </main>
   );

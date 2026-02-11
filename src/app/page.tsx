@@ -1,5 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import ContactFAB from "@/components/ContactFAB";
 import {
   PainPoints,
@@ -17,7 +15,6 @@ import {
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#0a0a0f]">
-      <Navbar />
       <PainPoints />
       <HWSpecs />
       <AddOns />
@@ -28,7 +25,6 @@ export default function Home() {
       <Lifestyle />
       <SocialProof />
       <MainCTA />
-      <Footer />
       <ContactFAB />
     </main>
   );

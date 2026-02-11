@@ -1,5 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import ContactFAB from "@/components/ContactFAB";
 import BusinessHero from "@/components/business/BusinessHero";
 import BusinessFeatures from "@/components/business/BusinessFeatures";
@@ -15,7 +13,6 @@ import ContactCTA from "@/components/business/ContactCTA";
 export default function BusinessPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0f]">
-      <Navbar />
       <BusinessHero />
       <BusinessFeatures />
       <BusinessVBTAnalysis />
@@ -26,7 +23,6 @@ export default function BusinessPage() {
       <DeviceManagement />
       <Marketing />
       <ContactCTA />
-      <Footer />
       <ContactFAB />
     </main>
   );
